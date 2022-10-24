@@ -44,6 +44,10 @@ export function prefixMaxLength(prefix: string | undefined): string {
   return parts[parts.length - 1];
 }
 
+export function formatDate(seconds: number, locale: string) {
+  return new Date(seconds * 1000).toLocaleString(locale,  { dateStyle: 'long', timeStyle: 'medium' });
+}
+
 export function isAbsolute(url: string): boolean {
   const r = new RegExp('^(?:[a-z]+:)?//', 'i');
 

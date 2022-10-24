@@ -85,7 +85,7 @@ export default class Api {
   }
 
   getCaRepoStatus(ca: string): Promise<RepoStatus> {
-    return this.get(`/api/v1/cas/${ca}/repo/status`);
+    return this.get<RepoStatus>(`/api/v1/cas/${ca}/repo/status`);
   }
 
 
