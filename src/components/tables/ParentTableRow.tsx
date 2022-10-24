@@ -29,7 +29,7 @@ export default function ParentTableRow({ parent, locale }: ParentTableRowProps) 
           <td>{ t.caDetails.lastExchange }</td>
           <td>
             { formatDate(parent.last_exchange.timestamp, locale) }
-            { parent.last_exchange.result != 'Success'
+            { parent.last_exchange.result !== 'Success'
               ? ( <span className='failure'>FAILURE ICON{ parent.last_exchange.result.Failure.msg }</span> )
               : ( <span className='success'>SUCCES ICON</span> )
             }

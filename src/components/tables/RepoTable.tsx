@@ -22,7 +22,7 @@ export default function RepoTable({ repo, locale }: RepoTableProps) {
           <td>{ t.caDetails.lastExchange }</td>
           <td>
             { formatDate(repo.last_exchange.timestamp, locale) }
-            { repo.last_exchange.result != 'Success'
+            { repo.last_exchange.result !== 'Success'
               ? ( <span className='failure'>FAILURE ICON{ repo.last_exchange.result.Failure.msg }</span> )
               : ( <span className='success'>SUCCES ICON</span> )
             }

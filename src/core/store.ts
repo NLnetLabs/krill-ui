@@ -16,6 +16,7 @@ import {
   Route,
   Filtering,
   Parent,
+  ParentParams,
   Suggestion,
   RoaField,
   SuggestionField,
@@ -110,6 +111,7 @@ export default class Store implements Data {
         type: NotificationType.error,
         message: error.msg || 'Error',
       });
+      return false;
     }
   }
 
@@ -294,6 +296,18 @@ export default class Store implements Data {
       removed: [route],
     });
     await this.loadCa(true);
+  }
+
+  async addParent(params: ParentParams) {
+    if (this.ca === null) {
+      return;
+    }
+
+    return await this.handleError(async () => {
+      await this.api.postParent(this.ca, params.name, params.response ? params.response : '');
+      await this.loadParents(true);
+      return true;
+    });
   }
 
   // update notification

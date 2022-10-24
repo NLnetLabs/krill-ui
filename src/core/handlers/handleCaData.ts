@@ -1,6 +1,6 @@
 import { State } from 'router5';
 import Store from '../store';
-import { RouteParams, Suggestion } from '../types';
+import { ParentParams, RouteParams, Suggestion } from '../types';
 
 export default async function handleCaData(toState: State, store: Store) {
   // store ca from route to state
@@ -36,6 +36,13 @@ export default async function handleCaData(toState: State, store: Store) {
     }
     await store.changeRoutes(add, remove);
     return Promise.reject({redirect: {name: 'cas', params: {ca: store.ca}}});
+  }
+
+  // add parent
+  if (toState.name === 'cas.parents.add' && toState.params.name) {
+    if (await store.addParent(toState.params as ParentParams)) {
+      return Promise.reject({ redirect: {name: 'cas.parents', params: { ca: store.ca }} });
+    }
   }
 
   // load a list of available ca's
