@@ -5,6 +5,7 @@ import {
   KrillLogin,
   OpenIDConnect,
   Parent,
+  ParentData,
   RepoStatus,
   Roa,
   LoginResponse,
@@ -86,13 +87,13 @@ export default class Api {
   }
 
   getCaParents(ca: string): Promise<Parent[]> {
-    return this.get(`/api/v1/cas/${ca}/parents`);
+    return this.get<Record<string, ParentData>>(`/api/v1/cas/${ca}/parents`)
+      .then((data) => Object.entries(data).map(([name, parent]) => ({ name, ...parent })));
   }
 
   getCaRepoStatus(ca: string): Promise<RepoStatus> {
     return this.get<RepoStatus>(`/api/v1/cas/${ca}/repo/status`);
   }
-
 
   getInfo(): Promise<Info> {
     return this.get('/stats/info');
