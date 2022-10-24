@@ -155,22 +155,34 @@ export interface RoaChange {
   new: Array<BgpAnnouncement>
 }
 
-export interface Parent {
-  name: string,
-}
-
-export interface FailureStatus {
+interface FailureStatus {
   Failure: {
     msg: string,
   }
 }
 
-export interface RepoStatus {
-  last_exchange: {
-    timestamp: number,
-    uri: string,
-    result: 'Success' | FailureStatus,
+interface LastExchange {
+  timestamp: number,
+  uri: string,
+  result: 'Success' | FailureStatus,
+}
+
+export interface ParentData {
+  last_exchange: LastExchange,
+  last_success: number,
+  all_resources: {
+    asn: string,
+    ipv4: string,
+    ipv6: string,
   },
+}
+
+export interface Parent extends ParentData {
+  name: string,
+}
+
+export interface RepoStatus {
+  last_exchange: LastExchange,
   last_success: number,
 }
 
