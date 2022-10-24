@@ -1,14 +1,23 @@
 import React from 'react';
-import { Notification as NotificationType } from '../core/types';
+import useNavigation from '../hooks/useNavigation';
+import useStore from '../hooks/useStore';
 
-export default function Notification({ notification }: { notification: NotificationType | null }) {
+export default function Notification() {
+  const { notification } = useStore();
+  const navigate = useNavigation();
+  
   if (!notification) {
     return null;
   }
 
   return (
     <div className={`notification ${ notification.type }`}>
-      { notification.message }
+      <button className="close" onClick={() => navigate({ notification: 'clear' })}>
+        &times;
+      </button>
+      <span>
+        {notification.message}
+      </span>
     </div>
   );
 }

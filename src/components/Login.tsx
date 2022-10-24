@@ -1,5 +1,4 @@
 import React, { FormEvent, useState } from 'react';
-import Notification from './Notification';
 import Layout from './Layout';
 import { krillHash } from '../core/utils';
 import { KrillLogin } from '../core/types';
@@ -29,7 +28,6 @@ export default function Login() {
 
   return (
     <Layout>
-      <Notification notification={store.notification} />
       <form onSubmit={login} method="POST" className={`login card ${method.with_id ? 'vertical-form' : ''}`}>
         {method.with_id && (
           <div>
