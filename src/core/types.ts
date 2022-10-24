@@ -192,6 +192,11 @@ export interface LoginResponse extends UserDetails {
   token: string,
 }
 
+export interface ErrorResponseType {
+  status: number,
+  msg: string | null,
+}
+
 export interface PersistedData {
   ca: null | string,
   locale: Locale,

@@ -9,7 +9,7 @@ import {
   Roa,
   LoginResponse,
   Route,
-  Suggestions, Suggestion
+  Suggestions, Suggestion, ErrorResponseType
 } from './types';
 import {generateId, isAbsolute, parseLoginUrl, transformSuggestions} from './utils';
 
@@ -32,24 +32,29 @@ export default class Api {
     this.token = token;
   }
 
-  get<ResponseType>(path: string, init?: RequestInit): Promise<ResponseType> {
-    return fetch(`${this.baseUrl}${path}`, {
+  async get<ResponseType>(path: string, init?: RequestInit): Promise<ResponseType> {
+    const response = await fetch(`${this.baseUrl}${path}`, {
       ...init,
       headers: {
         'Authorization': `Bearer ${this.token}`,
         ...(init?.headers || {}),
       },
-    }).then((response) => {
-      if (response.status === 200) {
-        return response.json() as ResponseType;
-      }
-
-      if (response.status === 401) {
-        this.setToken(null);
-      }
-
-      return Promise.reject(response);
     });
+
+    const json = await response.json();
+    
+    if (response.status === 200) {
+      return json as ResponseType;
+    }
+
+    if (response.status === 401 || response.status === 403) {
+      this.setToken(null);
+    }
+
+    throw {
+      status: response.status,
+      msg: json.msg || null,
+    } as ErrorResponseType;
   }
 
   post<ResponseType>(path: string, init?: RequestInit): Promise<ResponseType> {
@@ -100,19 +105,12 @@ export default class Api {
 
 
   updateRoutes(ca: string, data: { added: Route[], removed: Route[] }) {
-    return fetch(`/api/v1/cas/${ca}/routes`, {
+    return this.get(`/api/v1/cas/${ca}/routes`, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
-        'Authorization': `Bearer ${this.token}`,
         'Content-Type': 'application/json'
       },
-    }).then((response) => {
-      if (response.status === 401) {
-        this.setToken(null);
-      }
-
-      return response.status === 200;
     });
   }
 

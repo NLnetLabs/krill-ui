@@ -11,8 +11,6 @@ export default function AnalyseModal() {
     router.navigate('cas', { ca: params.ca });
   };
 
-  console.log(route.name, route.params);
-
   if (route.name !== 'cas.analyse'){
     return null;
   }

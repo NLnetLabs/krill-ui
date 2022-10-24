@@ -15,7 +15,11 @@ import {
   RouteParams,
   Route,
   Filtering,
-  Parent, Suggestion, RoaField, SuggestionField
+  Parent,
+  Suggestion,
+  RoaField,
+  SuggestionField,
+  ErrorResponseType,
 } from './types';
 import {compareRoa, compareSuggestion} from './utils';
 
@@ -93,15 +97,19 @@ export default class Store implements Data {
   }
 
   // try load data and
-  async handleTokenError<T>(callback: () => Promise<T>) {
+  async handleError<T>(callback: () => Promise<T>) {
     try {
       return await callback();
     } catch (e) {
-      if (e instanceof Response) {
-        if (e.status === 401) {
-          this.setToken(null);
-        }
+      const error = e as ErrorResponseType;
+      if (error.status === 401 || error.status === 403) {
+        this.setToken(null);
       }
+
+      this.setNotification({
+        type: NotificationType.error,
+        message: error.msg || 'Error',
+      });
     }
   }
 
@@ -182,7 +190,7 @@ export default class Store implements Data {
       return;
     }
 
-    await this.handleTokenError(async () => {
+    await this.handleError(async () => {
       this.cas = await this.api.getCas();
 
       if (!this.ca && this.cas.length > 0) {
@@ -197,7 +205,7 @@ export default class Store implements Data {
       return;
     }
 
-    await this.handleTokenError(async () => {
+    await this.handleError(async () => {
       if (this.ca !== null) {
         const [caDetails, roas, suggestions] = await Promise.all([
           this.api.getCaDetails(this.ca),
@@ -219,7 +227,7 @@ export default class Store implements Data {
       return;
     }
 
-    await this.handleTokenError(async () => {
+    await this.handleError(async () => {
       if (this.ca !== null) {
         this.parents[this.ca] = await this.api.getCaParents(this.ca);
       }
@@ -231,7 +239,7 @@ export default class Store implements Data {
       return;
     }
 
-    await this.handleTokenError(async () => {
+    await this.handleError(async () => {
       if (this.ca !== null) {
         this.repoStatus[this.ca] = await this.api.getCaRepoStatus(this.ca);
       }
@@ -260,10 +268,14 @@ export default class Store implements Data {
       prefix: params.prefix,
       max_length: parseInt(params.max_length, 10),
     };
-    await this.api.updateRoutes(this.ca, {
-      added: [route],
-      removed: [],
+
+    await this.handleError(async () => {
+      await this.api.updateRoutes(this.ca as string, {
+        added: [route],
+        removed: [],
+      });
     });
+
     await this.loadCa(true);
   }
 
