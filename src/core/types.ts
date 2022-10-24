@@ -155,13 +155,13 @@ export interface RoaChange {
   new: Array<BgpAnnouncement>
 }
 
-interface FailureStatus {
+export interface FailureStatus {
   Failure: {
     msg: string,
   }
 }
 
-interface LastExchange {
+export interface LastExchange {
   timestamp: number,
   uri: string,
   result: 'Success' | FailureStatus,
