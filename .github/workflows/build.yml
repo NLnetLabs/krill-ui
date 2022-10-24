@@ -22,3 +22,5 @@ jobs:
       - run: yarn playwright install --with-deps chromium
       - run: yarn dev &
       - run: yarn test
+        env:
+          CI: true

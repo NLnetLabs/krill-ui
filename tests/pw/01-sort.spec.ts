@@ -18,13 +18,13 @@ test('sorting of ROA Table', async ({page}) => {
       await table.locator(`thead tr th:nth-of-type(${columnIdx})`).click();
 
       let lastValue = await tableBodyRow.locator(`td:nth-of-type(${columnIdx})`).first().innerText();
-      let lastValueInt = parseInt(lastValue);
+      let lastValueInt = parseInt(lastValue, 10);
       const column = await tableBodyRow.locator(`td:nth-of-type(${columnIdx})`);
       for (let i = 0; i < await column.count(); i++) {
         const currentValue = await column.nth(i).innerText();
-        const currentValueInt = parseInt(currentValue);
+        const currentValueInt = parseInt(currentValue, 10);
         if (!isNaN(currentValueInt) && !isNaN(lastValueInt)) {
-          expect(currentValueInt <= lastValueInt).toBeTruthy();
+          expect(currentValueInt).toBeGreaterThanOrEqual(lastValueInt);
         } else {
           expect(currentValue <= lastValue).toBeTruthy();
         }
@@ -37,13 +37,13 @@ test('sorting of ROA Table', async ({page}) => {
       await table.locator(`thead tr th:nth-of-type(${columnIdx})`).click();
 
       let lastValue = await tableBodyRow.locator(`td:nth-of-type(${columnIdx})`).first().innerText();
-      let lastValueInt = parseInt(lastValue);
+      let lastValueInt = parseInt(lastValue, 10);
       const column = await tableBodyRow.locator(`td:nth-of-type(${columnIdx})`);
       for (let i = 0; i < await column.count(); i++) {
         const currentValue = await column.nth(i).innerText();
-        const currentValueInt = parseInt(currentValue);
+        const currentValueInt = parseInt(currentValue, 10);
         if (!isNaN(currentValueInt) && !isNaN(lastValueInt)) {
-          expect(currentValueInt >= lastValueInt).toBeTruthy();
+          expect(currentValueInt).toBeGreaterThanOrEqual(lastValueInt);
         } else {
           expect(currentValue >= lastValue).toBeTruthy();
         }
