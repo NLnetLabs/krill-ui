@@ -19,4 +19,5 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: yarn lint
       - run: yarn playwright install --with-deps chromium
+      - run: yarn dev
       - run: yarn test
