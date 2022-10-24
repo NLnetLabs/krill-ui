@@ -6,6 +6,7 @@ import Store from './store';
 const routes = [
   { name: 'home', path: '/' },
   { name: 'cas', path: '/cas/:ca', children: [
+    { name: 'add_new', path: '/add' },
     { name: 'add', path: '/add/:id' },
     { name: 'delete', path: '/delete/:id' },
     { name: 'change', path: '/change'},

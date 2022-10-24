@@ -24,8 +24,8 @@ export default function AnalyseModal() {
   };
 
   return (
-    <div className="modal" onClick={onClose}>
-      <div onClick={(e) => { e.stopPropagation(); }}>
+    <div className="modal" onMouseDown={onClose}>
+      <div onMouseDown={(e) => { e.stopPropagation(); }}>
         {route.name === 'cas.analyse' && (
           <Analyse
             onClose={onClose}

@@ -18,14 +18,14 @@ export default function CaModal() {
     router.navigate('cas', { ca: params.ca });
   };
 
-  if (!roa) {
+  if (!roa && route.name !== 'cas.add_new') {
     return null;
   }
 
   return (
     <div className="modal" onMouseDown={onClose}>
       <div onMouseDown={(e) => { e.stopPropagation(); }}>
-        {route.name === 'cas.add' && (
+        {route.name.startsWith('cas.add') && (
           <Add
             onClose={onClose}
             roa={roa}
@@ -34,7 +34,7 @@ export default function CaModal() {
         {route.name === 'cas.delete' && (
           <Delete
             onClose={onClose}
-            roa={roa}
+            roa={roa as Roa}
           />
         )}
       </div>
