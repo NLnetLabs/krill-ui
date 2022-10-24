@@ -1,8 +1,12 @@
 import {test, expect} from '@playwright/test';
+// @ts-ignore
+import {preparePage} from './utils.ts';
 
 
 test('Check for potentially dead links', async ({page,request}) => {
-  await page.goto('/login');
+  await preparePage(page);
+
+  await page.goto('/');
 
   const links = await page.getByRole('link');
 

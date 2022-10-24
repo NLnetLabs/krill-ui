@@ -1,16 +1,11 @@
 import {test, expect} from '@playwright/test';
-
+// @ts-ignore
+import {preparePage} from './utils.ts';
 
 test('change languages', async ({page}) => {
-  const sessionStorage = process.env.SESSION_STORAGE;
-  await page.addInitScript(storage => {
-    const entries = JSON.parse(storage);
-    for (const [key, value] of Object.entries(entries)) {
-      window.sessionStorage.setItem(key, value as string);
-    }
-  }, sessionStorage);
+  await preparePage(page);
 
-  await page.goto('/cas/tg');
+  await page.goto('/');
 
   const dropdown = page.locator('menu div.select');
 
@@ -27,6 +22,10 @@ test('change languages', async ({page}) => {
   await expect(dropdown.locator('ul')).toHaveClass('hide');
   expect(await dropdown.locator('button').innerText()).toBe('Deutsch');
 
+  const userButton = page.locator('button', {has: page.locator('img[src="/src/img/user.svg"]')});
+  await userButton.hover();
+  await expect(userButton.locator('div', {hasText: 'Benutzer:'})).toHaveCount(1);
+
   await expect(page.locator('h2', {hasText: 'Zertifizierungsstelle'})).toHaveCount(1);
   await expect(page.locator('label', {hasText: 'Aktuelle Zertifizierungsstelle'})).toHaveCount(1);
 
@@ -39,25 +38,25 @@ test('change languages', async ({page}) => {
   await expect(page.locator('a', {hasText: 'Ein Problem melden'})).toHaveCount(1);
 
   const seen = page.locator('span.state.roa_seen');
-  if (await seen.count() > 0){
+  if (await seen.count() > 0) {
     await expect(await seen.first().innerText()).toBe('SICHTBAR');
 
   }
 
   const notFound = page.locator('span.state.announcement_not_found');
-  if (await notFound.count() > 0){
+  if (await notFound.count() > 0) {
     await expect(await notFound.first().innerText()).toBe('NICHT GEFUNDEN');
 
   }
 
   const disallowing = page.locator('span.state.roa_disallowing');
-  if (await disallowing.count() > 0){
+  if (await disallowing.count() > 0) {
     await expect(await disallowing.first().innerText()).toBe('Verursacht ungültige Ankündigungen');
 
   }
 
   const invalidLength = page.locator('span.state.announcement_invalid_length');
-  if (await invalidLength.count() > 0){
+  if (await invalidLength.count() > 0) {
     await expect(await invalidLength.first().innerText()).toBe('UNGÜLTIGE LÄNGE');
 
   }
@@ -65,4 +64,11 @@ test('change languages', async ({page}) => {
   await page.locator('table tbody tr td button.expand').first().click();
   await expect(page.locator('h3', {hasText: /Autorisiert \d* BGP-Ankündigungen/})).toHaveCount(1);
   await expect(page.locator('h3', {hasText: /Verweigert \d* BGP-Ankündigungen/})).toHaveCount(1);
+
+  const languageCount = await languages.count();
+  for (let i = 0; i < languageCount; i++) {
+    await dropdown.locator('button').click();
+    await languages.nth(i).click();
+    await expect(dropdown).toHaveCount(1);
+  }
 });

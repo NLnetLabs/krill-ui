@@ -26,8 +26,6 @@ const config: PlaywrightTestConfig = {
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'line',
 
-  globalSetup: './tests/pw/setup',
-
   use: {
     baseURL: 'http://localhost:5173',
     browserName: 'chromium',
@@ -40,13 +38,17 @@ const config: PlaywrightTestConfig = {
     },
     storageState: {
       cookies: [],
-      origins: [{
-        origin: 'http://localhost:5173',
-        localStorage: [{
-          name: 'krill',
-          value: '{"ca": "tg", "locale": "en"}',
-        }]
-      }]
+      origins: [
+        {
+          origin: 'http://localhost:5173',
+          localStorage: [
+            {
+              name: 'krill',
+              value: '{"ca":"tg","locale":"en","userDetails":{"id":"admin_token","attributes":{"role":"admin"}}}'
+            }
+          ]
+        }
+      ]
     }
   },
 

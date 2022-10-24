@@ -1,16 +1,12 @@
 import {test, expect} from '@playwright/test';
+// @ts-ignore
+import {preparePage} from './utils.ts';
 
 
 test('change CA', async ({page}) => {
-  const sessionStorage = process.env.SESSION_STORAGE;
-  await page.addInitScript(storage => {
-    const entries = JSON.parse(storage);
-    for (const [key, value] of Object.entries(entries)) {
-      window.sessionStorage.setItem(key, value as string);
-    }
-  }, sessionStorage);
+  await preparePage(page);
 
-  await page.goto('/cas/tg');
+  await page.goto('/');
 
   const urlRegEx = new RegExp('cas/[a-zA-Z0-9@:%._+~#=]{1,256}$');
   await expect(page).toHaveURL(urlRegEx);
@@ -37,8 +33,9 @@ test('change CA', async ({page}) => {
       break;
     }
   }
-  expect(newCa, 'This test needs at least two CAs to perform').not.toBe('');
+  await expect(newCa, 'This test needs at least two CAs to perform').not.toBe('');
 
+  await page.waitForNavigation();
   const regEx = new RegExp(`/cas/${newCa}$`);
   await expect(page).toHaveURL(regEx);
 
