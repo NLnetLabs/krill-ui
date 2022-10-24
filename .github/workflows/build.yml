@@ -20,4 +20,10 @@ jobs:
           cmd: lint
       - uses: borales/actions-yarn@v3.0.0
         with:
+          cmd: playwright install-deps chromium 
+      - uses: borales/actions-yarn@v3.0.0
+        with:
+          cmd: test
+      - uses: borales/actions-yarn@v3.0.0
+        with:
           cmd: build
