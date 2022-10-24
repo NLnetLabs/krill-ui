@@ -113,7 +113,8 @@
     "analyseThis": "Analiseer mijn ROAs",
     "analysis": "ROA Analyse",
     "suggestions": {
-      "following": "Controleer a.u.b. de volgende voorgestelde wijzigingen in uw ROAs. <a href='https://krill.docs.nlnetlabs.nl/en/stable/manage-roas.html' target='_blank'>Lees meer..</a>",
+      "following": "Controleer a.u.b. de volgende voorgestelde wijzigingen in uw ROAs.",
+      "readMore": "Lees meer..",
       "nochanges": "We suggereren op dit moment niets te wijzigen",
       "adding": "Toe te voegen",
       "removing": "Te verwijderen",
@@ -124,8 +125,8 @@
       "ourSuggestionHelp": "Onze suggestie is gebaseerd op RIPE RIS informatie, gelieve te controleren!",
       "addThis": "Voeg toe",
       "removeThis": "Verwijder",
-      "willAdd": "Voeg deze ROA toe vanwege status ({reason})",
-      "willRemove": "Verwijder deze ROA vanwege status ({reason})",
+      "willAdd": "Voeg deze ROA toe vanwege status",
+      "willRemove": "Verwijder deze ROA vanwege status",
       "reasons": {
         "not_found": "Niet gevonden",
         "not_held": "ROA kan niet gepubliceerd worden, de prefix staat niet meer op uw certifica(a)t(en)",

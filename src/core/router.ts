@@ -8,8 +8,10 @@ const routes = [
   { name: 'cas', path: '/cas/:ca', children: [
     { name: 'add', path: '/add/:id' },
     { name: 'delete', path: '/delete/:id' },
+    { name: 'change', path: '/change'},
     { name: 'parents', path: '/parents' },
     { name: 'repository', path: '/repos' },
+    { name: 'analyse', path: '/analyse' },
   ]},
   { name: 'login', path: '/login' },
   { name: 'logout', path: '/logout' },

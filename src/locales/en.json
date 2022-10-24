@@ -113,7 +113,8 @@
     "analyseThis": "Analyse my ROAs",
     "analysis": "ROA Analysis",
     "suggestions": {
-      "following": "Please verify the following suggested changes to your ROAs. <a href='https://krill.docs.nlnetlabs.nl/en/stable/manage-roas.html' target='_blank'>Read more..</a>",
+      "following": "Please verify the following suggested changes to your ROAs.",
+      "readMore": "Read more..",
       "nochanges": "We suggest no changes at this time",
       "adding": "Adding",
       "removing": "Removing ROA",
@@ -124,8 +125,8 @@
       "ourSuggestionHelp": "Our suggestion is based on RIPE RIS Routing information, please verify!",
       "addThis": "Add this",
       "removeThis": "Remove this",
-      "willAdd": "Will add this ROA ({reason})",
-      "willRemove": "Will remove this ROA ({reason})",
+      "willAdd": "Will add this ROA",
+      "willRemove": "Will remove this ROA",
       "reasons": {
         "not_found": "Allow announcement not covered by any of your ROAs",
         "not_held": "ROA cannot be published, its prefix is no longer on your certificate(s)",

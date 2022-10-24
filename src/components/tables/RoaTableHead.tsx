@@ -3,7 +3,7 @@ import {Filtering, RoaField, RoaTableHeading, SortOrder} from '../../core/types'
 import useNavigation from '../../hooks/useNavigation';
 
 export interface RoaTableHeadProps {
-  filtering: Filtering,
+  filtering: Filtering<RoaField>,
   columns: RoaTableHeading,
 }
 

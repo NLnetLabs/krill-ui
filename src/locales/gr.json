@@ -113,7 +113,8 @@
     "analyseThis": "Ανέλυσε τα ROA",
     "analysis": "Ανάλυση ROA",
     "suggestions": {
-      "following": "Παρακαλώ επαληθεύστε τις ακόλουθες προτεινόμενες αλλαγές στα ROA σας. <a href='https://krill.docs.nlnetlabs.nl/en/stable/manage-roas.html' target='_blank'>Διαβάστε περισσότερα...</a>",
+      "following": "Παρακαλώ επαληθεύστε τις ακόλουθες προτεινόμενες αλλαγές στα ROA σας.",
+      "readMore": "Διαβάστε περισσότερα...",
       "nochanges": "Δεν προτείνουμε αλλαγές αυτή τη στιγμή",
       "adding": "Προσθήκη",
       "removing": "Αφαίρεση ROA",
@@ -124,8 +125,8 @@
       "ourSuggestionHelp": "Η πρότασή μας βασίζεται στις πληροφορίες του RIPE RIS Routing, παρακαλώ επιβεβαιώστε!",
       "addThis": "Προσθέστε αυτό",
       "removeThis": "Αφαιρέστε αυτό",
-      "willAdd": "Πρόσθεση αυτού του ROA ({reason})",
-      "willRemove": "Αφαίρεση αυτού του ROA ({reason})",
+      "willAdd": "Πρόσθεση αυτού του ROA",
+      "willRemove": "Αφαίρεση αυτού του ROA",
       "reasons": {
         "not_found": "Δεν βρέθηκε",
         "not_held": "Το ROA δεν μπορεί να δημοσιευθεί, το αντίστοιχο πρόθεμα δεν είναι πλέον μέρος κανενός πιστοποιητικού σας",

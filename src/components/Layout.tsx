@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { useRoute, useRouter } from 'react-router5';
+import { useRoute } from 'react-router5';
 import { locales } from '../core/config';
 import useNavigation from '../hooks/useNavigation';
 import useStore from '../hooks/useStore';
@@ -17,7 +17,6 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps) {
   const navigate = useNavigation();
   const { route } = useRoute();
-  const router = useRouter();
   const info = useVersion();
   const store = useStore();
   const year = new Date().getFullYear();
@@ -27,7 +26,7 @@ export default function Layout({ children }: LayoutProps) {
     <>
       <Loader initial={false} />
       <header>
-        <h1>
+        <h1 onClick={() => navigate({}, 'cas')}>
           <span>Krill</span>
         </h1>
         <menu>

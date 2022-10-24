@@ -65,16 +65,17 @@ export enum RoaField {
   state = 'state',
 }
 
-export type RoaTableHeading = Array<{label: string, accessor: RoaField}>
+export type RoaTableHeading = Array<{ label: string, accessor: RoaField }>
+export type BgpTableHeading = Array<{ label: string, accessor: SuggestionField }>
 
 export enum SortOrder {
   asc = 'asc',
   desc = 'desc',
 }
 
-export interface Filtering {
+export interface Filtering<T> {
   search: null | string,
-  sort: RoaField,
+  sort: T,
   order: SortOrder,
   limit: number,
   page: number,
@@ -101,6 +102,59 @@ export interface Roa extends Route {
   allowed_by?: Roa,
 }
 
+export interface Suggestions {
+  not_found?: Array<BgpAnnouncement>,
+  invalid_asn?: Array<BgpAnnouncement>,
+  invalid_length?: Array<BgpAnnouncement>,
+  too_permissive?: Array<RoaChange>,
+  disallowing?: Array<BgpAnnouncement>,
+  stale?: Array<BgpAnnouncement>,
+  redundant?: Array<BgpAnnouncement>,
+  as0_redundant?: Array<BgpAnnouncement>,
+  prefix_removed?: Array<BgpAnnouncement>,
+  keep?: Array<BgpAnnouncement>,
+}
+
+export enum SuggestionReason {
+  notFound = 'not_found',
+  invalidAsn = 'invalid_asn',
+  invalidLength = 'invalid_length',
+  tooPermissive = 'too_permissive',
+  disallowing = 'disallowing',
+  stale = 'stale',
+  redundant = 'redundant',
+  as0Redundant = 'as0_redundant',
+  specific = 'specific',
+}
+
+export enum CheckBoxState {
+  unchecked,
+  checked,
+  intermediate,
+}
+
+export enum SuggestionField {
+  action = 'action',
+  reason = 'reason',
+  asn = 'asn',
+  maxLength = 'max_length',
+  prefix = 'prefix',
+}
+
+export interface Suggestion {
+  id?: string,
+  action: 'add' | 'remove',
+  reason: SuggestionReason,
+  asn: number,
+  max_length: number,
+  prefix: string,
+}
+
+export interface RoaChange {
+  current: Roa,
+  new: Array<BgpAnnouncement>
+}
+
 export interface Parent {
   name: string,
 }
@@ -110,7 +164,8 @@ export interface RepoStatus {
     timestamp: number,
     uri: string,
     result: string,
-  }
+  },
+  last_success: number,
 }
 
 export interface Info {

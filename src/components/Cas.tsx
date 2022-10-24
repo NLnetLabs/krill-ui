@@ -9,12 +9,18 @@ import Store from '../core/store';
 import { useRoute } from 'react-router5';
 import { Filtering, RoaField, SortOrder } from '../core/types';
 import Pagination from './tables/Pagination';
+import useNavigation from '../hooks/useNavigation';
+import useTranslations from '../hooks/useTranslations';
+import AnalyseModal from './forms/AnalyseModal';
 
 export default function Cas() {
+  const t = useTranslations();
   const store = useStore() as Store;
   const { route: { params }} = useRoute();
+  const navigate = useNavigation();
 
-  const filtering: Filtering = {
+
+  const filtering: Filtering<RoaField> = {
     search: null,
     sort: params.sort || RoaField.asn,
     order: params.order || SortOrder.asc,
@@ -25,6 +31,7 @@ export default function Cas() {
   return (
     <Layout>
       <CaModal />
+      <AnalyseModal/>
       <CasHeader />
       <div className="row ">
         <div className="flex-1">
@@ -37,6 +44,9 @@ export default function Cas() {
           />
         )}
       </div>
+      <button className="button" onClick={() => navigate({}, 'cas.analyse')}>
+        {t.caDetails.analyseThis}
+      </button>
     </Layout>
   );
 }

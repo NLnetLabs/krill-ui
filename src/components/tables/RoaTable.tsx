@@ -7,7 +7,7 @@ import useTranslations from '../../hooks/useTranslations';
 import Store from '../../core/store';
 
 interface RoaTableProps {
-  filtering: Filtering,
+  filtering: Filtering<RoaField>,
 }
 
 export default function RoaTable({ filtering }: RoaTableProps) {

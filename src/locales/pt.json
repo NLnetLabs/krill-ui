@@ -113,7 +113,8 @@
     "analyseThis": "Analisar minhas ROAs",
     "analysis": "Análise de ROA",
     "suggestions": {
-      "following": "Por favor, consulte as seguintes alterações sugeridas para suas ROAs. <a href='https://krill.docs.nlnetlabs.nl/en/stable/manage-roas.html' target='_blank'>Saiba mais (texto em inglês)...</a>",
+      "following": "Por favor, consulte as seguintes alterações sugeridas para suas ROAs.",
+      "readMore": "Saiba mais (texto em inglês)...",
       "nochanges": "Não sugerimos alterações neste momento",
       "adding": "Adicionando",
       "removing": "Removendo ROA",
@@ -124,8 +125,8 @@
       "ourSuggestionHelp": "Nossa sugestão é baseada em informações de roteamento do RIPE RIS, favor verificar!",
       "addThis": "Adicionar este",
       "removeThis": "Remover este",
-      "willAdd": "Adicionará esta ROA ({reason})",
-      "willRemove": "Removerá esta ROA ({reason})",
+      "willAdd": "Adicionará esta ROA",
+      "willRemove": "Removerá esta ROA",
       "reasons": {
         "not_found": "Não encontrado",
         "not_held": "O prefixo não existe mais em seu(s) certificado(s), a ROA não será publicada",

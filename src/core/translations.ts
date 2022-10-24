@@ -126,6 +126,7 @@ export interface Translations {
     analysis: string,
     suggestions: {
       following: string,
+      readMore: string,
       nochanges: string,
       adding: string,
       removing: string,

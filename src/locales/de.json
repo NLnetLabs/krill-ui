@@ -113,7 +113,8 @@
     "analyseThis": "Meine ROAs analysieren",
     "analysis": "ROA Analyse",
     "suggestions": {
-      "following": "Bitte überprüfen Sie die folgenden vorgeschlagenen Änderungen an Ihren ROAs. <a href='https://krill.docs.nlnetlabs.nl/en/stable/manage-roas.html' target='_blank'>Weitere Informationen...</a>",
+      "following": "Bitte überprüfen Sie die folgenden vorgeschlagenen Änderungen an Ihren ROAs.",
+      "readMore": "Weitere Informationen...",
       "nochanges": "Keine Änderungsvorschläge im Moment",
       "adding": "Hinzufügen",
       "removing": "Entfernen des ROA",
@@ -124,8 +125,8 @@
       "ourSuggestionHelp": "Unser Vorschlag basiert auf der RIPE RIS Routing Information, bitte überprüfen!",
       "addThis": "Dieses hinzufügen",
       "removeThis": "Dieses entfernen",
-      "willAdd": "Füge dieses ROA hinzu, da ({reason})",
-      "willRemove": "Entferne dieses ROA, da ({reason})",
+      "willAdd": "Fügt dieses ROA hinzu",
+      "willRemove": "Entfernt dieses ROA",
       "reasons": {
         "not_found": "Nicht gefunden",
         "not_held": "Das Präfix ist nicht länger in einem Ihrer Zertifikate enthalten. Das ROA wird nicht veröffentlicht",

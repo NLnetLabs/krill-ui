@@ -1,6 +1,6 @@
 import React from 'react';
 import useStore from '../../hooks/useStore';
-import {Filtering} from '../../core/types';
+import {Filtering, RoaField} from '../../core/types';
 import useTranslations from '../../hooks/useTranslations';
 import Store from '../../core/store';
 import {perPage} from '../../core/config';
@@ -8,7 +8,7 @@ import useNavigation from '../../hooks/useNavigation';
 import PaginationPages from './PaginationPages';
 
 interface PaginationProps {
-  filtering: Filtering,
+  filtering: Filtering<RoaField>,
 }
 
 export default function Pagination({filtering}: PaginationProps) {

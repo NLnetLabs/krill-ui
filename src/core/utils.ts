@@ -1,6 +1,6 @@
 // @ts-ignore
 import scrypt from './hash.js';
-import { Roa, RoaField, SortOrder } from './types.js';
+import {Roa, RoaField, SortOrder, Suggestion, SuggestionField, SuggestionReason, Suggestions} from './types.js';
 
 function dec2hex(dec: number) {
   return dec.toString(16).padStart(2, '0');
@@ -13,7 +13,18 @@ export function generateId(len: number): string {
   return Array.from(arr, dec2hex).join('');
 }
 
-export function compare(a: Roa, b: Roa, field: RoaField, order: SortOrder) {
+export function compareRoa(a: Roa, b: Roa, field: RoaField, order: SortOrder) {
+  if (a[field] === b[field]) {
+    return 0;
+  }
+
+  const direction = a[field] < b[field] ? -1 : 1;
+
+  return order === SortOrder.asc ? direction : -direction;
+}
+
+// TODO duplicated code
+export function compareSuggestion(a: Suggestion, b: Suggestion, field: SuggestionField, order: SortOrder) {
   if (a[field] === b[field]) {
     return 0;
   }
@@ -57,4 +68,107 @@ export async function krillHash(username: string, password: string): Promise<str
   const hash = await scrypt(pwBuf, saltBuf, iterations, var_r, var_p, length);
 
   return await hash.toString('hex');
+}
+
+export function transformSuggestions(input: Suggestions): Array<Suggestion> {
+  const result: Array<Suggestion> = [];
+  if (input.too_permissive) {
+    for (const change of input.too_permissive) {
+      result.push({
+        action: 'remove',
+        reason: SuggestionReason.tooPermissive,
+        prefix: change.current.prefix,
+        asn: change.current.asn,
+        max_length: change.current.max_length || parseInt(change.current.prefix.split('/')[1]),
+      });
+      for (const newRoa of change.new) {
+        result.push({
+          action: 'remove',
+          reason: SuggestionReason.specific,
+          prefix: newRoa.prefix,
+          asn: newRoa.asn,
+          max_length: parseInt(newRoa.prefix.split('/')[1]),
+        });
+      }
+    }
+  }
+  if (input.not_found) {
+    for (const announcement of input.not_found) {
+      result.push({
+        action: 'add',
+        reason: SuggestionReason.notFound,
+        prefix: announcement.prefix,
+        asn: announcement.asn,
+        max_length: parseInt(announcement.prefix.split('/')[1]),
+      });
+    }
+  }
+  if (input.invalid_length) {
+    for (const announcement of input.invalid_length) {
+      result.push({
+        action: 'add',
+        reason: SuggestionReason.invalidLength,
+        prefix: announcement.prefix,
+        asn: announcement.asn,
+        max_length: parseInt(announcement.prefix.split('/')[1]),
+      });
+    }
+  }
+  if (input.redundant) {
+    for (const announcement of input.redundant) {
+      result.push({
+        action: 'remove',
+        reason: SuggestionReason.redundant,
+        prefix: announcement.prefix,
+        asn: announcement.asn,
+        max_length: parseInt(announcement.prefix.split('/')[1]),
+      });
+    }
+  }
+  if (input.stale) {
+    for (const announcement of input.stale) {
+      result.push({
+        action: 'remove',
+        reason: SuggestionReason.stale,
+        prefix: announcement.prefix,
+        asn: announcement.asn,
+        max_length: parseInt(announcement.prefix.split('/')[1]),
+      });
+    }
+  }
+  if (input.invalid_asn) {
+    for (const announcement of input.invalid_asn) {
+      result.push({
+        action: 'remove',
+        reason: SuggestionReason.invalidAsn,
+        prefix: announcement.prefix,
+        asn: announcement.asn,
+        max_length: parseInt(announcement.prefix.split('/')[1]),
+      });
+    }
+  }
+  if (input.as0_redundant) {
+    for (const announcement of input.as0_redundant) {
+      result.push({
+        action: 'remove',
+        reason: SuggestionReason.as0Redundant,
+        prefix: announcement.prefix,
+        asn: announcement.asn,
+        max_length: parseInt(announcement.prefix.split('/')[1]),
+      });
+    }
+  }
+  if (input.disallowing) {
+    for (const announcement of input.disallowing) {
+      result.push({
+        action: 'remove',
+        reason: SuggestionReason.disallowing,
+        prefix: announcement.prefix,
+        asn: announcement.asn,
+        max_length: parseInt(announcement.prefix.split('/')[1]),
+      });
+    }
+  }
+  return result;
+
 }

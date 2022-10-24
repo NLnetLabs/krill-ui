@@ -9,6 +9,9 @@ export default function CasRepository() {
   const t = useTranslations();
   const store = useStore() as Store;
 
+  const formatDate = (seconds: number) =>
+    new Date(seconds * 1000).toLocaleString(store.locale,  { dateStyle: 'long', timeStyle: 'medium' });
+
   const refreshRepo = () => {
     store.loadRepoStatus(true);
   };
@@ -17,7 +20,7 @@ export default function CasRepository() {
     return null;
   }
 
-  // TODO format time, build icon and parse result to display correct icon
+  // TODO add icon
   return (
     <Layout>
       <CasHeader />
@@ -30,11 +33,19 @@ export default function CasRepository() {
           <tr>
             <td>{ t.caDetails.lastExchange }</td>
             <td>
-              { store.repoStatus[store.ca].last_exchange.timestamp }
-              <span>ICON HERE</span>
-              { JSON.stringify(store.repoStatus[store.ca].last_exchange.result) }
+              { formatDate(store.repoStatus[store.ca].last_exchange.timestamp) }
+              { store.repoStatus[store.ca].last_exchange.result.Failure
+                ? ( <span className='failure'>FAILURE ICON{ store.repoStatus[store.ca].last_exchange.result.Failure.msg }</span> )
+                : ( <span className='success'>SUCCES ICON</span> )
+              }
             </td>
           </tr>
+          { store.repoStatus[store.ca].last_exchange.result.Failure
+            && <tr>
+              <td>{ t.caDetails.lastSuccess }</td>
+              <td>{ formatDate(store.repoStatus[store.ca].last_success) }</td>
+            </tr>
+          }
         </tbody>
       </table>
       <button onClick={refreshRepo}>{ t.caDetails.syncRepo }</button>

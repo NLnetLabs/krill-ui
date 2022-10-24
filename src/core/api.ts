@@ -1,5 +1,17 @@
-import {CaDetails, Info, LoginMethod, KrillLogin, OpenIDConnect, Parent, RepoStatus, Roa, LoginResponse, Route} from './types';
-import {generateId, isAbsolute, parseLoginUrl} from './utils';
+import {
+  CaDetails,
+  Info,
+  LoginMethod,
+  KrillLogin,
+  OpenIDConnect,
+  Parent,
+  RepoStatus,
+  Roa,
+  LoginResponse,
+  Route,
+  Suggestions, Suggestion
+} from './types';
+import {generateId, isAbsolute, parseLoginUrl, transformSuggestions} from './utils';
 
 export default class Api {
   /** API base url - by default the domain the frontend is served on */
@@ -41,7 +53,7 @@ export default class Api {
   }
 
   post<ResponseType>(path: string, init?: RequestInit): Promise<ResponseType> {
-    return this.get(path, { method: 'POST', ...init });
+    return this.get(path, {method: 'POST', ...init});
   }
 
   getCas(): Promise<Array<string>> {
@@ -50,16 +62,22 @@ export default class Api {
     }
 
     return this.get<CasResponse>('/api/v1/cas')
-      .then(({ cas }) => cas.map(({ handle }) => handle).reverse());
+      .then(({cas}) => cas.map(({handle}) => handle).reverse());
   }
 
   getCaDetails(ca: string): Promise<CaDetails> {
     return this.get<CaDetails>(`/api/v1/cas/${ca}`);
   }
 
-  getCaRoas(ca: string): Promise<Roa[]>{
+  getCaRoas(ca: string): Promise<Roa[]> {
     return this.get<Roa[]>(`/api/v1/cas/${ca}/routes/analysis/full`)
-      .then((roas: Roa[]) => roas.map((roa) => ({ id: generateId(10), ...roa })));
+      .then((roas: Roa[]) => roas.map((roa) => ({id: generateId(10), ...roa})));
+  }
+
+  getCaSuggestions(ca: string): Promise<Array<Suggestion>> {
+    return this.get<Suggestions>(`/api/v1/cas/${ca}/routes/analysis/suggest`)
+      .then((suggestions) => transformSuggestions(suggestions))
+      .then((suggestions) => suggestions.map((suggestion) => ({id: generateId(10), ...suggestion})));
   }
 
   getCaParents(ca: string): Promise<Parent[]> {
@@ -84,7 +102,7 @@ export default class Api {
   updateRoutes(ca: string, data: { added: Route[], removed: Route[] }) {
     return fetch(`/api/v1/cas/${ca}/routes`, {
       method: 'POST',
-      body:  JSON.stringify(data),
+      body: JSON.stringify(data),
       headers: {
         'Authorization': `Bearer ${this.token}`,
         'Content-Type': 'application/json'
@@ -104,9 +122,9 @@ export default class Api {
         // parse the response, as we don't want to configure frontend routes in the backend
         return response.text().then(url => {
           if (isAbsolute(url)) {
-            return { redirect_url: url } as OpenIDConnect;
+            return {redirect_url: url} as OpenIDConnect;
           } else {
-            return { with_id: parseLoginUrl(url) } as KrillLogin;
+            return {with_id: parseLoginUrl(url)} as KrillLogin;
           }
         });
       }
@@ -119,11 +137,11 @@ export default class Api {
     let login_url = '/auth/login';
 
     if (username) {
-      login_url += '?' + new URLSearchParams({ 'id': username });
+      login_url += '?' + new URLSearchParams({'id': username});
     }
 
     this.setToken(token);
-    
+
     return this.post(login_url);
   }
 }

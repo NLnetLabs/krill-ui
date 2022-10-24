@@ -110,6 +110,7 @@
     "analysis": "Analyse des ROA",
     "suggestions": {
       "following": "Veuillez vérifier les changements proposés de vos ROAs",
+      "readMore": "Read more..",
       "nochanges": "Nous ne suggérons aucun changement pour le moment",
       "adding": "En cours d'ajout",
       "removing": "Retirer le ROA",
@@ -120,8 +121,8 @@
       "ourSuggestionHelp": "Notre suggestion est basée sur les informations de routage de RIPE RIS, veuillez svp vérifier !!",
       "addThis": "Ajouter ceci",
       "removeThis": "Retirer ceci",
-      "willAdd": "Ajoutera ce ROA ({reason})",
-      "willRemove": "Retirera ce ROA ({reason})",
+      "willAdd": "Ajoutera ce ROA",
+      "willRemove": "Retirera ce ROA",
       "reasons": {
         "not_found": "Pas trouvé",
         "not_held": "ROA cannot be published, its prefix is no longer on your certificate(s)",
