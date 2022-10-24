@@ -315,7 +315,7 @@ export default class Store implements Data {
     }
 
     return await this.handleError(async () => {
-      await this.api.postParent(this.ca, params.name, params.response ? params.response : '');
+      await this.api.postParent(this.ca as string, params.name, params.response || '');
       await this.loadParents(true);
       return true;
     });
