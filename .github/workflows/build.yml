@@ -18,7 +18,5 @@ jobs:
       - uses: borales/actions-yarn@v3.0.0
         with:
           cmd: lint
-      - run: yarn playwright install-deps chromium
-      - uses: borales/actions-yarn@v3.0.0
-        with:
-          cmd: test
+      - run: yarn playwright install-deps
+      - run: yarn test
