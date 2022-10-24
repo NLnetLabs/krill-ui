@@ -159,11 +159,17 @@ export interface Parent {
   name: string,
 }
 
+export interface FailureStatus {
+  Failure: {
+    msg: string,
+  }
+}
+
 export interface RepoStatus {
   last_exchange: {
     timestamp: number,
     uri: string,
-    result: string,
+    result: 'Success' | FailureStatus,
   },
   last_success: number,
 }
