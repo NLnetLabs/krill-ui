@@ -12,23 +12,30 @@ export default function RepoTable({ repo, locale }: RepoTableProps) {
   const t = useTranslations();
 
   return (
-    <table className="repo-table">
-      <tbody>
-        <tr>
-          <td>{ t.caDetails.parents }</td>
-          <td>{ repo.last_exchange.uri }</td>
-        </tr>
-        <tr>
-          <td>{ t.caDetails.lastExchange }</td>
-          <td>
-            { formatDate(repo.last_exchange.timestamp, locale) }
-            { repo.last_exchange.result != 'Success'
-              ? ( <span className='failure'>FAILURE ICON{ repo.last_exchange.result.Failure.msg }</span> )
-              : ( <span className='success'>SUCCES ICON</span> )
-            }
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div className="info-table">
+      <table>
+        <tbody>
+          <tr>
+            <th>{t.caDetails.exchangeUri}</th>
+            <td>{repo.last_exchange.uri}</td>
+          </tr>
+          <tr>
+            <th>{t.caDetails.lastExchange}</th>
+            <td>
+              <p>
+                {formatDate(repo.last_exchange.timestamp, locale)}
+              </p>
+              {repo.last_exchange.result != 'Success' ? (
+                <p className="failure">
+                  {repo.last_exchange.result.Failure.msg}
+                </p>
+              ) : (
+                <p className="success" />
+              )}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   );
 }

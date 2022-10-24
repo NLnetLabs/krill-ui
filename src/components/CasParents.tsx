@@ -3,8 +3,8 @@ import Store from '../core/store';
 import useStore from '../hooks/useStore';
 import useTranslations from '../hooks/useTranslations';
 import CasHeader from './CasHeader';
-import ParentsTable from './tables/ParentsTable';
 import Layout from './Layout';
+import ParentTableRow from './tables/ParentTableRow';
 
 export default function CasParents() {
   const t = useTranslations();
@@ -21,11 +21,14 @@ export default function CasParents() {
   return (
     <Layout>
       <CasHeader />
-      { store.parents && store.ca && store.parents[store.ca]
-        && <ParentsTable parents={ store.parents[store.ca] } locale={ store.locale } />
-      }
-      <button onClick={ addParent }>{ t.caDetails.parentsTab.addParent }</button>
-      <button onClick={ syncParents }>{ t.caDetails.syncParents }</button>
+      {store.parents && store.ca && store.parents[store.ca]?.map((parent) => (
+        <ParentTableRow
+          key={parent.name}
+          parent={parent}
+        />
+      ))}
+      <button className="button" onClick={addParent}>{t.caDetails.parentsTab.addParent}</button>
+      <button className="button inverted" onClick={syncParents}>{t.caDetails.syncParents}</button>
     </Layout>
   );
 }
