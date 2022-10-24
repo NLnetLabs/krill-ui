@@ -72,12 +72,23 @@ export default class Store implements Data {
     this.loadPersistedState();
   }
 
-
   getRoas(filtering?: Filtering<RoaField>): Roa[] {
     let roas = this.roas && this.ca && this.roas[this.ca] || [];
     roas = roas.filter((roa) => !roa.allowed_by);
 
     if (filtering) {
+      // apply filtering
+      if (filtering.search) {
+        const parts = filtering.search.toLowerCase().split(/\s/);
+        roas = roas.filter((r: Roa) => (
+          parts.some((p) => r.asn.toString().includes(p)) ||
+          parts.some((p) => r.prefix.includes(p)) ||
+          parts.some((p) => r.state && (
+            r.state.includes(p) ||
+            this.translations?.announcements.state[r.state].toLowerCase().includes(p)
+          ))
+        ));
+      }
       // apply sorting
       roas = roas.slice().sort((a, b) => compareRoa(a, b, filtering.sort, filtering.order));
       // apply pagination

@@ -31,3 +31,19 @@ input:active {
 input::placeholder {
   color: var(--grey-light);
 }
+
+input[type="search"] {
+  margin: 1rem 0;
+  line-height: 1.5rem;
+  padding-left: 1.75rem;
+  background: url('../img/search.svg') no-repeat center left 0.5rem;
+  background-size: 0.8rem;
+  font-size: 0.8rem;
+  width: 25rem;
+  max-width: 100%;
+}
+
+input::placeholder {
+  color: var(--grey);
+  opacity: 1;
+}

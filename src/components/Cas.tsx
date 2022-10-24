@@ -12,6 +12,7 @@ import Pagination from './tables/Pagination';
 import useNavigation from '../hooks/useNavigation';
 import useTranslations from '../hooks/useTranslations';
 import AnalyseModal from './forms/AnalyseModal';
+import RoaSearch from './RoaSearch';
 
 export default function Cas() {
   const t = useTranslations();
@@ -19,9 +20,8 @@ export default function Cas() {
   const { route: { params }} = useRoute();
   const navigate = useNavigation();
 
-
   const filtering: Filtering<RoaField> = {
-    search: null,
+    search: params.search || null,
     sort: params.sort || RoaField.asn,
     order: params.order || SortOrder.asc,
     limit: parseInt(params.limit, 10) || 25,
@@ -33,10 +33,23 @@ export default function Cas() {
       <CaModal />
       <AnalyseModal/>
       <CasHeader />
-      <div className="row ">
+      <div className="row">
         <div className="flex-1">
+          <RoaSearch filtering={filtering} />
           <RoaTable filtering={filtering} />
           <Pagination filtering={filtering} />
+          <div className="roa-actions">
+            <div>
+              <button className="button" onClick={() => navigate({}, 'cas.add_new')}>
+                {t.caDetails.addRoa}
+              </button>
+            </div>
+            <div>
+              <button className="button inverted" onClick={() => navigate({}, 'cas.analyse')}>
+                {t.caDetails.analyseThis}
+              </button>
+            </div>
+          </div>
         </div>
         {store.ca && (
           <CaDetailsTable
@@ -44,9 +57,6 @@ export default function Cas() {
           />
         )}
       </div>
-      <button className="button" onClick={() => navigate({}, 'cas.analyse')}>
-        {t.caDetails.analyseThis}
-      </button>
     </Layout>
   );
 }
