@@ -1,0 +1,51 @@
+.info-table {
+  background: var(--light-bg);
+  color: var(--dark);
+  font-size: 0.9rem;
+  line-height: 1.4;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.info-table table {
+  width: 100%;
+  background-color: white;
+  margin-bottom: 1rem;
+}
+
+.info-table h4 {
+  font-size: 1rem;
+  color: black;
+  font-size: 1.2rem;
+  margin-bottom: 0.75rem;
+}
+
+.info-table th,
+.info-table td {
+  padding: 1rem;
+}
+
+.info-table th {
+  text-align: left;
+  width: 10rem;
+  font-weight: 600;
+}
+
+.info-table .failure,
+.info-table .success  {
+  display: block;
+  padding-left: 2.5rem;
+  margin-top: 0.5rem;
+  background: no-repeat center left;
+  background-size: 1.5rem;
+}
+
+.info-table .failure {
+  background-image: url('../img/error.svg') ;
+}
+
+.info-table .success  {
+  width: 2rem;
+  height: 2rem;
+  background-image: url('../img/check.svg');
+}

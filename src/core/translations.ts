@@ -157,6 +157,7 @@ export interface Translations {
     syncRepo: string,
     lastExchange: string,
     nextExchange: string,
+    exchangeUri: string,
     allResources: string,
     entitlements: string,
     showEntitlements: string,

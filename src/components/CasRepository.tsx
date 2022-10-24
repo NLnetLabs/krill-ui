@@ -18,14 +18,18 @@ export default function CasRepository() {
     return null;
   }
 
-  // TODO add icon
   return (
     <Layout>
       <CasHeader />
-      { store.repoStatus && store.ca && store.repoStatus[store.ca]
-        && <RepoTable repo={ store.repoStatus[store.ca] } locale={ store.locale } />
-      }
-      <button onClick={ syncRepo }>{ t.caDetails.syncRepo }</button>
+      {store.repoStatus && store.ca && store.repoStatus[store.ca] && (
+        <RepoTable
+          repo={store.repoStatus[store.ca]}
+          locale={store.locale}
+        />
+      )}
+      <button className="button inverted" onClick={syncRepo}>
+        {t.caDetails.syncRepo}
+      </button>
     </Layout>
   );
 }
