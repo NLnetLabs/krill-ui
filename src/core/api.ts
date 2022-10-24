@@ -104,6 +104,19 @@ export default class Api {
       .then((response) => response.json());
   }
 
+  getChildRequest(ca: string): Promise<string> {
+    return fetch(`/api/v1/cas/${ca}/id/child_request.xml`, {
+      headers: {
+        'Authorization': `Bearer ${this.token}`,
+      }})
+      .then((response) => response.text());
+  }
+
+  postParent(ca: string, name: string, text: string) {
+    return this.post(`/api/v1/cas/${ca}/parents/${name}`, {
+      body: text
+    });
+  }
 
   updateRoutes(ca: string, data: { added: Route[], removed: Route[] }) {
     return this.get(`/api/v1/cas/${ca}/routes`, {

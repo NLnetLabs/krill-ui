@@ -93,6 +93,11 @@ export interface RouteParams {
   max_length: string,
 }
 
+export interface ParentParams {
+  name: string,
+  response: string,
+}
+
 export interface Roa extends Route {
   id?: string,
   state: RoaState,

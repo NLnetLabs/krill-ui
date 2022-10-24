@@ -17,11 +17,11 @@ export default function App() {
     return <Login />;
   }
 
-  if (route.name === 'cas.parents') {
+  if (route.name.startsWith('cas.parents')) {
     return <CasParents />;
   }
 
-  if (route.name === 'cas.repository') {
+  if (route.name.startsWith('cas.repository')) {
     return <CasRepository />;
   }
 

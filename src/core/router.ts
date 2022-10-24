@@ -10,8 +10,12 @@ const routes = [
     { name: 'add', path: '/add/:id' },
     { name: 'delete', path: '/delete/:id' },
     { name: 'change', path: '/change'},
-    { name: 'parents', path: '/parents' },
-    { name: 'repository', path: '/repos' },
+    { name: 'parents', path: '/parents', children: [
+      { name: 'add', path: '/add' }
+    ] },
+    { name: 'repository', path: '/repos', children: [
+      { name: 'add', path: '/add' }
+    ] },
     { name: 'analyse', path: '/analyse' },
   ]},
   { name: 'login', path: '/login' },
