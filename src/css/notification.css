@@ -5,7 +5,7 @@
   top: 1rem;
   right: 1rem;
   box-shadow: 0 0.5rem 1rem 0 rgb(0 0 0 / 40%);
-  padding: 1.5rem 3rem;
+  padding: 1.5rem 3.5rem;
   background-repeat: no-repeat;
   background-position: center left 1rem;
   background-size: 1.5rem;
@@ -35,6 +35,6 @@
   top: 0.5rem;
   right: 1rem;
   font-size: 1.5rem;
-  opacity: 0.5;
+  opacity: 0.4;
   cursor: pointer;
 }

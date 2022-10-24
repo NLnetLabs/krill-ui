@@ -9,6 +9,13 @@ export default async function handleLoginRouting(toState: State, store: Store) {
     delete toState.params.password;
   }
 
+  // clear notification
+  if (toState.params.notification === 'clear') {
+    store.setNotification(null);
+    delete toState.params.notification;
+    return Promise.reject({ redirect: toState});
+  }
+
   // logout (set token to null) and redirect to login
   if (toState.name === 'logout') {
     store.setToken(null);
