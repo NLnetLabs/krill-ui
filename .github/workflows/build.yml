@@ -12,15 +12,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: microsoft/playwright-github-action@v1
       - uses: borales/actions-yarn@v3.0.0
         with:
           cmd: install
       - uses: borales/actions-yarn@v3.0.0
         with:
           cmd: lint
-      - uses: borales/actions-yarn@v3.0.0
-        with:
-          cmd: playwright install-deps chromium 
       - uses: borales/actions-yarn@v3.0.0
         with:
           cmd: test
