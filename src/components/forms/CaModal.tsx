@@ -23,8 +23,8 @@ export default function CaModal() {
   }
 
   return (
-    <div className="modal" onClick={onClose}>
-      <div onClick={(e) => { e.stopPropagation(); }}>
+    <div className="modal" onMouseDown={onClose}>
+      <div onMouseDown={(e) => { e.stopPropagation(); }}>
         {route.name === 'cas.add' && (
           <Add
             onClose={onClose}
