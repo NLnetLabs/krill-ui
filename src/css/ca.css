@@ -1,0 +1,26 @@
+.ca-details {
+  margin-left: 3rem;
+  min-width: 20rem;
+  align-self: flex-start;
+  padding: 2rem 2rem 4rem 2rem;
+}
+
+.ca-details table {
+  width: 100%;
+  color: var(--dark);
+  border-collapse: collapse;
+  font-size: 0.8rem;
+  line-height: 2;
+  text-align: left;
+}
+
+.ca-details table th {
+  font-weight: 600;
+  vertical-align: top;
+}
+
+.ca-details table th,
+.ca-details table td {
+  padding: 0.5rem 1rem 0.5rem 0;
+  border-bottom: 1px solid var(--grey-lighter);
+}

@@ -1,0 +1,75 @@
+.pagination {
+  display: flex;
+  margin-top: 1rem;
+  justify-content: flex-end;
+}
+
+.pagination > div {
+  display: flex;
+}
+
+.pagination select {
+  border: 1px solid var(--grey-light);
+  color: var(--dark);
+  padding: 0 0.5rem;
+  background: white;
+  border-radius: var(--radius);
+  cursor: pointer;
+  width: 6rem;
+}
+
+.pagination button {
+  position: relative;
+  margin-left: 0.5rem;
+  border: none;
+  color: var(--dark);
+  background: var(--light-bg);
+  font-weight: 600;
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  cursor: default;
+  color: var(--grey);
+}
+
+.pagination button.number.current {
+  opacity: 1;
+  color: white;
+  background: var(--red);
+}
+
+.pagination .arrow::after {
+  content: ' ';
+  position: absolute;
+  left: 55%;
+  top: 50%;
+  display: block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-bottom: 2px solid var(--grey-dark);
+  border-right: 2px solid var(--grey-dark);
+  transform: translate(-50%, -50%) rotate(135deg);
+  transition: transform 200ms;
+}
+
+.pagination .number:hover:not(:disabled) {
+  color: var(--red);
+}
+
+.pagination .arrow:hover:not(:disabled)::after {
+  border-color: var(--red);
+}
+
+.pagination .arrow span {
+  display: none;
+}
+
+.pagination .arrow.next::after {
+  left: 45%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+}

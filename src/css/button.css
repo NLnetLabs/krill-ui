@@ -1,0 +1,43 @@
+
+.button {
+  border: none;
+  background: var(--red);
+  border-radius: var(--radius);
+  line-height: 2.5rem;
+  font-size: 0.9rem;
+  padding: 0 1rem;
+  color: white;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.button.outline {
+  color: var(--dark);
+  background: white;
+  border: 1px solid var(--grey-dark);
+}
+
+.button:hover {
+  opacity: 0.8;
+}
+
+.button.icon {
+  position: relative;
+  line-height: 1.5rem;
+  height: 1.5rem;
+  width: 3rem;
+  border-radius: 0.75rem;
+}
+
+.button.icon img {
+  position: absolute;
+  width: 0.75rem;
+  height: 0.75rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.button + .button {
+  margin-left: 0.75rem;
+}

@@ -1,0 +1,44 @@
+
+.pop {
+  position: relative;
+}
+
+.pop > div {
+  padding: 0 1rem;
+  text-align: left;
+  max-height: 0;
+  position: absolute;
+  display: block;
+  top: 2.5rem;
+  right: -2.5rem;
+  background: white;
+  width: 12rem;
+  border: 0 solid var(--light);
+  box-shadow: var(--shadaw);
+  border-radius: var(--radius);
+  transition: all 300ms;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.pop:hover > div {
+  padding: 1rem;
+  max-height: 20rem;
+}
+
+.pop > div h5 {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.pop > div table {
+  width: 100%;
+  border: none;
+  border-collapse: collapse;
+}
+
+.pop > div th,
+.pop > div td {
+  padding: 0 0 0.5rem 0;
+}

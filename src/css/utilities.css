@@ -1,0 +1,127 @@
+.card {
+  border: 1px solid var(--grey-lighter);
+  box-shadow: var(--shadaw);
+  border-radius: var(--radius);
+}
+
+.message {
+  width: 35rem;
+  border-radius: var(--radius);
+  display: block;
+  margin: 4rem auto -2rem auto;
+  padding: 1rem;
+}
+
+.message.error {
+  background: var(--red-light);
+  color: var(--red);
+}
+
+.space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.border-bottom {
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--grey-lighter);
+}
+
+.badge {
+  display: inline-block;
+  padding: 0 0.25rem;
+  border: 1px solid var(--grey-dark);
+  color: var(--grey-dark);
+  border-radius: var(--radius);
+  margin-left: 0.5rem;
+}
+
+.badge.success {
+  color: var(--success);
+  border-color: var(--success-border);
+  background: var(--success-bg);
+}
+
+.badge.warning {
+  color: var(--warning);
+  border-color: var(--warning-border);
+  background: var(--warning-bg);
+}
+
+.muted {
+  padding: 0.5rem;
+  display: block;
+  color: var(--grey-dark);
+  text-align: center;
+}
+
+.row {
+  display: flex;
+}
+
+@media (max-width: 992px) {
+  .row {
+    flex-direction: column;
+  }
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.modal {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: var(--dark);
+}
+
+.modal > div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 40rem;
+  min-height: 10rem;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadaw);
+  padding: 1.5rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal h3 {
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.modal p {
+  flex: 1;
+}
+
+.modal .actions {
+  margin-top: 3rem;
+  text-align: right;
+}
+
+.modal label,
+.modal input {
+  display: block;
+  width: 100%;
+}
+
+.modal label {
+  margin-top: 1rem;
+}

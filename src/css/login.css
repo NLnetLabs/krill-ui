@@ -1,0 +1,61 @@
+.content.route-login {
+  position: relative;
+  overflow: hidden;
+}
+
+.content.route-login::before {
+  content: ' ';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 550px;
+  height: 260px;
+  background: url('../img/route-left.svg') no-repeat top left -30px;
+  z-index: -1;
+}
+
+.content.route-login::after {
+  content: ' ';
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 360px;
+  height: 100%;
+  background: url('../img/route-right.svg') no-repeat top -30px left;
+  z-index: -1;
+}
+
+.login {
+  position: relative;
+  width: 35rem;
+  max-width: 100%;
+  margin: 4rem auto;
+  padding: 3rem;
+  display: flex;
+  justify-content: center;
+  background: white;
+}
+
+.login > * {
+  margin: 0 0.5rem;
+}
+
+.login.vertical-form {
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.login.vertical-form label,
+.login.vertical-form input {
+  display: block;
+  width: 100%;
+}
+
+.login.vertical-form > div + div {
+  margin-top: 1rem;
+}
+
+.login.vertical-form .button {
+  display: block;
+  margin: 1rem auto;
+}

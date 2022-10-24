@@ -1,0 +1,33 @@
+
+label {
+  line-height: 2.5rem;
+  color: var(--dark);
+  font-size: 0.9rem;
+  margin-right: 1rem;
+}
+
+label.required::before {
+  content: '*';
+  color: var(--red);
+  margin-right: 0.3rem;
+}
+
+input {
+  border: 1px solid var(--grey-light);
+  border-radius: var(--radius);
+  line-height: 2.5rem;
+  padding: 0 0.75rem;
+  transition: border 300ms;
+  font-size: 0.9rem;
+  color: var(--dark);
+}
+
+input:focus,
+input:active {
+  border-color: var(--red);
+  outline: none;
+}
+
+input::placeholder {
+  color: var(--grey-light);
+}

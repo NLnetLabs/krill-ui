@@ -1,0 +1,84 @@
+
+.select {
+  position: relative;
+  display: inline-block;
+  width: 10rem;
+}
+
+.select button {
+  width: 100%;
+  background: white;
+  border: 1px solid white;
+  height: 2rem;
+  line-height: 1rem;
+  text-align: left;
+  color: var(--dark);
+  border: 1px solid var(--grey-light);
+  cursor: pointer;
+  border-radius: var(--radius);
+  outline: none;;
+}
+
+.select button::after,
+button.expand::after {
+  content: ' ';
+  position: absolute;
+  right: 0.7rem;
+  top: 0.7rem;
+  display: block;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-bottom: 1px solid var(--grey-dark);
+  border-right: 1px solid var(--grey-dark);
+  transform: translate(-50%, -25%) rotate(45deg);
+  transition: transform 200ms;
+}
+
+.select button:hover,
+.select button.open {
+  border: 1px solid var(--red);
+}
+
+.select button.open::after {
+  transform: translate(-50%, 25%) rotate(-135deg);
+}
+
+.select ul {
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  display: block;
+  top: 2.5rem;
+  background: white;
+  width: 100%;
+  border: 0 solid var(--light);
+  box-shadow: var(--shadaw);
+  border-radius: var(--radius);
+  transition: all 300ms;
+  max-height: 0;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.select ul.show {
+  padding: 0.5rem 0;
+  border-width: 1px;
+  max-height: 20rem;
+}
+
+.select ul li {
+  padding: 0 1rem;
+  line-height: 2rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.select ul li:hover {
+  background-color: var(--light);
+}
+
+.select ul li.selected {
+  background-color: var(--light);
+  color: var(--red);
+  font-weight: 600;
+}
