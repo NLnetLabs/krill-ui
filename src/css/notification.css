@@ -1,0 +1,40 @@
+.notification {
+  position: fixed;
+  z-index: 1000;
+  background: white;
+  top: 1rem;
+  right: 1rem;
+  box-shadow: 0 0.5rem 1rem 0 rgb(0 0 0 / 40%);
+  padding: 1.5rem 3rem;
+  background-repeat: no-repeat;
+  background-position: center left 1rem;
+  background-size: 1.5rem;
+  max-width: 30rem;
+  min-width: 20rem;
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+}
+
+.notification.error {
+  background-image: url('../img/error.svg') ;
+  background-color: #fffafa;
+  color: #600;
+}
+
+.notification.success  {
+  background-image: url('../img/check.svg');
+  background-color: #fafffa;
+  color: #060;
+}
+
+.notification .close {
+  position: absolute;
+  background: none;
+  border: none;
+  top: 0.5rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  opacity: 0.5;
+  cursor: pointer;
+}

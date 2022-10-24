@@ -25,7 +25,10 @@ import {compareRoa, compareSuggestion} from './utils';
 
 export default class Store implements Data {
   // general purpose notification message
-  notification: Notification | null = null;
+  notification: Notification | null = {
+    type: NotificationType.success,
+    message: 'Nein nein nein nein!',
+  } as Notification;
 
   // list of certificate authorities
   cas: string[] | null = null;
