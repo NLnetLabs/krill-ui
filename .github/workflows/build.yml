@@ -18,6 +18,7 @@ jobs:
       - uses: borales/actions-yarn@v3.0.0
         with:
           cmd: lint
-      - uses: microsoft/playwright-github-action@v1
-      - name: tests
-        run: npm test
+      - run: yarn playwright install-deps chromium
+      - uses: borales/actions-yarn@v3.0.0
+        with:
+          cmd: test
