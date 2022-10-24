@@ -28,12 +28,6 @@ export default function RepoTable({ repo, locale }: RepoTableProps) {
             }
           </td>
         </tr>
-        { repo.last_exchange.result != 'Success'
-          && <tr>
-            <td>{ t.caDetails.lastSuccess }</td>
-            <td>{ formatDate(repo.last_success, locale) }</td>
-          </tr>
-        }
       </tbody>
     </table>
   );
