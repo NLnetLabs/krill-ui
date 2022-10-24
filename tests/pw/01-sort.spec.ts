@@ -12,7 +12,7 @@ test('sorting of ROA Table', async ({page}) => {
   const tableBodyRow = table.locator('tbody tr');
 
 
-  for (let columnIdx = 2; columnIdx <= 3; columnIdx++) {
+  for (let columnIdx = 2; columnIdx <= 2; columnIdx++) {
     // TODO: The state column is not properly sorted yet, as it is sorted by the internal name instead of the displayed one
     { // desc order
       await table.locator(`thead tr th:nth-of-type(${columnIdx})`).click();
@@ -23,10 +23,8 @@ test('sorting of ROA Table', async ({page}) => {
       for (let i = 0; i < await column.count(); i++) {
         const currentValue = await column.nth(i).innerText();
         const currentValueInt = parseInt(currentValue, 10);
-        if (!isNaN(currentValueInt) && !isNaN(lastValueInt)) {
-          expect(currentValueInt).toBeGreaterThanOrEqual(lastValueInt);
-        } else {
-          expect(currentValue <= lastValue).toBeTruthy();
+        if (columnIdx === 2) {
+          expect(currentValueInt).toBeLessThanOrEqual(lastValueInt);
         }
         lastValue = currentValue;
         lastValueInt = currentValueInt;
@@ -42,10 +40,8 @@ test('sorting of ROA Table', async ({page}) => {
       for (let i = 0; i < await column.count(); i++) {
         const currentValue = await column.nth(i).innerText();
         const currentValueInt = parseInt(currentValue, 10);
-        if (!isNaN(currentValueInt) && !isNaN(lastValueInt)) {
+        if (columnIdx === 2) {
           expect(currentValueInt).toBeGreaterThanOrEqual(lastValueInt);
-        } else {
-          expect(currentValue >= lastValue).toBeTruthy();
         }
         lastValue = currentValue;
         lastValueInt = currentValueInt;
