@@ -39,8 +39,7 @@ jobs:
           echo "\`$(openssl dgst -sha3-256 release.tar.gz)\`" >> ReleaseNotes.md
           echo "\`$(openssl dgst -sha256 release.tar.gz)\`" >> ReleaseNotes.md
       - name: Release
-        uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/') # if the push included a tag
+        uses: google-github-actions/release-please-action@v3
         with:
-          body_path: ReleaseNotes.md
-          files: release.tar.gz
+          release-type: node
+          package-name: krill-ui
