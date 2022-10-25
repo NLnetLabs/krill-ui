@@ -39,6 +39,7 @@ test('change CA', async ({page}) => {
   await page.waitForURL(regEx);
   await expect(page).toHaveURL(regEx);
 
+  await page.waitForSelector(`text="Certificate Authority ${newCa}"`);
   await expect(await page.locator('h2').innerText()).toBe(`Certificate Authority ${newCa}`);
 
 });
