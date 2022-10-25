@@ -35,11 +35,12 @@ jobs:
       - run: yarn build && tar -czvf release.tar.gz dist/
       - name: Checksums
         run: |
-          openssl dgst -sha3-512 release.tar.gz > ReleaseNotes.txt
-          openssl dgst -sha256 release.tar.gz >> ReleaseNotes.txt
+          echo "## Release Checksums" > ReleaseNotes.md
+          echo "\`$(openssl dgst -sha3-256 release.tar.gz)\`" >> ReleaseNotes.md
+          echo "\`$(openssl dgst -sha256 release.tar.gz)\`" >> ReleaseNotes.md
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/') # if the push included a tag
         with:
-          body_path: ReleaseNotes.txt
+          body_path: ReleaseNotes.md
           files: release.tar.gz
