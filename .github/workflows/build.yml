@@ -2,6 +2,8 @@ name: CI
 
 on:
   push:
+    tags:
+      - '*'
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
@@ -12,13 +14,15 @@ jobs:
     name: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
       - uses: actions/setup-node@v3
         with:
           node-version: '18'
           cache: 'yarn'
       - run: yarn install --frozen-lockfile
-      - run: yarn lint
+      - name: Lint
+        run: yarn lint
       - run: yarn playwright install --with-deps chromium
       - run: yarn dev &
       - run: yarn test
@@ -28,3 +32,15 @@ jobs:
         with:
           name: playwright-failed-test-traces
           path: test-results/
+      - run: yarn build && tar -czvf release.tar.gz dist/
+      - name: Checksums
+        run: |
+          echo "## Release Checksums" > ReleaseNotes.md
+          echo "\`$(openssl dgst -sha3-256 release.tar.gz)\`" >> ReleaseNotes.md
+          echo "\`$(openssl dgst -sha256 release.tar.gz)\`" >> ReleaseNotes.md
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/') # if the push included a tag
+        with:
+          body_path: ReleaseNotes.md
+          files: release.tar.gz
