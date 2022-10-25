@@ -21,17 +21,17 @@ jobs:
           node-version: '18'
           cache: 'yarn'
       - run: yarn install --frozen-lockfile
-      - name: Lint
-        run: yarn lint
-      - run: yarn playwright install --with-deps chromium
-      - run: yarn dev &
-      - run: yarn test
-        env:
-          CI: true
-      - uses: actions/upload-artifact@v3
-        with:
-          name: playwright-failed-test-traces
-          path: test-results/
+#      - name: Lint TODO uncomment
+#        run: yarn lint
+#      - run: yarn playwright install --with-deps chromium
+#      - run: yarn dev &
+#      - run: yarn test
+#        env:
+#          CI: true
+#      - uses: actions/upload-artifact@v3
+#        with:
+#          name: playwright-failed-test-traces
+#          path: test-results/
       - run: yarn build && tar -czvf release.tar.gz dist/
       - name: Checksums
         run: |
@@ -40,7 +40,7 @@ jobs:
           echo "\`$(openssl dgst -sha256 release.tar.gz)\`" >> ReleaseNotes.md
       - name: Prerelease
         uses: softprops/action-gh-release@v1
-        if: ${{ github.ref == 'refs/heads/automate_release' }} # if the pushing to main
+#        if: ${{ github.ref == 'refs/heads/automate_release' }} # if the pushing to main
         with:
           body_path: ReleaseNotes.md
           files: release.tar.gz
