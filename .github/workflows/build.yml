@@ -20,18 +20,18 @@ jobs:
         with:
           node-version: '18'
           cache: 'yarn'
-      - run: yarn install --frozen-lockfile
-      - name: Lint
-        run: yarn lint
-      - run: yarn playwright install --with-deps chromium
-      - run: yarn dev &
-      - run: yarn test
-        env:
-          CI: true
-      - uses: actions/upload-artifact@v3
-        with:
-          name: playwright-failed-test-traces
-          path: test-results/
+#      - run: yarn install --frozen-lockfile
+#      - name: Lint
+#        run: yarn lint
+#      - run: yarn playwright install --with-deps chromium
+#      - run: yarn dev &
+#      - run: yarn test
+#        env:
+#          CI: true
+#      - uses: actions/upload-artifact@v3
+#        with:
+#          name: playwright-failed-test-traces
+#          path: test-results/
       - run: yarn build && tar -czvf release.tar.gz dist/
       - name: Checksums
         run: |
@@ -41,6 +41,6 @@ jobs:
       - name: Release
         uses: google-github-actions/release-please-action@v3
         with:
-          release-as: 0.0.1
+          default-branch: automate_release  # TODO remove
           release-type: node
           package-name: krill-ui
