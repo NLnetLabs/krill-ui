@@ -1,16 +1,12 @@
 import {test, expect} from '@playwright/test';
+// @ts-ignore
+import {preparePage} from './utils.ts';
 
 
 test('change CA', async ({page}) => {
-  const sessionStorage = process.env.SESSION_STORAGE;
-  await page.addInitScript(storage => {
-    const entries = JSON.parse(storage);
-    for (const [key, value] of Object.entries(entries)) {
-      window.sessionStorage.setItem(key, value as string);
-    }
-  }, sessionStorage);
+  await preparePage(page);
 
-  await page.goto('/cas/tg');
+  await page.goto('/');
 
   const urlRegEx = new RegExp('cas/[a-zA-Z0-9@:%._+~#=]{1,256}$');
   await expect(page).toHaveURL(urlRegEx);
@@ -25,21 +21,24 @@ test('change CA', async ({page}) => {
 
   await expect(dropdown.locator('ul')).toHaveClass('hide');
   await dropdown.locator('button').click();
+  // TODO delete hardcoded timeout when 'no-animation-mode' is introduced
+  await page.waitForTimeout(500);
 
   const cas = dropdown.locator('ul li');
 
   // make sure to select any other CA that the one before
   let newCa = '';
   for (let i = 0; i < await cas.count(); i++) {
-    if (await cas.nth(i).innerText() !== ca) {
-      newCa = await cas.nth(i).innerText();
+    newCa = await cas.nth(i).innerText();
+    if (newCa !== ca) {
       await cas.nth(i).click();
       break;
     }
   }
-  expect(newCa, 'This test needs at least two CAs to perform').not.toBe('');
+  await expect(newCa, 'This test needs at least two CAs to perform').not.toBe('');
 
   const regEx = new RegExp(`/cas/${newCa}$`);
+  await page.waitForURL(regEx);
   await expect(page).toHaveURL(regEx);
 
   await expect(await page.locator('h2').innerText()).toBe(`Certificate Authority ${newCa}`);

@@ -1,0 +1,9 @@
+{
+  "last_exchange": {
+    "timestamp": 1664865717,
+    "uri": "https://localhost:3000/rfc8181/tg/",
+    "result": "Success"
+  },
+  "last_success": 1664865717,
+  "next_exchange_before": 1664956673
+}

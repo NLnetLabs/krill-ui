@@ -1,14 +1,10 @@
 import {test, expect} from '@playwright/test';
+// @ts-ignore
+import {preparePage} from './utils.ts';
 
 
 test('Expanding the details of a ROA', async ({page}) => {
-  const sessionStorage = process.env.SESSION_STORAGE;
-  await page.addInitScript(storage => {
-    const entries = JSON.parse(storage);
-    for (const [key, value] of Object.entries(entries)) {
-      window.sessionStorage.setItem(key, value as string);
-    }
-  }, sessionStorage);
+  await preparePage(page);
 
   await page.goto('/cas/tg', { waitUntil: 'networkidle' });
 

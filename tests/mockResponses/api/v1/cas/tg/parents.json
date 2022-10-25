@@ -1,0 +1,15 @@
+{
+  "testbed": {
+    "last_exchange": {
+      "timestamp": 1664865702,
+      "uri": "https://localhost:3000/rfc6492/testbed",
+      "result": "Success"
+    },
+    "last_success": 1664865702,
+    "all_resources": {
+      "asn": "AS204325, AS211321",
+      "ipv4": "185.49.140.0/22",
+      "ipv6": "2a04:b900::/29"
+    }
+  }
+}

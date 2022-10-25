@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "lint": "eslint && tsc --noEmit"
+    "lint": "eslint && tsc --noEmit",
+    "test": "playwright test"
   },
   "dependencies": {
     "buffer": "^6.0.3",

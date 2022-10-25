@@ -52,7 +52,7 @@ export default function Layout({ children }: LayoutProps) {
                       </tr>
                       {Object.entries(store.userDetails.attributes).map(([key, value]) =>
                         <tr key={key}>
-                          <th className='user-attribute'>{key}</th>
+                          <th className='user-attribute'>{key}:</th>
                           <td>{value}</td>
                         </tr>
                       )}

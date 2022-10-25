@@ -35,3 +35,10 @@ yarn build
 ```sh
 yarn lint
 ```
+
+## Browser tests
+
+```sh
+yarn playwright install --with-deps chromium
+yarn test
+```

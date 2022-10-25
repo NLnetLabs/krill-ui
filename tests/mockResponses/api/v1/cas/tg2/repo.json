@@ -1,0 +1,12 @@
+{
+  "contact": {
+    "repo_info": {
+      "sia_base": "rsync://testbed.example.com/repo/tg/",
+      "rrdp_notification_uri": "https://testbed.example.com/rrdp/notification.xml"
+    },
+    "server_info": {
+      "public_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnhCgLthbXwNdI3C6MDEKaQoZh/YoAd6dsTGBxdpbL0zSFnRPN8HB1VTP0nYT4yzLcRcqyvYsgMkfVQ+C5eYuY/9J9f1j9h0HvkDdQOuR69gGe8AJHr8RBHeqEH9+nopudYSYv7TF0HtH/Ugc+71+GqYjjQA+SZfeBatrsKRv0Spg2lJk122A3bBRowPXadZ8NplU11EY33MpzFjUW6vsvak8b608/xibFE5gckxGUIWL7IdfDAlT35bvWApEnGGtBdvBMoEjtwhufrE3jyjxs2Y3iMYu1zKaqJdiXyD7frX1f4U71iJVKco+9lEStnnScFRKBuE9RIwPR6qMcZUDhwIDAQAB",
+      "service_uri": "https://localhost:3000/rfc8181/tg/"
+    }
+  }
+}
