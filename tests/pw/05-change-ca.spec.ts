@@ -35,8 +35,8 @@ test('change CA', async ({page}) => {
   }
   await expect(newCa, 'This test needs at least two CAs to perform').not.toBe('');
 
-  await page.waitForLoadState('networkidle');
   const regEx = new RegExp(`/cas/${newCa}$`);
+  await page.waitForURL(regEx);
   await expect(page).toHaveURL(regEx);
 
   await expect(await page.locator('h2').innerText()).toBe(`Certificate Authority ${newCa}`);
