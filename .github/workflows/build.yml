@@ -21,17 +21,17 @@ jobs:
           node-version: '18'
           cache: 'yarn'
       - run: yarn install --frozen-lockfile
-#      - name: Lint TODO uncomment
-#        run: yarn lint
-#      - run: yarn playwright install --with-deps chromium
-#      - run: yarn dev &
-#      - run: yarn test
-#        env:
-#          CI: true
-#      - uses: actions/upload-artifact@v3
-#        with:
-#          name: playwright-failed-test-traces
-#          path: test-results/
+      - name: Lint
+        run: yarn lint
+      - run: yarn playwright install --with-deps chromium
+      - run: yarn dev &
+      - run: yarn test
+        env:
+          CI: true
+      - uses: actions/upload-artifact@v3
+        with:
+          name: playwright-failed-test-traces
+          path: test-results/
       - run: yarn build && tar -czvf release.tar.gz dist/
       - name: Checksums
         run: |
@@ -39,8 +39,8 @@ jobs:
           echo "\`$(openssl dgst -sha3-256 release.tar.gz)\`" >> ReleaseNotes.md
           echo "\`$(openssl dgst -sha256 release.tar.gz)\`" >> ReleaseNotes.md
       - name: Release
-        uses: google-github-actions/release-please-action@v3
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/') # if the push included a tag
         with:
-          default-branch: automate_release  # TODO remove
-          release-type: node
-          package-name: krill-ui
+          body_path: ReleaseNotes.md
+          files: release.tar.gz
