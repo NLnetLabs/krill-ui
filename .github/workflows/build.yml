@@ -20,8 +20,8 @@ jobs:
         with:
           node-version: '18'
           cache: 'yarn'
-#      - run: yarn install --frozen-lockfile
-#      - name: Lint
+      - run: yarn install --frozen-lockfile
+#      - name: Lint TODO uncomment
 #        run: yarn lint
 #      - run: yarn playwright install --with-deps chromium
 #      - run: yarn dev &
