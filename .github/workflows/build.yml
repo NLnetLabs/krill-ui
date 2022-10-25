@@ -9,20 +9,19 @@ on:
 jobs:
   build:
     timeout-minutes: 5
+    name: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Install dependencies
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: '18'
           cache: 'yarn'
       - run: yarn install --frozen-lockfile
       - name: Lint
         run: yarn lint
-      - name: test
-        run: yarn playwright install --with-deps chromium
+      - run: yarn playwright install --with-deps chromium
       - run: yarn dev &
       - run: yarn test
         env:
@@ -31,10 +30,9 @@ jobs:
         with:
           name: playwright-failed-test-traces
           path: test-results/
-      - name: Build
-        run: yarn build && tar -czvf release.tar.gz dist/
+      - run: yarn build && tar -czvf release.tar.gz dist/
       - name: Release
         uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/') # if the push included a tag
+        #if: startsWith(github.ref, 'refs/tags/') # if the push included a tag
         with:
           files: release.tar.gz
