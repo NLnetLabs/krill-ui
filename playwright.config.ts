@@ -27,6 +27,7 @@ const config: PlaywrightTestConfig = {
   reporter: 'line',
 
   use: {
+    trace: 'retain-on-failure',
     baseURL: 'http://localhost:5173',
     browserName: 'chromium',
     ignoreHTTPSErrors: true,
