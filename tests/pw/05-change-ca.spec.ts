@@ -21,14 +21,16 @@ test('change CA', async ({page}) => {
 
   await expect(dropdown.locator('ul')).toHaveClass('hide');
   await dropdown.locator('button').click();
+  // TODO delete hardcoded timeout when 'no-animation-mode' is introduced
+  await page.waitForTimeout(500);
 
   const cas = dropdown.locator('ul li');
 
   // make sure to select any other CA that the one before
   let newCa = '';
   for (let i = 0; i < await cas.count(); i++) {
-    if (await cas.nth(i).innerText() !== ca) {
-      newCa = await cas.nth(i).innerText();
+    newCa = await cas.nth(i).innerText();
+    if (newCa !== ca) {
       await cas.nth(i).click();
       break;
     }
@@ -39,7 +41,6 @@ test('change CA', async ({page}) => {
   await page.waitForURL(regEx);
   await expect(page).toHaveURL(regEx);
 
-  await page.waitForSelector(`text="Certificate Authority ${newCa}"`);
   await expect(await page.locator('h2').innerText()).toBe(`Certificate Authority ${newCa}`);
 
 });
