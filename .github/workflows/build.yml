@@ -38,6 +38,14 @@ jobs:
           echo "## Release Checksums" > ReleaseNotes.md
           echo "\`$(openssl dgst -sha3-256 release.tar.gz)\`" >> ReleaseNotes.md
           echo "\`$(openssl dgst -sha256 release.tar.gz)\`" >> ReleaseNotes.md
+      - name: Prerelease
+        uses: softprops/action-gh-release@v1
+        if: ${{ github.ref == 'refs/heads/automate_release' }} # if the pushing to main
+        with:
+          body_path: ReleaseNotes.md
+          files: release.tar.gz
+          prerelease: true
+          name: dev
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/') # if the push included a tag
