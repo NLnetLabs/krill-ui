@@ -42,8 +42,11 @@ export default class Api {
       },
     });
 
+    if (response.headers.get('Content-Type') !== 'application/json'){
+      return await response.text() as ResponseType;
+    }
     const json = await response.json();
-    
+
     if (response.status === 200) {
       return json as ResponseType;
     }

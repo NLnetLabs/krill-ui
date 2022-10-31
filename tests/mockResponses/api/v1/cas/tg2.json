@@ -1,5 +1,9 @@
 {
-  "handle": "tg",
+  "handle": "tg2",
+  "repo_info": {
+    "sia_base": "rsync://testbed.example.com/repo/tg2/",
+    "rrdp_notification_uri": "https://testbed.example.com/rrdp/notification.xml"
+  },
   "resources": {
     "asn": "AS204325, AS211321",
     "ipv4": "185.49.140.0/22",
