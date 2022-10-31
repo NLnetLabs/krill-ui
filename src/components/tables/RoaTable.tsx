@@ -18,6 +18,7 @@ export default function RoaTable({ filtering }: RoaTableProps) {
   const columns: RoaTableHeading = [
     {label: t.announcements.asn, accessor: RoaField.asn },
     {label: t.announcements.prefix, accessor: RoaField.prefix },
+    {label: t.caDetails.comment, accessor: RoaField.comment },
     {label: t.announcements.stateLabel, accessor: RoaField.state },
   ];
 

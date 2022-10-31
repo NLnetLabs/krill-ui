@@ -42,6 +42,9 @@ export default function RoaTableRow({ roa, allowAdd, allowDelete, hasAnnouncemen
           {roa.max_length && (-roa.max_length)}
         </td>
         <td>
+          {roa.comment}
+        </td>
+        <td>
           <span className={`state ${roa.state}`} title={helpText}>
             {t.announcements.state[roa.state]}
           </span>
