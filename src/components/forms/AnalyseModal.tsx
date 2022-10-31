@@ -2,6 +2,7 @@ import {useRoute, useRouter} from 'react-router5';
 import Analyse from './Analyse';
 import React from 'react';
 import {Filtering, SortOrder, SuggestionField} from '../../core/types';
+import Modal from './Modal';
 
 export default function AnalyseModal() {
   const router = useRouter();
@@ -24,15 +25,13 @@ export default function AnalyseModal() {
   };
 
   return (
-    <div className="modal" onMouseDown={onClose}>
-      <div onMouseDown={(e) => { e.stopPropagation(); }}>
-        {route.name === 'cas.analyse' && (
-          <Analyse
-            onClose={onClose}
-            filtering={filtering}
-          />
-        )}
-      </div>
-    </div>
+    <Modal onClose={onClose}>
+      {route.name === 'cas.analyse' && (
+        <Analyse
+          onClose={onClose}
+          filtering={filtering}
+        />
+      )}
+    </Modal>
   );
 }

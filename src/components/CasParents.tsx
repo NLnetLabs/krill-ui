@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRoute } from 'react-router5';
 import Store from '../core/store';
 import useNavigation from '../hooks/useNavigation';
 import useStore from '../hooks/useStore';
@@ -10,6 +11,7 @@ import ParentTableRow from './tables/ParentTableRow';
 
 export default function CasParents() {
   const t = useTranslations();
+  const { route } = useRoute();
   const store = useStore() as Store;
   const navigate = useNavigation();
 
@@ -19,7 +21,9 @@ export default function CasParents() {
 
   return (
     <Layout>
-      <ParentModal />
+      {route.name === 'cas.parents.add' && (
+        <ParentModal />
+      )}
       <CasHeader />
       {store.parents && store.ca && store.parents[store.ca]?.map((parent) => (
         <ParentTableRow

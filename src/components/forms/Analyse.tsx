@@ -6,12 +6,10 @@ import useStore from '../../hooks/useStore';
 import SuggestionsTable from '../tables/SuggestionsTable';
 import {CheckBoxState, Filtering, SuggestionField} from '../../core/types';
 
-
 export interface AnalyseProps {
   onClose: () => void,
   filtering: Filtering<SuggestionField>,
 }
-
 
 export default function Analyse({onClose, filtering}: AnalyseProps) {
   const t = useTranslations();
