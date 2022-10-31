@@ -4,23 +4,23 @@ import loadLocale, {Translations} from './translations';
 import {
   CaDetails,
   Data,
+  ErrorResponseType,
+  Filtering,
   Locale,
   LoginMethod,
   Notification,
-  UserDetails,
+  NotificationType,
+  Parent,
+  ParentParams,
   PersistedData,
   RepoStatus,
   Roa,
-  NotificationType,
-  RouteParams,
-  Route,
-  Filtering,
-  Parent,
-  ParentParams,
-  Suggestion,
   RoaField,
+  Route,
+  RouteParams,
+  Suggestion,
   SuggestionField,
-  ErrorResponseType,
+  UserDetails,
 } from './types';
 import {compareRoa, compareSuggestion} from './utils';
 
@@ -170,16 +170,16 @@ export default class Store implements Data {
     this.translations = await loadLocale(this.locale);
   }
 
-  // load translations given a locale
   async loadLoginMethod() {
     if (!this.loginMethod) {
-      this.loginMethod = await this.api.getLoginMethod();
+      await this.handleError(async () => {
+        this.loginMethod = await this.api.getLoginMethod();
+      });
     }
 
     return this.loginMethod;
   }
 
-  // load translations given a locale
   async tryLogin(password: string, username?: string) {
     try {
       const details = await this.api.postLogin(password, username); // username is optional
@@ -259,21 +259,28 @@ export default class Store implements Data {
     });
   }
 
-  async changeRoutes(add: Suggestion[], remove: Suggestion[]) {
+  async changeRoutes(add: Suggestion[], remove: Suggestion[]): Promise<boolean> {
     if (this.ca === null) {
-      return;
+      return false;
     }
 
-    await this.api.updateRoutes(this.ca, {
-      added: add,
-      removed: remove,
+    return await this.handleError(async () => {
+      await this.api.updateRoutes(this.ca as string, {
+        added: add,
+        removed: remove,
+      });
+      await this.loadCa(true);
+      this.setNotification({
+        type: NotificationType.success,
+        message: this.translations?.common.success,
+      });
+      return true;
     });
-    await this.loadCa(true);
   }
 
-  async addRoute(params: RouteParams) {
+  async addRoute(params: RouteParams): Promise<boolean> {
     if (this.ca === null) {
-      return;
+      return false;
     }
 
     const route: Route = {
@@ -283,19 +290,23 @@ export default class Store implements Data {
       max_length: parseInt(params.max_length, 10),
     };
 
-    await this.handleError(async () => {
+    return await this.handleError(async () => {
       await this.api.updateRoutes(this.ca as string, {
         added: [route],
         removed: [],
       });
+      await this.loadCa(true);
+      this.setNotification({
+        type: NotificationType.success,
+        message: this.translations?.caDetails.confirmation.addedSuccess,
+      });
+      return true;
     });
-
-    await this.loadCa(true);
   }
 
-  async deleteRoute(params: RouteParams) {
+  async deleteRoute(params: RouteParams): Promise<boolean> {
     if (this.ca === null) {
-      return;
+      return false;
     }
 
     const route: Route = {
@@ -303,11 +314,19 @@ export default class Store implements Data {
       prefix: params.prefix,
       max_length: parseInt(params.max_length, 10),
     };
-    await this.api.updateRoutes(this.ca, {
-      added: [],
-      removed: [route],
+
+    return await this.handleError(async () => {
+      await this.api.updateRoutes(this.ca as string, {
+        added: [],
+        removed: [route],
+      });
+      await this.loadCa(true);
+      this.setNotification({
+        type: NotificationType.success,
+        message:  this.translations?.caDetails.confirmation.retiredSuccess,
+      });
+      return true;
     });
-    await this.loadCa(true);
   }
 
   async addParent(params: ParentParams) {

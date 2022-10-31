@@ -10,14 +10,22 @@ export default async function handleCaData(toState: State, store: Store) {
 
   // delete routes
   if (toState.name === 'cas.delete' && toState.params.asn) {
-    await store.deleteRoute(toState.params as RouteParams);
-    return Promise.reject({ redirect: {name: 'cas', params: { ca: store.ca }} });
+    if (await store.deleteRoute(toState.params as RouteParams)) {
+      return Promise.reject({redirect: {name: 'cas', params: {ca: store.ca}}});
+    }
   }
 
   // add routes
   if (toState.name === 'cas.add' && toState.params.asn) {
-    await store.addRoute(toState.params as RouteParams);
-    return Promise.reject({ redirect: {name: 'cas', params: { ca: store.ca }} });
+    if (await store.addRoute(toState.params as RouteParams)) {
+      return Promise.reject({redirect: {name: 'cas', params: {ca: store.ca}}});
+    }
+  }
+
+  if (toState.name === 'cas.add_new' && toState.params.asn) {
+    if (await store.addRoute(toState.params as RouteParams)) {
+      return Promise.reject({redirect: {name: 'cas', params: {ca: store.ca}}});
+    }
   }
 
   if (toState.name === 'cas.change' && toState.params.ids) {
