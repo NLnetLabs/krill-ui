@@ -38,6 +38,7 @@
   margin-top: 0.5rem;
   background: no-repeat center left;
   background-size: 1.5rem;
+  min-height: 2rem;
 }
 
 .info-table .failure {

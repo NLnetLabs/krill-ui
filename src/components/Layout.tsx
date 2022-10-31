@@ -9,7 +9,7 @@ import logout from '../img/logout.svg?url';
 import user from '../img/user.svg?url';
 import Loader from './Loader';
 import Select from './Select';
-import Notification from './Notification';
+import NotificationContainer from './NotificationContainer';
 
 interface LayoutProps {
   children: ReactNode,
@@ -69,7 +69,7 @@ export default function Layout({ children }: LayoutProps) {
           )}
         </menu>
       </header>
-      <Notification />
+      <NotificationContainer />
       <div className={`content route-${route.name}`}>
         {children}
       </div>

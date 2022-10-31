@@ -15,7 +15,7 @@
   background: white;
   border-radius: var(--radius);
   cursor: pointer;
-  width: 6rem;
+  width: 8rem;
 }
 
 .pagination button {
