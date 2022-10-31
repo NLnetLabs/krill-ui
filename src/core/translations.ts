@@ -1,7 +1,7 @@
 import { Locale } from './types';
 
 export default async function loadLocale(locale: Locale) {
-  const module = await import(`../locales/${locale}`);
+  const module = await import(`../locales/${locale}.ts`);
 
   return module.translations;
 }

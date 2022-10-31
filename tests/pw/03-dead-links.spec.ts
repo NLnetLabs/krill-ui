@@ -6,7 +6,7 @@ import {preparePage} from './utils.ts';
 test('Check for potentially dead links', async ({page,request}) => {
   await preparePage(page);
 
-  await page.goto('/ui');
+  await page.goto('/');
 
   const links = await page.getByRole('link');
 
