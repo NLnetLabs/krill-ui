@@ -12,7 +12,7 @@ label.required::before {
   margin-right: 0.3rem;
 }
 
-input {
+input, textarea {
   border: 1px solid var(--grey-light);
   border-radius: var(--radius);
   line-height: 2.5rem;

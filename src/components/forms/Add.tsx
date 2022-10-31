@@ -14,6 +14,7 @@ export default function Add({ onClose, roa }: AddProps) {
   const navigate = useNavigation();
   const [asn, setAsn] = useState(roa?.asn.toString() || '');
   const [prefix, setPrefix] = useState(roa?.prefix || '');
+  const [comment, setComment] = useState(roa?.comment || '');
   const maxLengthFallback = prefixMaxLength(roa?.prefix);
   const [maxLength, setMaxLength] = useState(roa?.max_length?.toString() || maxLengthFallback);
   
@@ -54,6 +55,17 @@ export default function Add({ onClose, roa }: AddProps) {
             required
           />
         </div>
+        <div>
+          <label htmlFor="comment required">
+            {t.caDetails.comment}
+          </label>
+          <input
+            name="comment"
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+            required
+          />
+        </div>
       </form>
       <div className="actions">
         <button
@@ -64,7 +76,7 @@ export default function Add({ onClose, roa }: AddProps) {
         </button>
         <button
           className="button"
-          onClick={() => navigate({ asn, prefix, max_length: maxLength})}
+          onClick={() => navigate({ asn, prefix, comment, max_length: maxLength})}
         >
           {t.common.confirm}
         </button>

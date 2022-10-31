@@ -3,9 +3,11 @@ import browserPlugin from 'router5-plugin-browser';
 import apiMiddleware from './apiMiddleware';
 import Store from './store';
 
+const prefix = '/ui';
+
 const routes = [
   { name: 'home', path: '/' },
-  { name: 'cas', path: '/cas/:ca', children: [
+  { name: 'cas', path: `${prefix}/cas/:ca`, children: [
     { name: 'add_new', path: '/add' },
     { name: 'add', path: '/add/:id' },
     { name: 'delete', path: '/delete/:id' },
@@ -18,8 +20,8 @@ const routes = [
     ] },
     { name: 'analyse', path: '/analyse' },
   ]},
-  { name: 'login', path: '/login' },
-  { name: 'logout', path: '/logout' },
+  { name: 'login', path: `${prefix}/login` },
+  { name: 'logout', path: `${prefix}/logout` },
 ];
 
 export default function newRouter(store: Store): Router {

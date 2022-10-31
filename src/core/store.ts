@@ -286,6 +286,7 @@ export default class Store implements Data {
     const route: Route = {
       asn: parseInt(params.asn, 10),
       prefix: params.prefix,
+      comment: params.comment,
       max_length: parseInt(params.max_length, 10),
     };
 

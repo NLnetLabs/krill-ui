@@ -17,8 +17,9 @@ import RoaSearch from './RoaSearch';
 export default function Cas() {
   const t = useTranslations();
   const store = useStore() as Store;
-  const { route: { params }} = useRoute();
+  const { route } = useRoute();
   const navigate = useNavigation();
+  const params = route.params;
 
   const filtering: Filtering<RoaField> = {
     search: params.search || null,
@@ -31,7 +32,9 @@ export default function Cas() {
   return (
     <Layout>
       <CaModal />
-      <AnalyseModal/>
+      {route.name === 'cas.analyse' && (
+        <AnalyseModal/>
+      )}
       <CasHeader />
       <div className="row">
         <div className="flex-1">

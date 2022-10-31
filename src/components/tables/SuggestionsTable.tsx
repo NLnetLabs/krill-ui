@@ -37,16 +37,18 @@ export default function SuggestionsTable({
 
 
   return (
-    <table>
+    <table className="roa-table">
       <SuggestionsTableHead
         columns={columns}
         filtering={filtering}
         setAllCheckboxes={handleAllCheckboxes}
-        checkBoxState={topCheckBoxState}/>
+        checkBoxState={topCheckBoxState}
+      />
       <SuggestionsTableBody
         checkedBoxes={checkedBoxes}
         suggestions={suggestions}
-        handleCheckbox={handleCheckbox}/>
+        handleCheckbox={handleCheckbox}
+      />
     </table>
   );
 }

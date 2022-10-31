@@ -1,9 +1,9 @@
 import { Locale } from './types';
 
 export default async function loadLocale(locale: Locale) {
-  const module = await import(`../locales/${locale}.json`);
+  const module = await import(`../locales/${locale}.ts`);
 
-  return module.default;
+  return module.translations;
 }
 
 export function format(message: string, params: Record<string, string>): string {
@@ -41,6 +41,9 @@ export interface Translations {
   login: {
     id: string,
     idPlaceholder: string,
+    idRequired: string,
+    retry: string,
+    here: string,
     password: string,
     placeholder: string,
     signin: string,
@@ -88,6 +91,7 @@ export interface Translations {
     resource: string,
     children: string,
     handle: string,
+    comment: string,
     maxLength: string,
     maxLengthTooltip: string,
     confirmation: {
@@ -112,7 +116,6 @@ export interface Translations {
       response: string,
       addParent: string,
       addParentSuccess: string,
-      arin: string,
       name: string,
       namerequired: string,
       nameformat: string,
@@ -238,6 +241,13 @@ export interface Translations {
     ta_not_allowed: string,
     ta_name_reserved: string,
     ca_roa_delta_error: string,
+    api_insufficient_rights: string,
+    api_invalid_credentials: string,
+    api_login_error: string,
+    api_auth_transient_error: string,
+    api_auth_permanent_error: string,
+    api_auth_session_expired: string,
+    general_error: string,
   },
   testbed: {
     welcome: string,
@@ -328,8 +338,11 @@ export interface Translations {
       missing_xml_attr: string,
       empty_xml_el: string,
       empty_xml_attr: string,
+      non_ascii_xml_el: string,
       child_handle_required: string,
       publisher_handle_required: string,
+      non_base64_certificate_xml_el: string,
+      invalid_registration_data: string,
     },
   },
 }

@@ -6,7 +6,7 @@ import {preparePage} from './utils.ts';
 test('Expanding the details of a ROA', async ({page}) => {
   await preparePage(page);
 
-  await page.goto('/cas/tg', { waitUntil: 'networkidle' });
+  await page.goto('/ui/cas/tg', { waitUntil: 'networkidle' });
 
   const numOfRoas = await page.locator('table tbody tr td button.expand').count();
 

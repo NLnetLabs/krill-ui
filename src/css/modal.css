@@ -1,0 +1,61 @@
+.modal {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: var(--dark);
+}
+
+.modal > div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 40rem;
+  min-height: 10rem;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadaw);
+  padding: 1.5rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal h3 {
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.modal p {
+  flex: 1;
+}
+
+.modal .actions {
+  margin-top: 3rem;
+  text-align: right;
+}
+
+.modal label,
+.modal input {
+  display: block;
+  width: 100%;
+}
+
+.modal label {
+  margin-top: 1rem;
+}
+
+.modal table {
+  margin-top: 1rem;
+  width: 50rem;
+  max-width: 100%;
+}

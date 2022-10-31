@@ -5,6 +5,7 @@ import { Roa } from '../../core/types';
 import useStore from '../../hooks/useStore';
 import Add from './Add';
 import Delete from './Delete';
+import Modal from './Modal';
 
 export default function CaModal() {
   const { route } = useRoute();
@@ -23,21 +24,19 @@ export default function CaModal() {
   }
 
   return (
-    <div className="modal" onMouseDown={onClose}>
-      <div onMouseDown={(e) => { e.stopPropagation(); }}>
-        {route.name.startsWith('cas.add') && (
-          <Add
-            onClose={onClose}
-            roa={roa}
-          />
-        )}
-        {route.name === 'cas.delete' && (
-          <Delete
-            onClose={onClose}
-            roa={roa as Roa}
-          />
-        )}
-      </div>
-    </div>
+    <Modal onClose={onClose}>
+      {route.name.startsWith('cas.add') && (
+        <Add
+          onClose={onClose}
+          roa={roa}
+        />
+      )}
+      {route.name === 'cas.delete' && (
+        <Delete
+          onClose={onClose}
+          roa={roa as Roa}
+        />
+      )}
+    </Modal>
   );
 }
