@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import {Roa, RoaStateHelp} from '../../core/types';
 import useTranslations from '../../hooks/useTranslations';
 import RoaTableRowSubTable from './RoaTableRowSubTable';
-import trash from '../../img/trash-can-light.svg?url';
-import plus from '../../img/plus-light.svg?url';
+import trash from '../../img/trash.svg?url';
+import plus from '../../img/plus.svg?url';
 import useNavigation from '../../hooks/useNavigation';
 
 export interface RoaTableRowProps {

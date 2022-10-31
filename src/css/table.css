@@ -134,3 +134,27 @@ table .desc {
   padding: 0.5rem;
   width: auto;
 }
+
+.roa-table .add,
+.roa-table .remove {
+  display: inline-block;
+  border: 1px solid;
+  border-radius: 0.1rem;
+  padding: 0.1rem 0.5rem;
+}
+
+.roa-table .add img,
+.roa-table .remove img {
+  width: 0.8rem;
+  height: 0.8rem;
+}
+
+.roa-table .add {
+  background-color: #f0f9eb;
+  border-color: #e1f3d8;
+}
+
+.roa-table .remove {
+  background-color: #fef0f0;
+  border-color: #fde2e2;
+}

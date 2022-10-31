@@ -1,8 +1,8 @@
 import React from 'react';
 import {Suggestion} from '../../core/types';
 import useTranslations from '../../hooks/useTranslations';
-import trash from '../../img/trash-can-light.svg?url';
-import plus from '../../img/plus-light.svg?url';
+import trash from '../../img/trash-red.svg?url';
+import plus from '../../img/check-green.svg?url';
 
 export interface SuggestionsTableRowProps {
   suggestion: Suggestion,
@@ -20,10 +20,14 @@ export default function SuggestionsTableRow({suggestion, id, checked, handleChec
       <td><input type="checkbox" id={id} onChange={handleCheckbox} checked={checked}/></td>
       <td>
         {suggestion.action === 'add' && (
-          <img src={plus} title={`${t.caDetails.suggestions.willAdd} (${reason})`}/>
+          <span className="add" title={t.caDetails.suggestions.adding}>
+            <img src={plus} title={`${t.caDetails.suggestions.willAdd} (${reason})`} />
+          </span>
         )}
         {suggestion.action === 'remove' && (
-          <img src={trash} title={`${t.caDetails.suggestions.willRemove} (${reason})`}/>
+          <span className="remove" title={t.caDetails.suggestions.willRemove}>
+            <img src={trash} title={`${t.caDetails.suggestions.willRemove} (${reason})`} />
+          </span>
         )}
       </td>
       <td>{suggestion.asn}</td>
