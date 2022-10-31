@@ -17,7 +17,8 @@ export default function SuggestionsTableBody({suggestions, checkedBoxes, handleC
             checked={checkedBoxes.includes(suggestion.id || '')}
             suggestion={suggestion}
             id={suggestion.id || ''}
-            handleCheckbox={handleCheckbox}/>
+            handleCheckbox={handleCheckbox}
+          />
         </tr>
       ))}
     </tbody>

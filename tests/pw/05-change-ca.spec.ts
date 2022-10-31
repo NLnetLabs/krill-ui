@@ -37,7 +37,7 @@ test('change CA', async ({page}) => {
   }
   await expect(newCa, 'This test needs at least two CAs to perform').not.toBe('');
 
-  const regEx = new RegExp(`/cas/${newCa}$`);
+  const regEx = new RegExp(`/ui/cas/${newCa}$`);
   await page.waitForURL(regEx);
   await expect(page).toHaveURL(regEx);
 

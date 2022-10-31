@@ -13,7 +13,6 @@ test('sorting of ROA Table', async ({page}) => {
 
 
   for (let columnIdx = 2; columnIdx <= 2; columnIdx++) {
-    // TODO: The state column is not properly sorted yet, as it is sorted by the internal name instead of the displayed one
     { // desc order
       await table.locator(`thead tr th:nth-of-type(${columnIdx})`).click();
 

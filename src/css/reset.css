@@ -34,3 +34,8 @@ h2 {
 input, button, select {
   font-family: Inter, sans-serif;
 }
+
+a {
+  color: var(--red);
+  font-weight: 300;
+}
