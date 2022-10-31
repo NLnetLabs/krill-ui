@@ -42,10 +42,11 @@ export default function Analyse({onClose, filtering}: AnalyseProps) {
             topCheckBoxState={topCheckbox}
           />
         </>}
-      {suggestions.length === 0 &&
-        t.caDetails.suggestions.nochanges}
+      {suggestions.length === 0 && (
+        t.caDetails.suggestions.nochanges
+      )}
       <div className="actions">
-        {suggestions.length > 0 &&
+        {suggestions.length > 0 && (
           <>
             <button
               className="button outline"
@@ -59,13 +60,15 @@ export default function Analyse({onClose, filtering}: AnalyseProps) {
             >
               {t.common.confirm}
             </button>
-          </>}
-        {suggestions.length === 0 &&
-        <button
-          className='button'
-          onClick={onClose}>
-          {t.common.ok}
-        </button>}
+          </>
+        )}
+        {suggestions.length === 0 && (
+          <button
+            className='button'
+            onClick={onClose}>
+            {t.common.ok}
+          </button>
+        )}
       </div>
     </>
   );

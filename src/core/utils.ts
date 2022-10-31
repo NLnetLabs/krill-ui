@@ -18,7 +18,7 @@ export function compareRoa(a: Roa, b: Roa, field: RoaField, order: SortOrder) {
     return 0;
   }
 
-  const direction = a[field] < b[field] ? -1 : 1;
+  const direction = (a[field] || '') < (b[field] || '') ? -1 : 1;
 
   return order === SortOrder.asc ? direction : -direction;
 }
