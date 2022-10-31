@@ -8,6 +8,8 @@ export default defineConfig({
       '/auth': 'http://127.0.0.1:3000',
       '/api': 'http://127.0.0.1:3000',
       '/stats': 'http://127.0.0.1:3000',
+      '/ta': 'http://127.0.0.1:3000',
+      '/testbed': 'http://127.0.0.1:3000',
     },
   },
   plugins: [react()],

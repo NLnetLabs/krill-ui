@@ -22,7 +22,6 @@ export default function apiMiddleware(router: Router) {
 
       // set selected ca and load ca details
       await handleCaData(toState, store);
-
     } catch (e) {
       return Promise.reject(e);
     }

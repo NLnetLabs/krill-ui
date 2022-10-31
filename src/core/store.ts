@@ -64,6 +64,9 @@ export default class Store implements Data {
   // which login method to use
   loginMethod: LoginMethod | null = null;
 
+  // is the testbed enabled
+  testBedEnabled = false;
+
   // internal references
   api: Api;
 
@@ -178,6 +181,16 @@ export default class Store implements Data {
     }
 
     return this.loginMethod;
+  }
+
+  async loadTestBedEnabled() {
+    if (!this.testBedEnabled) {
+      await this.handleError(async () => {
+        this.testBedEnabled = await this.api.getTestBedEnabled();
+      });
+    }
+
+    return this.testBedEnabled;
   }
 
   async tryLogin(password: string, username?: string) {

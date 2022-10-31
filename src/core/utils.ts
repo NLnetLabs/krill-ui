@@ -1,6 +1,6 @@
 // @ts-ignore
 import scrypt from './hash.js';
-import {Roa, RoaField, SortOrder, Suggestion, SuggestionField, SuggestionReason, Suggestions} from './types.js';
+import {Roa, RoaField, SortOrder, Suggestion, SuggestionField, SuggestionReason, Suggestions, TestBedChildRequest, TestBedPublisherRequest} from './types.js';
 
 function dec2hex(dec: number) {
   return dec.toString(16).padStart(2, '0');
@@ -72,6 +72,22 @@ export async function krillHash(username: string, password: string): Promise<str
   const hash = await scrypt(pwBuf, saltBuf, iterations, var_r, var_p, length);
 
   return await hash.toString('hex');
+}
+
+export function parseChildXML(xml: string): TestBedChildRequest {
+  const doc = new window.DOMParser().parseFromString(xml, 'text/xml');
+  return {
+    handle: doc.getElementsByTagName('child_request')[0].attributes['child_handle'].value,
+    id_cert: doc.getElementsByTagName('child_bpki_ta')[0].childNodes[0].nodeValue.trim(),
+  };
+}
+
+export function parsePublisherXML(xml: string): TestBedPublisherRequest {
+  const doc = new window.DOMParser().parseFromString(xml, 'text/xml');
+  return {
+    publisher_handle: doc.getElementsByTagName('publisher_request')[0].attributes['publisher_handle'].value,
+    id_cert: doc.getElementsByTagName('publisher_bpki_ta')[0].childNodes[0].nodeValue.trim(),
+  };
 }
 
 export function transformSuggestions(input: Suggestions): Array<Suggestion> {

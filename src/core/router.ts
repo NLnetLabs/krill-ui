@@ -20,8 +20,13 @@ const routes = [
     ] },
     { name: 'analyse', path: '/analyse' },
   ]},
+  { name: 'testbed', path: `${prefix}/testbed`, children: [
+    { name: 'del_ca', path: '/remove' },
+    { name: 'add_pub', path: '/register-publisher' },
+    { name: 'del_pub', path: '/remove-publisher'},
+  ]},
   { name: 'login', path: `${prefix}/login` },
-  { name: 'logout', path: `${prefix}/logout` },
+  { name: 'logout', path: `${prefix}/logout` }
 ];
 
 export default function newRouter(store: Store): Router {

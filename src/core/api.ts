@@ -10,7 +10,9 @@ import {
   Roa,
   LoginResponse,
   Route,
-  Suggestions, Suggestion, ErrorResponseType
+  Suggestions,
+  Suggestion,
+  ErrorResponseType,
 } from './types';
 import {generateId, isAbsolute, parseLoginUrl, transformSuggestions} from './utils';
 
@@ -42,9 +44,6 @@ export default class Api {
       },
     });
 
-    if (response.headers.get('Content-Type') !== 'application/json'){
-      return await response.text() as ResponseType;
-    }
     const json = await response.json();
 
     if (response.status === 200) {
@@ -158,5 +157,17 @@ export default class Api {
     this.setToken(token);
 
     return this.post(login_url);
+  }
+
+  getTestBedEnabled(): Promise<boolean> {
+    return fetch('/testbed/enabled').then((response) => {
+      if (response.status === 200) {
+        return true;
+      } else if (response.status === 400) {
+        return false;
+      }
+
+      return Promise.reject(response);
+    });
   }
 }
