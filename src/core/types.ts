@@ -83,12 +83,14 @@ export interface Filtering<T> {
 
 export interface Route {
   asn: number,
+  comment?: string,
   prefix: string,
   max_length?: number,
 }
 
 export interface RouteParams {
   asn: string,
+  comment?: string,
   prefix: string,
   max_length: string,
 }
@@ -100,6 +102,7 @@ export interface ParentParams {
 
 export interface Roa extends Route {
   id?: string,
+  comment?: string,
   state: RoaState,
   authorizes?: Array<BgpAnnouncement>,
   disallows?: Array<BgpAnnouncement>,
@@ -148,6 +151,7 @@ export enum SuggestionField {
 
 export interface Suggestion {
   id?: string,
+  comment?: string,
   action: 'add' | 'remove',
   reason: SuggestionReason,
   asn: number,
