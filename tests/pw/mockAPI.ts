@@ -16,11 +16,13 @@ export async function addRoutes(page: any) {
     route.fulfill({
       status: 200,
       body: fs.readFileSync(fileName),
+      headers: {'Content-Type': 'application/json'},
     });
   });
 
   await page.route('**/stats/info', route => route.fulfill({
     status: 200,
+    headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
       version: '0.10.0-rc3',
       started: 1664865700,
@@ -41,6 +43,7 @@ export async function addRoutes(page: any) {
     }
     route.fulfill({
       status: 200,
+      headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
         token: '123456',
         id: 'admin_token',
