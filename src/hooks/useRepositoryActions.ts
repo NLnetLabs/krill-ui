@@ -1,15 +1,14 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent } from 'react';
 import { useRoute, useRouter } from 'react-router5';
-import useChildRequest from '../hooks/useChildRequest';
+import usePublisherRequest from '../hooks/usePublisherRequest';
 import useNavigation from '../hooks/useNavigation';
 import useRequestActions from './useRequestActions';
 
 export default function useParantActions() {
-  const childRequest = useChildRequest();
+  const publisherRequest = usePublisherRequest();
   const router = useRouter();
   const { route: { params } } = useRoute();
   const navigate = useNavigation();
-  const [name, setName] = useState('');
 
   const {
     notification,
@@ -21,22 +20,20 @@ export default function useParantActions() {
     setResponse,
     onCopy,
     handleUpload,
-  } = useRequestActions(childRequest);
+  } = useRequestActions(publisherRequest);
   
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    navigate({ name, response });
+    navigate({ response });
   };
   
   const onClose = () => {
-    router.navigate('cas.parents', { ca: params.ca });
+    router.navigate('cas.repository', { ca: params.ca });
   };
   
   return {
     notification,
     setNotification,
-    name,
-    setName,
     request,
     dataUrl,
     setRequest,

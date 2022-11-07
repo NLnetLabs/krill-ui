@@ -54,7 +54,6 @@ button.expand::after {
   border: 0 solid var(--light);
   box-shadow: var(--shadaw);
   border-radius: var(--radius);
-  transition: all 300ms;
   max-height: 0;
   overflow: hidden;
   z-index: 10;

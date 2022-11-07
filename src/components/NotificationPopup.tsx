@@ -8,7 +8,7 @@ interface NotificationProps {
 
 export default function NotificationPopup({ notification, onClose }: NotificationProps) {
   return (
-    <div className={`notification ${ notification.type }`}>
+    <div className={`notification popup ${ notification.type }`}>
       <button className="close" onClick={onClose}>
         &times;
       </button>

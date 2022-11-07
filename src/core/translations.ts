@@ -123,6 +123,7 @@ export interface Translations {
     repoTab: {
       request: string,
       response: string,
+      addRepo: string,
       addRepoSuccess: string,
     },
     analyseThis: string,

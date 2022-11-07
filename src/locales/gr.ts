@@ -112,6 +112,8 @@ export const translations: Translations = {
     'repoTab': {
       'request': 'Αίτημα Εκδότη',
       'response': 'Απάντηση Αποθετηρίου (Repository)',
+      // TODO translate
+      'addRepo': 'Add a repository',
       'addRepoSuccess': 'Το Αποθετήριο (Repository) προστέθηκε'
     },
     'analyseThis': 'Ανέλυσε τα ROA',

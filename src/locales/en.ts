@@ -110,6 +110,7 @@ export const translations: Translations = {
     },
     'repoTab': {
       'request': 'Publisher Request',
+      'addRepo': 'Add a repository',
       'response': 'Repository Response',
       'addRepoSuccess': 'Repository added'
     },
