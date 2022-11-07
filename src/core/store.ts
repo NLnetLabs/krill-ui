@@ -341,6 +341,18 @@ export default class Store implements Data {
     });
   }
 
+  async addRepository(params: ParentParams) {
+    if (this.ca === null) {
+      return;
+    }
+
+    return await this.handleError(async () => {
+      await this.api.postRepository(this.ca as string, params.name, params.response || '');
+      await this.loadRepoStatus(true);
+      return true;
+    });
+  }
+
   // update notification
   setNotification(notification: Notification | null) {
     this.notification = notification;

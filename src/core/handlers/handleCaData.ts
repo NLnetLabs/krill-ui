@@ -53,6 +53,13 @@ export default async function handleCaData(toState: State, store: Store) {
     }
   }
 
+  // add repo
+  if (toState.name === 'cas.repository.add' && toState.params.response) {
+    if (await store.addRepository(toState.params as ParentParams)) {
+      return Promise.reject({ redirect: {name: 'cas.repository', params: { ca: store.ca }} });
+    }
+  }
+
   // load a list of available ca's
   await store.loadCas();
 

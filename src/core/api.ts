@@ -45,6 +45,7 @@ export default class Api {
     if (response.headers.get('Content-Type') !== 'application/json'){
       return await response.text() as ResponseType;
     }
+
     const json = await response.json();
 
     if (response.status === 200) {
@@ -108,15 +109,21 @@ export default class Api {
   }
 
   getChildRequest(ca: string): Promise<string> {
-    return fetch(`/api/v1/cas/${ca}/id/child_request.xml`, {
-      headers: {
-        'Authorization': `Bearer ${this.token}`,
-      }})
-      .then((response) => response.text());
+    return this.get<string>(`/api/v1/cas/${ca}/id/child_request.xml`);
+  }
+
+  getPublisherRequest(ca: string): Promise<string> {
+    return this.get<string>(`/api/v1/cas/${ca}/id/publisher_request.xml`);
   }
 
   postParent(ca: string, name: string, text: string) {
     return this.post(`/api/v1/cas/${ca}/parents/${name}`, {
+      body: text
+    });
+  }
+
+  postRepository(ca: string, name: string, text: string) {
+    return this.post(`/api/v1/cas/${ca}/repo`, {
       body: text
     });
   }
