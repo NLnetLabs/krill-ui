@@ -65,11 +65,4 @@ test('change languages', async ({page}) => {
   await page.locator('table tbody tr td button.expand').first().click();
   await expect(page.locator('h3', {hasText: /Autorisiert \d* BGP-Ankündigungen/})).toHaveCount(1);
   await expect(page.locator('h3', {hasText: /Verweigert \d* BGP-Ankündigungen/})).toHaveCount(1);
-
-  const languageCount = await languages.count();
-  for (let i = 0; i < languageCount; i++) {
-    await dropdown.locator('button').click();
-    await languages.nth(i).click();
-    await expect(dropdown).toHaveCount(1);
-  }
 });
