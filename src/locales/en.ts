@@ -96,6 +96,7 @@ export const translations: Translations = {
       'prefix_format': 'Please enter a valid IPv4 or IPv6 prefix'
     },
     'onboardingWarning': 'You will need to connect your CA to a public RPKI repository where it can publish your certificate and ROAs. As soon as the parent configuration is completed, relying party software will immediately start fetching your certificate and the ROAs you create from this repository.',
+    'initializeRepository': 'You still need to configure a repository for your CA before it can request resource certificate(s) from its parent(s)',
     'initialize': 'Please initialize the RPKI repository and/or the parent first.',
     'noResourcesYet': 'You have not received any resources yet',
     'clickToRefresh': 'Click here to refresh',

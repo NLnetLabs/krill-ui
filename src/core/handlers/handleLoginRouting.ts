@@ -13,7 +13,7 @@ export default async function handleLoginRouting(toState: State, store: Store) {
   if (toState.params.notification === 'clear') {
     store.setNotification(null);
     delete toState.params.notification;
-    return Promise.reject({ redirect: toState});
+    return Promise.reject({ redirect: toState });
   }
 
   // logout (set token to null) and redirect to login

@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useEffect } from 'react';
 import { useRoute } from 'react-router5';
 import { locales } from '../core/config';
 import useNavigation from '../hooks/useNavigation';
@@ -22,6 +22,10 @@ export default function Layout({ children }: LayoutProps) {
   const store = useStore();
   const year = new Date().getFullYear();
   const t = useTranslations();
+
+  useEffect(() => {
+    document.title = `Krill - ${store.ca}`;
+  }, [store.ca]);
 
   return (
     <>

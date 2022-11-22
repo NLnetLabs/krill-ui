@@ -98,6 +98,8 @@ export const translations: Translations = {
       'prefix_format': 'SVP entrez un préfixe IPv4 ou IPv6 valide'
     },
     'onboardingWarning': 'Veuillez connecter votre AC à un dépôt RPKI publique pour publier votre certificat et vos ROAs. Dès que la configuration côté parent est complète, le \'relying party\' (logiciel validateur) commencera immédiatement à récupérer votre certificat et les ROAs que vous avez créés depuis ce dépôt.',
+    // TODO translate
+    'initializeRepository': 'You still need to configure a repository for your CA before it can request resource certificate(s) from its parent(s)',
     'initialize': 'SVP initialisez le dépôt RPKI et/ou le parent en premier lieu.',
     'noResourcesYet': 'Vous n\'avez pas encore reçu de ressources',
     'clickToRefresh': 'Cliquer ici pour rafraîchir',

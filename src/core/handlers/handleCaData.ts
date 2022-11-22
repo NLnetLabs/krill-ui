@@ -16,32 +16,22 @@ export default async function handleCaData(toState: State, store: Store) {
   }
 
   // add routes
-  if (toState.name === 'cas.add' && toState.params.asn) {
+  if ((toState.name === 'cas.add' || toState.name === 'cas.add_new') && toState.params.asn) {
     if (await store.addRoute(toState.params as RouteParams)) {
       return Promise.reject({redirect: {name: 'cas', params: {ca: store.ca}}});
-    }
-  }
-
-  if (toState.name === 'cas.add_new' && toState.params.asn) {
-    if (await store.addRoute(toState.params as RouteParams)) {
-      return Promise.reject({redirect: {name: 'cas', params: {ca: store.ca}}});
+    } else {
+      return Promise.reject({redirect: {name: toState.name, params: {
+        ca: store.ca,
+        id: toState.params.id,
+      }}});
     }
   }
 
   if (toState.name === 'cas.change' && toState.params.ids) {
     const ids: string[] = JSON.parse(toState.params.ids);
-    console.log(`ids ${ids}`);
     const suggestions = store.getSuggestions().filter(suggestion => ids.includes(suggestion.id || ''));
-    console.log(`suggestions ${suggestions}`);
-    const add: Suggestion[] = [];
-    const remove: Suggestion[] = [];
-    for (const suggestion of suggestions) {
-      if (suggestion.action === 'add') {
-        add.push(suggestion);
-      } else if (suggestion.action === 'remove') {
-        remove.push(suggestion);
-      }
-    }
+    const add: Suggestion[] = suggestions.filter((s) => s.action === 'add');
+    const remove: Suggestion[] = suggestions.filter((s) => s.action === 'remove');
     await store.changeRoutes(add, remove);
     return Promise.reject({redirect: {name: 'cas', params: {ca: store.ca}}});
   }
