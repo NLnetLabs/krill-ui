@@ -27,6 +27,11 @@ export default async function handleCaData(toState: State, store: Store) {
     }
   }
 
+
+  if (toState.name === 'cas.analyse') {
+    await store.loadSuggestions();
+  }
+
   if (toState.name === 'cas.change' && toState.params.ids) {
     const ids: string[] = JSON.parse(toState.params.ids);
     const suggestions = store.getSuggestions().filter(suggestion => ids.includes(suggestion.id || ''));

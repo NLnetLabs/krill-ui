@@ -220,19 +220,29 @@ export default class Store implements Data {
 
     await this.handleError(async () => {
       if (this.ca !== null) {
-        const [caDetails, roas, suggestions, parents, status] = await Promise.all([
+        const [caDetails, roas, parents, status] = await Promise.all([
           this.api.getCaDetails(this.ca),
           this.api.getCaRoas(this.ca),
-          this.api.getCaSuggestions(this.ca),
           this.api.getCaParents(this.ca),
           this.api.getCaRepoStatus(this.ca),
         ]);
 
         this.caDetails[this.ca] = caDetails;
         this.roas[this.ca] = roas;
-        this.suggestions[this.ca] = suggestions;
         this.parents[this.ca] = parents;
         this.repoStatus[this.ca] = status;
+      }
+    });
+  }
+
+  async loadSuggestions(force?: boolean) {
+    if (!this.ca || (this.ca && this.suggestions[this.ca] && force !== true)) {
+      return;
+    }
+
+    await this.handleError(async () => {
+      if (this.ca !== null) {
+        this.suggestions[this.ca] = await this.api.getCaSuggestions(this.ca);
       }
     });
   }
@@ -272,6 +282,7 @@ export default class Store implements Data {
         removed: remove,
       });
       await this.loadCa(true);
+      await this.loadSuggestions(true);
       this.setNotification({
         type: NotificationType.success,
         message: this.translations?.common.success,
