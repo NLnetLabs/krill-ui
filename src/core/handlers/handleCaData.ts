@@ -62,7 +62,5 @@ export default async function handleCaData(toState: State, store: Store) {
   if (toState.name.startsWith('cas')) {
     // load ca details and roa's
     await store.loadCa();
-    await store.loadRepoStatus();
-    await store.loadParents();
   }
 }
