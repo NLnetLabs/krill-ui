@@ -255,7 +255,7 @@ export interface TestBedChildRequest {
   id_cert: string,
 }
 
-export interface TestBedChildResponse {
+export interface TestBedParentResponse {
   id_cert: string,
   parent_handle: string,
   child_handle: string,

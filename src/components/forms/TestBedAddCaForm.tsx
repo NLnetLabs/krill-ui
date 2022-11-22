@@ -2,7 +2,7 @@ import React, { FormEvent, useState } from 'react';
 import NotificationElem from '../NotificationElem';
 import useTranslations from '../../hooks/useTranslations';
 import { Notification, NotificationType } from '../../core/types';
-import { parseChildXML } from '../../core/utils';
+import {parentResponseJsonToXml, parseChildXML} from '../../core/utils';
 import TestBedConfirm from './TestBedConfirm';
 
 import CopyDownloadButton from '../CopyDownloadButton';
@@ -41,8 +41,8 @@ export default function TestBedAddCaForm() {
         message: t.testbed.addChild.success.replace('{child_handle}', handle)
       });
 
-      // TODO make XML from response
-      setChildResponse(JSON.stringify(await res.json()));
+      const xmlRes = parentResponseJsonToXml(await res.json());
+      setChildResponse(xmlRes);
     } else {
       const body = await res.json();
       if (body.label === 'pub-duplicate') {

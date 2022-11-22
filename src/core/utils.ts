@@ -1,6 +1,17 @@
 // @ts-ignore
 import scrypt from './hash.js';
-import {Roa, RoaField, SortOrder, Suggestion, SuggestionField, SuggestionReason, Suggestions, TestBedChildRequest, TestBedPublisherRequest} from './types.js';
+import {
+  Roa,
+  RoaField,
+  SortOrder,
+  Suggestion,
+  SuggestionField,
+  SuggestionReason,
+  Suggestions,
+  TestBedChildRequest,
+  TestBedParentResponse,
+  TestBedPublisherRequest
+} from './types.js';
 
 function dec2hex(dec: number) {
   return dec.toString(16).padStart(2, '0');
@@ -90,6 +101,16 @@ export function parsePublisherXML(xml: string): TestBedPublisherRequest {
     publisher_handle: doc.getElementsByTagName('publisher_request')[0].attributes['publisher_handle'].value,
     id_cert: (doc.getElementsByTagName('publisher_bpki_ta')[0].childNodes[0].nodeValue as string).trim(),
   };
+}
+
+export function parentResponseJsonToXml(res: TestBedParentResponse): string {
+  return (
+    `<parent_response xmlns="http://www.hactrn.net/uris/rpki/rpki-setup/" version="1" parent_handle="${res.parent_handle}" child_handle="${res.child_handle}" service_uri="${res.service_uri}">\n` +
+    '  <parent_bpki_ta>\n'  +
+    `    ${res.id_cert}\n`  +
+    '  </parent_bpki_ta>\n' +
+    '</parent_response>\n'
+  );
 }
 
 export function transformSuggestions(input: Suggestions): Array<Suggestion> {
