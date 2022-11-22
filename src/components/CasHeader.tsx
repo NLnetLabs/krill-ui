@@ -36,7 +36,7 @@ export default function CasHeader() {
       )}
       {parentSet && !repoSet &&  (
         <div className="notification error">
-          {t.caDetails.onboardingWarning}
+          {t.caDetails.initializeRepository}
         </div>
       )}
       <div>
