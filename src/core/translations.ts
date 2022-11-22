@@ -101,6 +101,7 @@ export interface Translations {
       retired: string,
       retiredSuccess: string,
       addedSuccess: string,
+      commentUpdatedSuccess: string,
     },
     addROAForm: {
       required: string,
@@ -108,6 +109,7 @@ export interface Translations {
       prefix_format: string,
     },
     onboardingWarning: string,
+    initializeRepository: string,
     initialize: string,
     noResourcesYet: string,
     clickToRefresh: string,

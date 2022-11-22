@@ -10,6 +10,7 @@ const routes = [
   { name: 'cas', path: `${prefix}/cas/:ca`, children: [
     { name: 'add_new', path: '/add' },
     { name: 'add', path: '/add/:id' },
+    { name: 'edit', path: '/edit/:id' },
     { name: 'delete', path: '/delete/:id' },
     { name: 'change', path: '/change'},
     { name: 'parents', path: '/parents', children: [

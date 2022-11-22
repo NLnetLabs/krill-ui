@@ -45,7 +45,18 @@ export function prefixMaxLength(prefix: string | undefined): string {
 }
 
 export function formatDate(seconds: number, locale: string) {
-  return new Date(seconds * 1000).toLocaleString(locale,  { dateStyle: 'long', timeStyle: 'medium' });
+  return new Date(seconds * 1000).toLocaleString(locale,  {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+    hour12: false,
+    timeZone: 'UTC',
+    timeZoneName: 'short',
+  });
 }
 
 export function isAbsolute(url: string): boolean {

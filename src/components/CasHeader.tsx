@@ -9,7 +9,8 @@ export default function CasHeader() {
   const store = useStore();
   const t = useTranslations();
   const navigate = useNavigation();
-  const noParents = !store.ca || store.parents[store.ca].length === 0;
+  const parentSet = store.ca && store.parents[store.ca].length > 0;
+  const repoSet = store.repoStatus && store.ca && store.repoStatus[store.ca]?.last_exchange;
 
   return (
     <>
@@ -28,9 +29,14 @@ export default function CasHeader() {
           />
         </div>
       </div>
-      {noParents && (
+      {!parentSet && (
         <div className="notification error">
           {t.caDetails.onboardingWarning}
+        </div>
+      )}
+      {parentSet && !repoSet &&  (
+        <div className="notification error">
+          {t.caDetails.initializeRepository}
         </div>
       )}
       <div>

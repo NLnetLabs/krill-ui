@@ -89,7 +89,9 @@ export const translations: Translations = {
       'added': 'ROA agregado',
       'retired': 'ROA eliminado',
       'retiredSuccess': 'El ROA se ha eliminado',
-      'addedSuccess': 'El ROA se ha agregado'
+      'addedSuccess': 'El ROA se ha agregado',
+      // TODO translate
+      'commentUpdatedSuccess': 'The ROA comment has been updated',
     },
     'addROAForm': {
       'required': 'Este campo es obligatorio',
@@ -97,6 +99,8 @@ export const translations: Translations = {
       'prefix_format': 'Ingrese un prefijo IPv4 o IPv6 válido'
     },
     'onboardingWarning': 'Deberá conectar su CA a un repositorio RPKI público donde pueda publicar su certificado y sus ROA. Tan pronto como se complete la configuración del padre, el software de validación comenzará a recuperar su certificado y los ROA que cree a partir de este repositorio.',
+    // TODO translate
+    'initializeRepository': 'You still need to configure a repository for your CA before it can request resource certificate(s) from its parent(s)',
     'initialize': 'Primero inicialice el repositorio RPKI y/o el padre.',
     'noResourcesYet': 'Todavía no ha recibido ningún recurso',
     'clickToRefresh': 'Haga clic aquí para actualizar',
