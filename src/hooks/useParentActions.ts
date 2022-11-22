@@ -4,7 +4,7 @@ import useChildRequest from '../hooks/useChildRequest';
 import useNavigation from '../hooks/useNavigation';
 import useRequestActions from './useRequestActions';
 
-export default function useParantActions() {
+export default function useParentActions() {
   const childRequest = useChildRequest();
   const router = useRouter();
   const { route: { params } } = useRoute();
@@ -15,36 +15,32 @@ export default function useParantActions() {
     notification,
     setNotification,
     request,
-    dataUrl,
     setRequest,
     response,
     setResponse,
-    onCopy,
     handleUpload,
   } = useRequestActions(childRequest);
-  
+
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     navigate({ name, response });
   };
-  
+
   const onClose = () => {
     router.navigate('cas.parents', { ca: params.ca });
   };
-  
+
   return {
     notification,
     setNotification,
     name,
     setName,
     request,
-    dataUrl,
     setRequest,
     response,
     setResponse,
     onSubmit,
     onClose,
-    onCopy,
     handleUpload,
   };
 }

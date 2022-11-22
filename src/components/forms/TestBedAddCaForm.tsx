@@ -4,8 +4,8 @@ import useTranslations from '../../hooks/useTranslations';
 import { Notification, NotificationType } from '../../core/types';
 import { parseChildXML } from '../../core/utils';
 import TestBedConfirm from './TestBedConfirm';
-import clipboard from '../../img/clipboard.svg?url';
-import download from '../../img/download.svg?url';
+
+import CopyDownloadButton from '../CopyDownloadButton';
 
 export default function TestBedAddCaForm() {
   const t = useTranslations();
@@ -67,14 +67,7 @@ export default function TestBedAddCaForm() {
     await postChild(request.handle, request.id_cert, asnResources, ipv4Resources, ipv6Resources);
   };
 
-  const onCopy = () => {
-    navigator.clipboard.writeText(childResponse);
 
-    setNotification({
-      type: NotificationType.success,
-      message: t.common.copySuccess
-    });
-  };
 
   const addAnother = () => {
     setChildResponse('');
@@ -92,12 +85,7 @@ export default function TestBedAddCaForm() {
         <pre>{childResponse}</pre>
         <div>
           <button onClick={addAnother}>{t.testbed.addChild.registeranother}</button>
-          <button className="button large icon" type="button" title={t.common.copy} onClick={onCopy}>
-            <img src={clipboard} alt={t.common.copy} />
-          </button>
-          <a className="button large icon" title={t.common.download} href={`data:application/xml;base64,${btoa(childResponse)}`} download="child_request.xml">
-            <img src={download} alt={t.common.download} />
-          </a>
+          <CopyDownloadButton xml={childResponse} setNotification={setNotification}/>
         </div>
       </>
     );
