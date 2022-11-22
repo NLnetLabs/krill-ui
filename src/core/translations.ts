@@ -101,6 +101,7 @@ export interface Translations {
       retired: string,
       retiredSuccess: string,
       addedSuccess: string,
+      commentUpdatedSuccess: string,
     },
     addROAForm: {
       required: string,

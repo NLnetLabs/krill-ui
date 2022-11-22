@@ -89,7 +89,9 @@ export const translations: Translations = {
       'added': 'ROA agregado',
       'retired': 'ROA eliminado',
       'retiredSuccess': 'El ROA se ha eliminado',
-      'addedSuccess': 'El ROA se ha agregado'
+      'addedSuccess': 'El ROA se ha agregado',
+      // TODO translate
+      'commentUpdatedSuccess': 'The ROA comment has been updated',
     },
     'addROAForm': {
       'required': 'Este campo es obligatorio',

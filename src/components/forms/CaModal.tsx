@@ -5,6 +5,7 @@ import { Roa } from '../../core/types';
 import useStore from '../../hooks/useStore';
 import Add from './Add';
 import Delete from './Delete';
+import Edit from './Edit';
 import Modal from './Modal';
 
 export default function CaModal() {
@@ -27,6 +28,12 @@ export default function CaModal() {
     <Modal onClose={onClose}>
       {route.name.startsWith('cas.add') && (
         <Add
+          onClose={onClose}
+          roa={roa}
+        />
+      )}
+      {route.name.startsWith('cas.edit') && (
+        <Edit
           onClose={onClose}
           roa={roa}
         />

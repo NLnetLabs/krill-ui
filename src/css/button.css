@@ -19,6 +19,11 @@
   border: 1px solid var(--grey-dark);
 }
 
+.button.light {
+  color: var(--dark);
+  background: white;
+}
+
 .button:hover {
   opacity: 0.8;
 }

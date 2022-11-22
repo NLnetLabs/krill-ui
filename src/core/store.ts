@@ -287,6 +287,36 @@ export default class Store implements Data {
     });
   }
 
+  async editRoute(id: string, comment: string): Promise<boolean> {
+    if (this.ca === null || !this.roas[this.ca]) {
+      return false;
+    }
+
+    const route = this.roas[this.ca].find((r) => r.id === id);
+
+    if (!route) {
+      return false;
+    }
+
+    const updatedRoute: Route = {
+      ...route,
+      comment,
+    };
+
+    return await this.handleError(async () => {
+      await this.api.updateRoutes(this.ca as string, {
+        added: [updatedRoute],
+        removed: [],
+      });
+      await this.loadCa(true);
+      this.setNotification({
+        type: NotificationType.success,
+        message: this.translations?.caDetails.confirmation.commentUpdatedSuccess,
+      });
+      return true;
+    });
+  }
+
   async addRoute(params: RouteParams): Promise<boolean> {
     if (this.ca === null) {
       return false;

@@ -15,6 +15,18 @@ export default async function handleCaData(toState: State, store: Store) {
     }
   }
 
+  // edit routes
+  if (toState.name === 'cas.edit' && toState.params.id && toState.params.comment !== undefined) {
+    if (await store.editRoute(toState.params.id, toState.params.comment)) {
+      return Promise.reject({redirect: {name: 'cas', params: {ca: store.ca}}});
+    } else {
+      return Promise.reject({redirect: {name: toState.name, params: {
+        ca: store.ca,
+        id: toState.params.id,
+      }}});
+    }
+  }
+
   // add routes
   if ((toState.name === 'cas.add' || toState.name === 'cas.add_new') && toState.params.asn) {
     if (await store.addRoute(toState.params as RouteParams)) {
@@ -26,7 +38,6 @@ export default async function handleCaData(toState: State, store: Store) {
       }}});
     }
   }
-
 
   if (toState.name === 'cas.analyse') {
     await store.loadSuggestions();

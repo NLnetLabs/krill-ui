@@ -90,7 +90,9 @@ export const translations: Translations = {
       'added': 'ROA ajouté',
       'retired': 'ROA enlevé',
       'retiredSuccess': 'Le ROA a été enlevé',
-      'addedSuccess': 'Le ROA a été ajouté'
+      'addedSuccess': 'Le ROA a été ajouté',
+      // TODO translate
+      'commentUpdatedSuccess': 'The ROA comment has been updated',
     },
     'addROAForm': {
       'required': 'Ce champ est requis',

@@ -89,7 +89,9 @@ export const translations: Translations = {
       'added': 'Το ROA προστέθηκε',
       'retired': 'Το ROA αφαιρέθηκε',
       'retiredSuccess': 'Το ROA έχει αφαιρεθεί',
-      'addedSuccess': 'Το ROA έχει προστεθεί'
+      'addedSuccess': 'Το ROA έχει προστεθεί',
+      // TODO translate
+      'commentUpdatedSuccess': 'The ROA comment has been updated',
     },
     'addROAForm': {
       'required': 'Το πεδίο είναι υποχρεωτικό',

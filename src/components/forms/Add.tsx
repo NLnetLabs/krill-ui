@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import { Roa } from '../../core/types';
 import { prefixMaxLength } from '../../core/utils';
 import useNavigation from '../../hooks/useNavigation';
@@ -17,12 +17,21 @@ export default function Add({ onClose, roa }: AddProps) {
   const [comment, setComment] = useState(roa?.comment || '');
   const maxLengthFallback = prefixMaxLength(roa?.prefix);
   const [maxLength, setMaxLength] = useState(roa?.max_length?.toString() || maxLengthFallback);
-  const form = useRef<HTMLFormElement>(null);
+
+  const onSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    const form = e.target as HTMLFormElement;
+    if (form.checkValidity()) {
+      navigate({ asn, prefix, comment, max_length: maxLength});
+    } else {
+      form.reportValidity();
+    }
+  };
   
   return (
     <>
       <h3>{t.caDetails.addRoa}</h3>
-      <form ref={form}>
+      <form onSubmit={onSubmit}>
         <div>
           <label htmlFor="asn required">
             {t.announcements.asn}
@@ -72,28 +81,22 @@ export default function Add({ onClose, roa }: AddProps) {
             onChange={(e) => setComment(e.target.value)}
           />
         </div>
+        <div className="actions">
+          <button
+            type="button"
+            className="button outline"
+            onClick={onClose}
+          >
+            {t.common.cancel}
+          </button>
+          <button
+            type="submit"
+            className="button"
+          >
+            {t.common.confirm}
+          </button>
+        </div>
       </form>
-      <div className="actions">
-        <button
-          className="button outline"
-          onClick={onClose}
-        >
-          {t.common.cancel}
-        </button>
-        <button
-          type="submit"
-          className="button"
-          onClick={() => {
-            if (form.current?.checkValidity()) {
-              navigate({ asn, prefix, comment, max_length: maxLength});
-            } else {
-              form.current?.reportValidity();
-            }
-          }}
-        >
-          {t.common.confirm}
-        </button>
-      </div>
     </>
   );
 }

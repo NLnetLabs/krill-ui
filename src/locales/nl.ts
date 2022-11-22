@@ -89,7 +89,9 @@ export const translations: Translations = {
       'added': 'ROA toegevoegd',
       'retired': 'ROA verwijderd',
       'retiredSuccess': 'De ROA is verwijderd',
-      'addedSuccess': 'The ROA is toegevoegd'
+      'addedSuccess': 'The ROA is toegevoegd',
+      // TODO translate
+      'commentUpdatedSuccess': 'The ROA comment has been updated',
     },
     'addROAForm': {
       'required': 'Dit veld is verplicht',
