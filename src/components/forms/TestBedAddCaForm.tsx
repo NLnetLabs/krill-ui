@@ -3,10 +3,12 @@ import NotificationElem from '../NotificationElem';
 import useTranslations from '../../hooks/useTranslations';
 import { Notification, NotificationType } from '../../core/types';
 import { parseChildXML } from '../../core/utils';
+import TestBedConfirm from './TestBedConfirm';
 
 export default function TestBedAddCaForm() {
   const t = useTranslations();
   const [notification, setNotification] = useState<Notification>();
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   const [childRequest, setChildRequest] = useState(t.testbed.addChild.requestXML.placeholder);
   const [asnResources, setAsnResources] = useState('');
@@ -55,6 +57,10 @@ export default function TestBedAddCaForm() {
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setShowConfirmModal(true);
+  };
+
+  const onConfirm = async () => {
     const request = parseChildXML(childRequest);
     await postChild(request.handle, request.id_cert, asnResources, ipv4Resources, ipv6Resources);
   };
@@ -70,6 +76,8 @@ export default function TestBedAddCaForm() {
 
   return (
     <>
+      {showConfirmModal &&
+      <TestBedConfirm onClose={() => setShowConfirmModal(false)} onConfirm={onConfirm}/>}
       { notification && <NotificationElem notification={notification} /> }
       <form onSubmit={ onSubmit } method="POST">
         <div>
