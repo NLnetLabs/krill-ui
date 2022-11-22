@@ -66,6 +66,10 @@ export default async function handleCaData(toState: State, store: Store) {
   // only fetch details on cas route
   if (toState.name.startsWith('cas')) {
     // load ca details and roa's
-    await store.loadCa();
+    await Promise.all([
+      store.loadCa(),
+      store.loadParents(),
+      store.loadRepoStatus(),
+    ]);
   }
 }

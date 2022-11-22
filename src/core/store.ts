@@ -220,17 +220,13 @@ export default class Store implements Data {
 
     await this.handleError(async () => {
       if (this.ca !== null) {
-        const [caDetails, roas, parents, status] = await Promise.all([
+        const [caDetails, roas] = await Promise.all([
           this.api.getCaDetails(this.ca),
           this.api.getCaRoas(this.ca),
-          this.api.getCaParents(this.ca),
-          this.api.getCaRepoStatus(this.ca),
         ]);
 
         this.caDetails[this.ca] = caDetails;
         this.roas[this.ca] = roas;
-        this.parents[this.ca] = parents;
-        this.repoStatus[this.ca] = status;
       }
     });
   }
