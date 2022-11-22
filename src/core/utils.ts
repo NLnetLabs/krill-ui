@@ -77,16 +77,18 @@ export async function krillHash(username: string, password: string): Promise<str
 export function parseChildXML(xml: string): TestBedChildRequest {
   const doc = new window.DOMParser().parseFromString(xml, 'text/xml');
   return {
+    // @ts-ignore
     handle: doc.getElementsByTagName('child_request')[0].attributes['child_handle'].value,
-    id_cert: doc.getElementsByTagName('child_bpki_ta')[0].childNodes[0].nodeValue.trim(),
+    id_cert: (doc.getElementsByTagName('child_bpki_ta')[0].childNodes[0].nodeValue as string).trim(),
   };
 }
 
 export function parsePublisherXML(xml: string): TestBedPublisherRequest {
   const doc = new window.DOMParser().parseFromString(xml, 'text/xml');
   return {
+    // @ts-ignore
     publisher_handle: doc.getElementsByTagName('publisher_request')[0].attributes['publisher_handle'].value,
-    id_cert: doc.getElementsByTagName('publisher_bpki_ta')[0].childNodes[0].nodeValue.trim(),
+    id_cert: (doc.getElementsByTagName('publisher_bpki_ta')[0].childNodes[0].nodeValue as string).trim(),
   };
 }
 
