@@ -65,11 +65,21 @@ export default function TestBedAddCaForm() {
     await postChild(request.handle, request.id_cert, asnResources, ipv4Resources, ipv6Resources);
   };
 
+  const addAnother = () => {
+    setChildResponse('');
+    setShowConfirmModal(false);
+    setChildRequest(t.testbed.addChild.requestXML.placeholder);
+    setAsnResources('');
+    setIpv4Resources('');
+    setIpv6Resources('');
+  };
+
   if (childResponse !== '') {
     return (
       <>
         { notification && <NotificationElem notification={notification} /> }
         <pre>{childResponse}</pre>
+        <button onClick={addAnother}>{t.testbed.addChild.registeranother}</button>
       </>
     );
   }
