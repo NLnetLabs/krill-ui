@@ -5,11 +5,16 @@ import useTranslations from '../hooks/useTranslations';
 import CasHeader from './CasHeader';
 import RepoTable from './tables/RepoTable';
 import Layout from './Layout';
+import useNavigation from '../hooks/useNavigation';
+import RepoModal from './forms/RepoModal';
+import { useRoute } from 'react-router5';
 
 export default function CasRepository() {
   const t = useTranslations();
   const store = useStore() as Store;
-
+  const navigate = useNavigation();
+  const { route } = useRoute();
+  
   const syncRepo = () => {
     store.loadRepoStatus(true);
   };
@@ -18,14 +23,23 @@ export default function CasRepository() {
     return null;
   }
 
+  const isset = store.repoStatus && store.ca && store.repoStatus[store.ca]?.last_exchange;
+
   return (
     <Layout>
+      {route.name === 'cas.repository.add' && (
+        <RepoModal />
+      )}
       <CasHeader />
-      {store.repoStatus && store.ca && store.repoStatus[store.ca] && (
+      {isset ? (
         <RepoTable
           repo={store.repoStatus[store.ca]}
           locale={store.locale}
         />
+      ) : (
+        <button className="button" onClick={() => navigate({}, 'cas.repository.add')}>
+          {t.caDetails.repoTab.addRepo}
+        </button>
       )}
       <button className="button inverted" onClick={syncRepo}>
         {t.caDetails.syncRepo}
@@ -33,4 +47,3 @@ export default function CasRepository() {
     </Layout>
   );
 }
-

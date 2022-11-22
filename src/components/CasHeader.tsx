@@ -9,6 +9,7 @@ export default function CasHeader() {
   const store = useStore();
   const t = useTranslations();
   const navigate = useNavigation();
+  const noParents = !store.ca || store.parents[store.ca].length === 0;
 
   return (
     <>
@@ -27,6 +28,11 @@ export default function CasHeader() {
           />
         </div>
       </div>
+      {noParents && (
+        <div className="notification error">
+          {t.caDetails.onboardingWarning}
+        </div>
+      )}
       <div>
         <ul className="tabs">
           <li>

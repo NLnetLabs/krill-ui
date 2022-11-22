@@ -1,5 +1,6 @@
 
 .button {
+  display: inline-block;
   border: none;
   background: var(--red);
   border-radius: var(--radius);
@@ -9,6 +10,7 @@
   color: white;
   white-space: nowrap;
   cursor: pointer;
+  vertical-align: text-bottom;
 }
 
 .button.outline {
@@ -36,6 +38,15 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.button.icon.large {
+  height: 2rem;
+}
+
+.button.icon.large img {
+  width: 1rem;
+  height: 1rem;
 }
 
 .button + .button {

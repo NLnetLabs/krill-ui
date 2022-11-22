@@ -31,8 +31,12 @@ export default function CasParents() {
           parent={parent}
         />
       ))}
-      <button className="button" onClick={() => navigate({}, 'cas.parents.add')}>{t.caDetails.parentsTab.addParent}</button>
-      <button className="button inverted" onClick={syncParents}>{t.caDetails.syncParents}</button>
+      <button className="button" onClick={() => navigate({}, 'cas.parents.add')}>
+        {t.caDetails.parentsTab.addParent}
+      </button>
+      <button className="button inverted" onClick={syncParents}>
+        {t.caDetails.syncParents}
+      </button>
     </Layout>
   );
 }

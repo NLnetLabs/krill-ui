@@ -61,6 +61,7 @@ export enum RoaStateHelp {
 
 export enum RoaField {
   asn = 'asn',
+  comment = 'comment',
   prefix = 'prefix',
   state = 'state',
 }

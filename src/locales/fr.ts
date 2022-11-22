@@ -113,6 +113,8 @@ export const translations: Translations = {
     'repoTab': {
       'request': 'Requête du Publisher',
       'response': 'Réponse du dépôt',
+      // TODO translate
+      'addRepo': 'Add a repository',
       'addRepoSuccess': 'Dépôt ajouté'
     },
     'analyseThis': 'Analyser mes ROAs',
