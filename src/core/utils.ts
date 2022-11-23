@@ -9,6 +9,7 @@ import {
   SuggestionReason,
   Suggestions,
   TestBedParentResponse,
+  TestBedPubResponse,
 } from './types.js';
 
 function dec2hex(dec: number) {
@@ -98,6 +99,16 @@ export function parentResponseJsonToXml(res: TestBedParentResponse): string {
     `    ${res.id_cert}\n`  +
     '  </parent_bpki_ta>\n' +
     '</parent_response>\n'
+  );
+}
+
+export function publisherResponseJsonToXml(res: TestBedPubResponse): string {
+  return (
+    `<repository_response xmlns="http://www.hactrn.net/uris/rpki/rpki-setup/" version="1" publisher_handle="${res.publisher_handle}" service_uri="${res.service_uri}" sia_base="${res.repo_info.sia_base}" rrdp_notification_uri="${res.repo_info.rrdp_notification_uri}">\n` +
+    '    <repository_bpki_ta>\n'  +
+    `     ${res.id_cert}\n`       +
+    '    </repository_bpki_ta>\n' +
+    '</repository_response>'
   );
 }
 
