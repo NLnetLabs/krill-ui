@@ -4,7 +4,7 @@ import usePublisherRequest from '../hooks/usePublisherRequest';
 import useNavigation from '../hooks/useNavigation';
 import useRequestActions from './useRequestActions';
 
-export default function useParantActions() {
+export default function useRepositoryActions() {
   const publisherRequest = usePublisherRequest();
   const router = useRouter();
   const { route: { params } } = useRoute();
@@ -14,34 +14,30 @@ export default function useParantActions() {
     notification,
     setNotification,
     request,
-    dataUrl,
     setRequest,
     response,
     setResponse,
-    onCopy,
     handleUpload,
   } = useRequestActions(publisherRequest);
-  
+
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     navigate({ response });
   };
-  
+
   const onClose = () => {
     router.navigate('cas.repository', { ca: params.ca });
   };
-  
+
   return {
     notification,
     setNotification,
     request,
-    dataUrl,
     setRequest,
     response,
     setResponse,
     onSubmit,
     onClose,
-    onCopy,
     handleUpload,
   };
 }

@@ -160,7 +160,7 @@ export default function TestBedAddCaForm() {
         <pre>{childResponse}</pre>
         <div>
           <button onClick={addAnother}>{t.testbed.addChild.registeranother}</button>
-          <CopyDownloadButton xml={childResponse} setNotification={setNotification}/>
+          <CopyDownloadButton xml={childResponse} name='parent_response' setNotification={setNotification}/>
         </div>
       </>
     );

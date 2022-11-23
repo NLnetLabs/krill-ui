@@ -1,11 +1,10 @@
 import React from 'react';
 import useTranslations from '../../hooks/useTranslations';
 import Modal from './Modal';
-import clipboard from '../../img/clipboard.svg?url';
-import download from '../../img/download.svg?url';
 import upload from '../../img/upload.svg?url';
 import NotificationPopup from '../NotificationPopup';
 import useRepositoryActions from '../../hooks/useRepositoryActions';
+import CopyDownloadButton from '../CopyDownloadButton';
 
 export default function RepoModal() {
   const t = useTranslations();
@@ -13,13 +12,11 @@ export default function RepoModal() {
     notification,
     setNotification,
     request,
-    dataUrl,
     setRequest,
     response,
     setResponse,
     onSubmit,
     onClose,
-    onCopy,
     handleUpload,
   } = useRepositoryActions();
 
@@ -37,12 +34,7 @@ export default function RepoModal() {
           <label>{t.caDetails.repoTab.request}</label>
           <textarea name="request" readOnly value={request} id="request" onChange={(e) => setRequest(e.target.value)} />
           <div>
-            <button className="button large icon" type="button" title={t.common.copy} onClick={onCopy}>
-              <img src={clipboard} alt={t.common.copy} />
-            </button>
-            <a className="button large icon" title={t.common.download} href={dataUrl} download="publisher_request.xml">
-              <img src={download} alt={t.common.download} />
-            </a>
+            <CopyDownloadButton xml={request} name='publisher_request' setNotification={setNotification}/>
           </div>
         </div>
         <div>

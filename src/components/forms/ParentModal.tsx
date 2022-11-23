@@ -36,7 +36,7 @@ export default function ParentModal() {
           <label>{t.caDetails.parentsTab.request}</label>
           <textarea name="request" readOnly value={request} id="request" onChange={(e) => setRequest(e.target.value)} />
           <div>
-            <CopyDownloadButton xml={request} setNotification={setNotification}/>
+            <CopyDownloadButton xml={request} name='child_request' setNotification={setNotification}/>
           </div>
         </div>
         <div>
