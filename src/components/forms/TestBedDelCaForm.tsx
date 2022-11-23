@@ -2,14 +2,16 @@ import React, { FormEvent, useState } from 'react';
 import NotificationElem from '../NotificationElem';
 import useTranslations from '../../hooks/useTranslations';
 import { Notification, NotificationType } from '../../core/types';
+import TestBedConfirm from './TestBedConfirm';
 
 export default function TestBedDelCaForm() {
   const t = useTranslations();
   const [notification, setNotification] = useState<Notification>();
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+
   const [childHandle, setChildHandle] = useState('');
 
-  const onSubmit = async (e: FormEvent) => {
-    e.preventDefault();
+  const deleteChild = async() => {
     const res = await fetch(`/testbed/children/${childHandle}`, {
       method: 'DELETE',
     });
@@ -29,8 +31,20 @@ export default function TestBedDelCaForm() {
     }
   };
 
+  const onSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    setShowConfirmModal(true);
+  };
+
+  const onConfirm = async () => {
+    await deleteChild();
+    setShowConfirmModal(false);
+  };
+
   return (
     <>
+      {showConfirmModal &&
+        <TestBedConfirm onClose={() => setShowConfirmModal(false)} onConfirm={onConfirm}/>}
       { notification && <NotificationElem notification={notification} /> }
       <form onSubmit={ onSubmit } method="POST">
         <div>

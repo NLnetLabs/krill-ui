@@ -1,16 +1,17 @@
 import React, { FormEvent, useState } from 'react';
 import NotificationElem from '../NotificationElem';
 import useTranslations from '../../hooks/useTranslations';
-import { Notification, NotificationType } from '../../core/types';
+import {Notification, NotificationType} from '../../core/types';
+import TestBedConfirm from './TestBedConfirm';
 
 export default function TestBedDelPubForm() {
   const t = useTranslations();
   const [notification, setNotification] = useState<Notification>();
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   const [pubHandle, setPubHandle] = useState('');
 
-  const onSubmit = async (e: FormEvent) => {
-    e.preventDefault();
+  const deletePub = async () => {
     const res = await fetch(`/testbed/publishers/${pubHandle}`, {
       method: 'DELETE',
     });
@@ -30,12 +31,24 @@ export default function TestBedDelPubForm() {
     }
   };
 
+  const onSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    setShowConfirmModal(true);
+  };
+
+  const onConfirm = async () => {
+    await deletePub();
+    setShowConfirmModal(false);
+  };
+
   return (
     <>
-      { notification && <NotificationElem notification={notification} /> }
-      <form onSubmit={ onSubmit } method="POST">
+      {showConfirmModal &&
+        <TestBedConfirm onClose={() => setShowConfirmModal(false)} onConfirm={onConfirm}/>}
+      {notification && <NotificationElem notification={notification}/>}
+      <form onSubmit={onSubmit} method="POST">
         <div>
-          <label>{ t.testbed.publisherhandle }</label>
+          <label>{t.testbed.publisherhandle}</label>
           <input
             name="handle"
             value={pubHandle}
