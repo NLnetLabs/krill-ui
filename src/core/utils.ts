@@ -8,9 +8,7 @@ import {
   SuggestionField,
   SuggestionReason,
   Suggestions,
-  TestBedChildRequest,
   TestBedParentResponse,
-  TestBedPublisherRequest
 } from './types.js';
 
 function dec2hex(dec: number) {
@@ -85,22 +83,12 @@ export async function krillHash(username: string, password: string): Promise<str
   return await hash.toString('hex');
 }
 
-export function parseChildXML(xml: string): TestBedChildRequest {
-  const doc = new window.DOMParser().parseFromString(xml, 'text/xml');
-  return {
-    // @ts-ignore
-    handle: doc.getElementsByTagName('child_request')[0].attributes['child_handle'].value,
-    id_cert: (doc.getElementsByTagName('child_bpki_ta')[0].childNodes[0].nodeValue as string).trim(),
-  };
-}
-
-export function parsePublisherXML(xml: string): TestBedPublisherRequest {
-  const doc = new window.DOMParser().parseFromString(xml, 'text/xml');
-  return {
-    // @ts-ignore
-    publisher_handle: doc.getElementsByTagName('publisher_request')[0].attributes['publisher_handle'].value,
-    id_cert: (doc.getElementsByTagName('publisher_bpki_ta')[0].childNodes[0].nodeValue as string).trim(),
-  };
+export function checkXmlParsingSucceeded (doc: Document): string {
+  if (doc.getElementsByTagName('parsererror').length > 0){
+    console.log(doc.getElementsByTagName('parsererror')[0]);
+    return (doc.getElementsByTagName('parsererror')[0].textContent as string);
+  }
+  return '';
 }
 
 export function parentResponseJsonToXml(res: TestBedParentResponse): string {

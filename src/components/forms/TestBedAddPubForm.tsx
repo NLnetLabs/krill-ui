@@ -1,8 +1,8 @@
 import React, { FormEvent, useState } from 'react';
 import NotificationElem from '../NotificationElem';
 import useTranslations from '../../hooks/useTranslations';
-import { Notification, NotificationType } from '../../core/types';
-import { parsePublisherXML } from '../../core/utils';
+import {Notification, NotificationType, TestBedPublisherRequest} from '../../core/types';
+import {checkXmlParsingSucceeded} from '../../core/utils';
 
 export default function TestBedAddPubForm() {
   const t = useTranslations();
@@ -46,9 +46,77 @@ export default function TestBedAddPubForm() {
     }
   };
 
+  const verifyPublisherXML = (doc: Document): boolean => {
+    const error = checkXmlParsingSucceeded(doc);
+    if (error) {
+      setNotification({
+        type: NotificationType.error,
+        message: t.testbed.errors.invalid_xml.replace('{err}', error),
+      });
+      return false;
+    }
+    if (doc.getElementsByTagName('publisher_request').length === 0){
+      setNotification({
+        type: NotificationType.error,
+        message: t.testbed.errors.missing_xml_el.replace('{el}', 'publisher_request'),
+      });
+      return false;
+    }
+    if (doc.getElementsByTagName('publisher_bpki_ta').length === 0){
+      setNotification({
+        type: NotificationType.error,
+        message: t.testbed.errors.missing_xml_el.replace('{el}', 'publisher_bpki_ta'),
+      });
+      return false;
+    }
+    // @ts-ignore
+    if (!doc.getElementsByTagName('publisher_request')[0].attributes['publisher_handle']){
+      setNotification({
+        type: NotificationType.error,
+        message: t.testbed.errors.missing_xml_attr
+          .replace('{attr}', 'publisher_handle')
+          .replace('{el}', 'publisher_request'),
+      });
+      return false;
+    }
+    if (doc.getElementsByTagName('publisher_bpki_ta')[0].childNodes.length === 0){
+      setNotification({
+        type: NotificationType.error,
+        message: t.testbed.errors.empty_xml_el
+          .replace('{el}', 'publisher_bpki_ta'),
+      });
+      return false;
+    }
+    // @ts-ignore
+    if (doc.getElementsByTagName('publisher_bpki_ta')[0].childNodes[0].nodeValue.trim().length === 0){
+      setNotification({
+        type: NotificationType.error,
+        message: t.testbed.errors.empty_xml_el
+          .replace('{el}', 'publisher_bpki_ta'),
+      });
+      return false;
+    }
+    return true;
+  };
+
+  const parsePublisherXML = (xml: string): TestBedPublisherRequest | undefined => {
+    const doc = new window.DOMParser().parseFromString(xml, 'text/xml');
+    if (!verifyPublisherXML(doc)){
+      return;
+    }
+    return {
+      // @ts-ignore
+      publisher_handle: doc.getElementsByTagName('publisher_request')[0].attributes['publisher_handle'].value,
+      id_cert: (doc.getElementsByTagName('publisher_bpki_ta')[0].childNodes[0].nodeValue as string).trim(),
+    };
+  };
+
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     const request = parsePublisherXML(pubRequest);
+    if (!request){
+      return;
+    }
 
     await postPublisher(request.publisher_handle, request.id_cert);
   };

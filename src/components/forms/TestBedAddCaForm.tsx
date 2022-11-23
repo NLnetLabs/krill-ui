@@ -1,8 +1,8 @@
 import React, { FormEvent, useState } from 'react';
 import NotificationElem from '../NotificationElem';
 import useTranslations from '../../hooks/useTranslations';
-import { Notification, NotificationType } from '../../core/types';
-import {parentResponseJsonToXml, parseChildXML} from '../../core/utils';
+import {Notification, NotificationType, TestBedChildRequest} from '../../core/types';
+import {checkXmlParsingSucceeded, parentResponseJsonToXml} from '../../core/utils';
 import TestBedConfirm from './TestBedConfirm';
 
 import CopyDownloadButton from '../CopyDownloadButton';
@@ -59,14 +59,89 @@ export default function TestBedAddCaForm() {
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    const xml = parseChildXML(childRequest);
+    if (!xml) {
+      return;
+    }
     setShowConfirmModal(true);
   };
 
   const onConfirm = async () => {
     const request = parseChildXML(childRequest);
+    if (!request){
+      return;
+    }
     await postChild(request.handle, request.id_cert, asnResources, ipv4Resources, ipv6Resources);
   };
 
+
+
+  const verifyChildXML = (doc: Document): boolean => {
+    console.log('verifyChildXML');
+    console.log(doc);
+    const error = checkXmlParsingSucceeded(doc);
+    if (error) {
+      setNotification({
+        type: NotificationType.error,
+        message: t.testbed.errors.invalid_xml.replace('{err}', error),
+      });
+      return false;
+    }
+    if (doc.getElementsByTagName('child_request').length === 0){
+      setNotification({
+        type: NotificationType.error,
+        message: t.testbed.errors.missing_xml_el.replace('{el}', 'child_request'),
+      });
+      return false;
+    }
+    if (doc.getElementsByTagName('child_bpki_ta').length === 0){
+      setNotification({
+        type: NotificationType.error,
+        message: t.testbed.errors.missing_xml_el.replace('{el}', 'child_bpki_ta'),
+      });
+      return false;
+    }
+    // @ts-ignore
+    if (!doc.getElementsByTagName('child_request')[0].attributes['child_handle']){
+      setNotification({
+        type: NotificationType.error,
+        message: t.testbed.errors.missing_xml_attr
+          .replace('{attr}', 'child_handle')
+          .replace('{el}', 'child_request'),
+      });
+      return false;
+    }
+    if (doc.getElementsByTagName('child_bpki_ta')[0].childNodes.length === 0){
+      setNotification({
+        type: NotificationType.error,
+        message: t.testbed.errors.empty_xml_el
+          .replace('{el}', 'child_bpki_ta'),
+      });
+      return false;
+    }
+    // @ts-ignore
+    if (doc.getElementsByTagName('child_bpki_ta')[0].childNodes[0].nodeValue.trim().length === 0){
+      setNotification({
+        type: NotificationType.error,
+        message: t.testbed.errors.empty_xml_el
+          .replace('{el}', 'child_bpki_ta'),
+      });
+      return false;
+    }
+    return true;
+  };
+
+  const parseChildXML = (xml: string): TestBedChildRequest | undefined => {
+    const doc = new window.DOMParser().parseFromString(xml, 'text/xml');
+    if (!verifyChildXML(doc)){
+      return;
+    }
+    return {
+      // @ts-ignore
+      handle: doc.getElementsByTagName('child_request')[0].attributes['child_handle'].value,
+      id_cert: (doc.getElementsByTagName('child_bpki_ta')[0].childNodes[0].nodeValue as string).trim(),
+    };
+  };
 
 
   const addAnother = () => {
