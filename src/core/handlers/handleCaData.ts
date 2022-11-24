@@ -40,7 +40,7 @@ export default async function handleCaData(toState: State, store: Store) {
   }
 
   if (toState.name === 'cas.analyse') {
-    await store.loadSuggestions();
+    await store.loadSuggestions(true);
   }
 
   if (toState.name === 'cas.change' && toState.params.ids) {

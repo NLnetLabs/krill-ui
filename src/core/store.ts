@@ -22,7 +22,7 @@ import {
   SuggestionField,
   UserDetails,
 } from './types';
-import {compareRoa, compareSuggestion} from './utils';
+import {compareRoa, compareSuggestion, prefixMaxLength} from './utils';
 
 export default class Store implements Data {
   // general purpose notification message
@@ -243,6 +243,28 @@ export default class Store implements Data {
     });
   }
 
+  async refreshParents() {
+    if (!this.ca) {
+      return;
+    }
+
+    const ca: string = this.ca;
+    await this.api.refreshCaParents();
+
+    // poll every 5 seconds for an update
+    return new Promise((resolve) => {
+      const interval = setInterval(() => {
+        this.api.getCaParents(ca).then((parents) => {
+          if (JSON.stringify(parents) !== JSON.stringify(this.parents[ca])) {
+            this.parents[ca] = parents;
+            clearInterval(interval);
+            resolve(parents);
+          }
+        });
+      }, 5 * 1000);
+    });
+  }
+
   async loadParents(force?: boolean) {
     if (!this.ca || (this.ca && this.parents[this.ca] && force !== true)) {
       return;
@@ -264,6 +286,28 @@ export default class Store implements Data {
       if (this.ca !== null) {
         this.repoStatus[this.ca] = await this.api.getCaRepoStatus(this.ca);
       }
+    });
+  }
+
+  async refreshRepo() {
+    if (!this.ca) {
+      return;
+    }
+
+    const ca: string = this.ca;
+    await this.api.refreshCaRepo();
+
+    // poll every 5 seconds for an update
+    return new Promise((resolve) => {
+      const interval = setInterval(() => {
+        this.api.getCaRepoStatus(ca).then((status) => {
+          if (JSON.stringify(status) !== JSON.stringify(this.repoStatus[ca])) {
+            this.repoStatus[ca] = status;
+            clearInterval(interval);
+            resolve(status);
+          }
+        });
+      }, 5 * 1000);
     });
   }
 

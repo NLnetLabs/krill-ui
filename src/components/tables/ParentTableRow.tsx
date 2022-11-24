@@ -6,11 +6,16 @@ import useStore from '../../hooks/useStore';
 
 export interface ParentTableRowProps {
   parent: Parent,
+  loading: boolean,
 }
 
-export default function ParentTableRow({parent}: ParentTableRowProps) {
+export default function ParentTableRow({parent, loading}: ParentTableRowProps) {
   const t = useTranslations();
   const { locale } = useStore();
+
+  const date = loading ?
+    t.caDetails.loading.replace('{handle}', '...') :
+    formatDate(parent.last_exchange.timestamp, locale);
 
   return (
     <div className="info-table">
@@ -24,13 +29,13 @@ export default function ParentTableRow({parent}: ParentTableRowProps) {
           <tr>
             <th>{t.caDetails.lastExchange}</th>
             <td>
-              <p>{formatDate(parent.last_exchange.timestamp, locale)}</p>
               {parent.last_exchange.result != 'Success' ? (
                 <p className="failure">
+                  {date}<br />
                   {parent.last_exchange.result.Failure.msg}
                 </p>
               ) :(
-                <p className="success" />
+                <p className="success">{date}</p>
               )}
             </td>
           </tr>

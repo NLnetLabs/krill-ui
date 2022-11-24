@@ -15,9 +15,10 @@ export default function Edit({ onClose, roa }: EditProps) {
   
   return (
     <>
-      <h3>{t.caDetails.addRoa}</h3>
+      <h3>{t.common.edit}</h3>
       <form
         onSubmit={(e) => {
+          console.log('submit');
           e.preventDefault();
           if (comment !== roa?.comment) {
             navigate({ comment });
@@ -36,21 +37,21 @@ export default function Edit({ onClose, roa }: EditProps) {
             onChange={(e) => setComment(e.target.value)}
           />
         </div>
+        <div className="actions">
+          <button
+            className="button outline"
+            onClick={onClose}
+          >
+            {t.common.cancel}
+          </button>
+          <button
+            type="submit"
+            className="button"
+          >
+            {t.common.confirm}
+          </button>
+        </div>
       </form>
-      <div className="actions">
-        <button
-          className="button outline"
-          onClick={onClose}
-        >
-          {t.common.cancel}
-        </button>
-        <button
-          type="submit"
-          className="button"
-        >
-          {t.common.confirm}
-        </button>
-      </div>
     </>
   );
 }

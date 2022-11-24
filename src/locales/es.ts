@@ -61,6 +61,8 @@ export const translations: Translations = {
   },
   'caDetails': {
     'loading': 'Cargando {handle}',
+    // TODO translate
+    'refresh': 'Refreshing {handle}, this might take several minutes',
     'current': 'Autoridad de Certificación actual',
     'download': 'Descargar PEM',
     'noRoas': 'No se encontró ningún ROA.',

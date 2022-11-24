@@ -1,6 +1,7 @@
 // @ts-ignore
 import scrypt from './hash.js';
 import {Roa, RoaField, SortOrder, Suggestion, SuggestionField, SuggestionReason, Suggestions} from './types.js';
+import { DateTime } from 'luxon';
 
 function dec2hex(dec: number) {
   return dec.toString(16).padStart(2, '0');
@@ -23,7 +24,6 @@ export function compareRoa(a: Roa, b: Roa, field: RoaField, order: SortOrder) {
   return order === SortOrder.asc ? direction : -direction;
 }
 
-// TODO duplicated code
 export function compareSuggestion(a: Suggestion, b: Suggestion, field: SuggestionField, order: SortOrder) {
   if (a[field] === b[field]) {
     return 0;
@@ -45,18 +45,9 @@ export function prefixMaxLength(prefix: string | undefined): string {
 }
 
 export function formatDate(seconds: number, locale: string) {
-  return new Date(seconds * 1000).toLocaleString(locale,  {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-    second: 'numeric',
-    hour12: false,
-    timeZone: 'UTC',
-    timeZoneName: 'short',
-  });
+  const dt = DateTime.fromSeconds(seconds, { zone: 'UTC' }).setLocale(locale);
+
+  return `${dt.toFormat('dd-MM-yyyy TTT')} (${dt.toRelative()})`;
 }
 
 export function isAbsolute(url: string): boolean {
@@ -85,6 +76,7 @@ export async function krillHash(username: string, password: string): Promise<str
   return await hash.toString('hex');
 }
 
+// TODO duplicated code
 export function transformSuggestions(input: Suggestions): Array<Suggestion> {
   const result: Array<Suggestion> = [];
   if (input.too_permissive) {

@@ -44,6 +44,11 @@ export default function RoaTableRow({ roa, allowAdd, allowDelete, hasAnnouncemen
         </td>
         <td>
           {roa.comment}
+          {allowDelete && (
+            <button className="button icon light right" onClick={() => navigate(params, 'cas.edit')}>
+              <img src={edit} />
+            </button>
+          )}
         </td>
         <td>
           <span className={`state ${roa.state}`} title={helpText}>
@@ -63,14 +68,9 @@ export default function RoaTableRow({ roa, allowAdd, allowDelete, hasAnnouncemen
             </button>
           )}
           {allowDelete && (
-            <>
-              <button className="button icon light" onClick={() => navigate(params, 'cas.edit')}>
-                <img src={edit} />
-              </button>
-              <button className="button icon" onClick={() => navigate(params, 'cas.delete')}>
-                <img src={trash} />
-              </button>
-            </>
+            <button className="button icon" onClick={() => navigate(params, 'cas.delete')}>
+              <img src={trash} />
+            </button>
           )}
         </td>
       </tr>

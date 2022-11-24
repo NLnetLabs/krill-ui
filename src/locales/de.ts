@@ -61,6 +61,8 @@ export const translations: Translations = {
   },
   'caDetails': {
     'loading': 'Lade {handle}',
+    // TODO translate
+    'refresh': 'Refreshing {handle}, this might take several minutes',
     'current': 'Aktuelle Zertifizierungsstelle',
     'download': 'Download PEM',
     'noRoas': 'Keine ROAs gefunden.',

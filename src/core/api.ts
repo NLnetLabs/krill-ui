@@ -90,9 +90,17 @@ export default class Api {
       .then((suggestions) => suggestions.map((suggestion) => ({id: generateId(10), ...suggestion})));
   }
 
+  refreshCaParents(): Promise<void> {
+    return this.post('/api/v1/bulk/cas/sync/parent');
+  }
+
   getCaParents(ca: string): Promise<Parent[]> {
     return this.get<Record<string, ParentData>>(`/api/v1/cas/${ca}/parents`)
       .then((data) => Object.entries(data).map(([name, parent]) => ({ name, ...parent })));
+  }
+
+  refreshCaRepo(): Promise<void> {
+    return this.post('/api/v1/bulk/cas/sync/repo');
   }
 
   getCaRepoStatus(ca: string): Promise<RepoStatus> {
