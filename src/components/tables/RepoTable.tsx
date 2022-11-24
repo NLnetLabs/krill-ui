@@ -6,10 +6,15 @@ import { RepoStatus } from '../../core/types';
 export interface RepoTableProps {
   repo: RepoStatus,
   locale: string,
+  loading: boolean,
 }
 
-export default function RepoTable({ repo, locale }: RepoTableProps) {
+export default function RepoTable({ repo, locale , loading}: RepoTableProps) {
   const t = useTranslations();
+
+  const date = loading ?
+    t.caDetails.loading.replace('{handle}', '...') :
+    formatDate(repo.last_exchange.timestamp, locale);
 
   return (
     <div className="info-table">
@@ -22,15 +27,15 @@ export default function RepoTable({ repo, locale }: RepoTableProps) {
           <tr>
             <th>{t.caDetails.lastExchange}</th>
             <td>
-              <p>
-                {formatDate(repo.last_exchange.timestamp, locale)}
-              </p>
               {repo.last_exchange.result != 'Success' ? (
                 <p className="failure">
+                  {date}<br />
                   {repo.last_exchange.result.Failure.msg}
                 </p>
               ) : (
-                <p className="success" />
+                <p className="success">
+                  {date}
+                </p>
               )}
             </td>
           </tr>

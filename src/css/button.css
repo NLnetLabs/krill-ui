@@ -24,6 +24,10 @@
   background: white;
 }
 
+.button.right {
+  float: right;
+}
+
 .button:hover {
   opacity: 0.8;
 }

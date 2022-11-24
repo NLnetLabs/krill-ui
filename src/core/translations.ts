@@ -73,6 +73,7 @@ export interface Translations {
   },
   caDetails: {
     loading: string,
+    refresh: string,
     current: string,
     download: string,
     noRoas: string,

@@ -61,6 +61,8 @@ export const translations: Translations = {
   },
   'caDetails': {
     'loading': 'Φόρτωση {handle}',
+    // TODO translate
+    'refresh': 'Refreshing {handle}, this might take several minutes',
     'current': 'Τρέχουσα Αρχή Πιστοποίησης (CA)',
     'download': 'Λήψη PEM',
     'noRoas': 'Δεν βρέθηκαν ROA.',
