@@ -6,13 +6,10 @@ import TestBedAddPubForm from './forms/TestBedAddPubForm';
 export default function TestBedAddPub() {
   return (
     <Layout>
-      <TestBedHeader />
-      <div className="row">
-        <div className="flex-1">
-          <TestBedAddPubForm />
-        </div>
+      <div className="testbed">
+        <TestBedHeader />
+        <TestBedAddPubForm />
       </div>
     </Layout>
   );
 }
-

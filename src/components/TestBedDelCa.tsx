@@ -6,13 +6,10 @@ import TestBedDelCaForm from './forms/TestBedDelCaForm';
 export default function TestBedDelCa() {
   return (
     <Layout>
-      <TestBedHeader />
-      <div className="row">
-        <div className="flex-1">
-          <TestBedDelCaForm />
-        </div>
+      <div className="testbed">
+        <TestBedHeader />
+        <TestBedDelCaForm />
       </div>
     </Layout>
   );
 }
-

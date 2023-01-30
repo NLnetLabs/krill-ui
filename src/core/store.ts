@@ -1,6 +1,6 @@
 import Api from './api';
-import {defaultLocale} from './config';
-import loadLocale, {Translations} from './translations';
+import { defaultLocale } from './config';
+import loadLocale, { Translations } from './translations';
 import {
   CaDetails,
   Data,
@@ -22,7 +22,7 @@ import {
   SuggestionField,
   UserDetails,
 } from './types';
-import {compareRoa, compareSuggestion} from './utils';
+import { compareRoa, compareSuggestion } from './utils';
 
 export default class Store implements Data {
   // general purpose notification message
@@ -77,24 +77,31 @@ export default class Store implements Data {
   }
 
   getRoas(filtering?: Filtering<RoaField>): Roa[] {
-    let roas = this.roas && this.ca && this.roas[this.ca] || [];
+    let roas = (this.roas && this.ca && this.roas[this.ca]) || [];
     roas = roas.filter((roa) => !roa.allowed_by);
 
     if (filtering) {
       // apply filtering
       if (filtering.search) {
         const parts = filtering.search.toLowerCase().split(/\s/);
-        roas = roas.filter((r: Roa) => (
-          parts.some((p) => r.asn.toString().includes(p)) ||
-          parts.some((p) => r.prefix.includes(p)) ||
-          parts.some((p) => r.state && (
-            r.state.includes(p) ||
-            this.translations?.announcements.state[r.state].toLowerCase().includes(p)
-          ))
-        ));
+        roas = roas.filter(
+          (r: Roa) =>
+            parts.some((p) => r.asn.toString().includes(p)) ||
+            parts.some((p) => r.prefix.includes(p)) ||
+            parts.some(
+              (p) =>
+                r.state &&
+                (r.state.includes(p) ||
+                  this.translations?.announcements.state[r.state]
+                    .toLowerCase()
+                    .includes(p))
+            )
+        );
       }
       // apply sorting
-      roas = roas.slice().sort((a, b) => compareRoa(a, b, filtering.sort, filtering.order));
+      roas = roas
+        .slice()
+        .sort((a, b) => compareRoa(a, b, filtering.sort, filtering.order));
       // apply pagination
       const offset = (filtering.page - 1) * filtering.limit;
       roas = roas.slice(offset, offset + filtering.limit);
@@ -104,9 +111,14 @@ export default class Store implements Data {
   }
 
   getSuggestions(filtering?: Filtering<SuggestionField>): Array<Suggestion> {
-    let suggestions = this.suggestions && this.ca && this.suggestions[this.ca] || [];
+    let suggestions =
+      (this.suggestions && this.ca && this.suggestions[this.ca]) || [];
     if (filtering) {
-      suggestions = suggestions.slice().sort((a, b) => compareSuggestion(a, b, filtering.sort, filtering.order));
+      suggestions = suggestions
+        .slice()
+        .sort((a, b) =>
+          compareSuggestion(a, b, filtering.sort, filtering.order)
+        );
     }
     return suggestions;
   }
@@ -155,11 +167,14 @@ export default class Store implements Data {
       window.sessionStorage.removeItem('krillToken');
     }
 
-    window.localStorage.setItem('krill', JSON.stringify({
-      ca: this.ca,
-      locale: this.locale,
-      userDetails: this.userDetails,
-    }));
+    window.localStorage.setItem(
+      'krill',
+      JSON.stringify({
+        ca: this.ca,
+        locale: this.locale,
+        userDetails: this.userDetails,
+      })
+    );
   }
 
   // update the locale and load translations
@@ -211,8 +226,8 @@ export default class Store implements Data {
   }
 
   // load available certificate authorities and select the first one if none is selected
-  async loadCas() {
-    if (this.cas !== null || !this.token) {
+  async loadCas(force = false) {
+    if ((this.cas !== null || !this.token) && !force) {
       return;
     }
 
@@ -225,9 +240,26 @@ export default class Store implements Data {
     });
   }
 
+  async addCa(handle: string): Promise<boolean> {
+    return await this.handleError(async () => {
+      await this.api.postCas(handle);
+      console.log('pre load', this.cas);
+      await this.loadCas(true);
+      console.log('load', this.cas);
+      await this.loadCa(true);
+      return true;
+    });
+  }
+
   // load certificate authority details and ROA's
   async loadCa(force?: boolean) {
-    if (!this.ca || (this.ca && this.caDetails[this.ca] && this.roas[this.ca] && force !== true)) {
+    if (
+      !this.ca ||
+      (this.ca &&
+        this.caDetails[this.ca] &&
+        this.roas[this.ca] &&
+        force !== true)
+    ) {
       return;
     }
 
@@ -272,7 +304,10 @@ export default class Store implements Data {
     });
   }
 
-  async changeRoutes(add: Suggestion[], remove: Suggestion[]): Promise<boolean> {
+  async changeRoutes(
+    add: Suggestion[],
+    remove: Suggestion[]
+  ): Promise<boolean> {
     if (this.ca === null) {
       return false;
     }
@@ -336,7 +371,7 @@ export default class Store implements Data {
       await this.loadCa(true);
       this.setNotification({
         type: NotificationType.success,
-        message:  this.translations?.caDetails.confirmation.retiredSuccess,
+        message: this.translations?.caDetails.confirmation.retiredSuccess,
       });
       return true;
     });
@@ -348,7 +383,11 @@ export default class Store implements Data {
     }
 
     return await this.handleError(async () => {
-      await this.api.postParent(this.ca as string, params.name, params.response || '');
+      await this.api.postParent(
+        this.ca as string,
+        params.name,
+        params.response || ''
+      );
       await this.loadParents(true);
       return true;
     });
@@ -360,7 +399,11 @@ export default class Store implements Data {
     }
 
     return await this.handleError(async () => {
-      await this.api.postRepository(this.ca as string, params.name, params.response || '');
+      await this.api.postRepository(
+        this.ca as string,
+        params.name,
+        params.response || ''
+      );
       await this.loadRepoStatus(true);
       return true;
     });

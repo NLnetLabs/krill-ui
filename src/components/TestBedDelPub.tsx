@@ -6,13 +6,10 @@ import TestBedDelPubForm from './forms/TestBedDelPubForm';
 export default function TestBedDelPub() {
   return (
     <Layout>
-      <TestBedHeader />
-      <div className="row">
-        <div className="flex-1">
-          <TestBedDelPubForm />
-        </div>
+      <div className="testbed">
+        <TestBedHeader />
+        <TestBedDelPubForm />
       </div>
     </Layout>
   );
 }
-

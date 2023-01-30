@@ -9,6 +9,7 @@ import TestBed from './TestBed';
 import TestBedDelCa from './TestBedDelCa';
 import TestBedAddPub from './TestBedAddPub';
 import TestBedDelPub from './TestBedDelPub';
+import Onboarding from './Onboarding';
 
 export default function App() {
   const { route } = useRoute();
@@ -19,6 +20,10 @@ export default function App() {
 
   if (route.name === 'login') {
     return <Login />;
+  }
+
+  if (route.name === 'onboarding') {
+    return <Onboarding />;
   }
 
   if (route.name.startsWith('cas.parents')) {
@@ -51,4 +56,3 @@ export default function App() {
 
   return null;
 }
-

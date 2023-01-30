@@ -1,4 +1,5 @@
 import React from 'react';
+import welcome from '../img/welcome.svg?url';
 import useTranslations from '../hooks/useTranslations';
 import { Link } from 'react-router5';
 
@@ -7,18 +8,24 @@ export default function TestBedHeader() {
 
   return (
     <>
-      <div className="space-between border-bottom row">
-        <h2>
-          {t.testbed.welcome}
-        </h2>
+      <div>
+        <img src={welcome} alt={t.common.copy} />
+        <h2>{t.testbed.welcome}</h2>
       </div>
       <div>
         <h3>{t.testbed.disclaimer.heading}</h3>
-        <div dangerouslySetInnerHTML={{__html: t.testbed.disclaimer.body}}></div>
+        <p dangerouslySetInnerHTML={{ __html: t.testbed.disclaimer.body }}></p>
         <h3>{t.testbed.rpconfighelp.heading}</h3>
-        <div dangerouslySetInnerHTML={{__html: t.testbed.rpconfighelp.body.replace('{tallink}', '/ta/ta.tal')}}></div>
+        <p
+          dangerouslySetInnerHTML={{
+            __html: t.testbed.rpconfighelp.body.replace(
+              '{tallink}',
+              '/ta/ta.tal'
+            ),
+          }}
+        ></p>
         <h3>{t.testbed.regunreg.heading}</h3>
-        <div dangerouslySetInnerHTML={{__html: t.testbed.regunreg.body}}></div>
+        <p dangerouslySetInnerHTML={{ __html: t.testbed.regunreg.body }}></p>
       </div>
       <div>
         <ul className="tabs">
