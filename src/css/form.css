@@ -1,4 +1,35 @@
 
+.center-form {
+  max-width: 30rem;
+  margin: 2rem auto;
+}
+
+.center-form img {
+  display: block;
+  margin: 2rem auto;
+  width: 8rem;
+}
+
+.center-form h2 {
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+
+.center-form label {
+  margin-top: 1rem;
+  display: block;
+}
+
+.center-form input {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.center-form button {
+  float: right;
+}
+
 label {
   line-height: 2.5rem;
   color: var(--dark);

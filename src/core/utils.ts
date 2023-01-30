@@ -1,6 +1,16 @@
 // @ts-ignore
 import scrypt from './hash.js';
-import {Roa, RoaField, SortOrder, Suggestion, SuggestionField, SuggestionReason, Suggestions} from './types.js';
+import {
+  Roa,
+  RoaField,
+  SortOrder,
+  Suggestion,
+  SuggestionField,
+  SuggestionReason,
+  Suggestions,
+  TestBedParentResponse,
+  TestBedPubResponse,
+} from './types.js';
 import { DateTime } from 'luxon';
 
 function dec2hex(dec: number) {
@@ -24,7 +34,12 @@ export function compareRoa(a: Roa, b: Roa, field: RoaField, order: SortOrder) {
   return order === SortOrder.asc ? direction : -direction;
 }
 
-export function compareSuggestion(a: Suggestion, b: Suggestion, field: SuggestionField, order: SortOrder) {
+export function compareSuggestion(
+  a: Suggestion,
+  b: Suggestion,
+  field: SuggestionField,
+  order: SortOrder
+) {
   if (a[field] === b[field]) {
     return 0;
   }
@@ -60,7 +75,10 @@ export function parseLoginUrl(url: string): boolean {
   return url.includes('withId=true');
 }
 
-export async function krillHash(username: string, password: string): Promise<string> {
+export async function krillHash(
+  username: string,
+  password: string
+): Promise<string> {
   const cost_level = 13;
   const iterations = Math.pow(2, cost_level);
   const var_r = 8;
@@ -76,7 +94,34 @@ export async function krillHash(username: string, password: string): Promise<str
   return await hash.toString('hex');
 }
 
-// TODO duplicated code
+export function checkXmlParsingSucceeded(doc: Document): string {
+  if (doc.getElementsByTagName('parsererror').length > 0) {
+    console.log(doc.getElementsByTagName('parsererror')[0]);
+    return doc.getElementsByTagName('parsererror')[0].textContent as string;
+  }
+  return '';
+}
+
+export function parentResponseJsonToXml(res: TestBedParentResponse): string {
+  return (
+    `<parent_response xmlns="http://www.hactrn.net/uris/rpki/rpki-setup/" version="1" parent_handle="${res.parent_handle}" child_handle="${res.child_handle}" service_uri="${res.service_uri}">\n` +
+    '  <parent_bpki_ta>\n' +
+    `    ${res.id_cert}\n` +
+    '  </parent_bpki_ta>\n' +
+    '</parent_response>\n'
+  );
+}
+
+export function publisherResponseJsonToXml(res: TestBedPubResponse): string {
+  return (
+    `<repository_response xmlns="http://www.hactrn.net/uris/rpki/rpki-setup/" version="1" publisher_handle="${res.publisher_handle}" service_uri="${res.service_uri}" sia_base="${res.repo_info.sia_base}" rrdp_notification_uri="${res.repo_info.rrdp_notification_uri}">\n` +
+    '    <repository_bpki_ta>\n' +
+    `     ${res.id_cert}\n` +
+    '    </repository_bpki_ta>\n' +
+    '</repository_response>'
+  );
+}
+
 export function transformSuggestions(input: Suggestions): Array<Suggestion> {
   const result: Array<Suggestion> = [];
   if (input.too_permissive) {
@@ -86,7 +131,9 @@ export function transformSuggestions(input: Suggestions): Array<Suggestion> {
         reason: SuggestionReason.tooPermissive,
         prefix: change.current.prefix,
         asn: change.current.asn,
-        max_length: change.current.max_length || parseInt(change.current.prefix.split('/')[1]),
+        max_length:
+          change.current.max_length ||
+          parseInt(change.current.prefix.split('/')[1]),
       });
       for (const newRoa of change.new) {
         result.push({
@@ -177,5 +224,4 @@ export function transformSuggestions(input: Suggestions): Array<Suggestion> {
     }
   }
   return result;
-
 }

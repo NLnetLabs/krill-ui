@@ -10,9 +10,16 @@ import {
   Roa,
   LoginResponse,
   Route,
-  Suggestions, Suggestion, ErrorResponseType
+  Suggestions,
+  Suggestion,
+  ErrorResponseType,
 } from './types';
-import {generateId, isAbsolute, parseLoginUrl, transformSuggestions} from './utils';
+import {
+  generateId,
+  isAbsolute,
+  parseLoginUrl,
+  transformSuggestions,
+} from './utils';
 
 export default class Api {
   /** API base url - by default the domain the frontend is served on */
@@ -33,17 +40,20 @@ export default class Api {
     this.token = token;
   }
 
-  async get<ResponseType>(path: string, init?: RequestInit): Promise<ResponseType> {
+  async get<ResponseType>(
+    path: string,
+    init?: RequestInit
+  ): Promise<ResponseType> {
     const response = await fetch(`${this.baseUrl}${path}`, {
       ...init,
       headers: {
-        'Authorization': `Bearer ${this.token}`,
+        Authorization: `Bearer ${this.token}`,
         ...(init?.headers || {}),
       },
     });
 
-    if (response.headers.get('Content-Type') !== 'application/json'){
-      return await response.text() as ResponseType;
+    if (response.headers.get('Content-Type') !== 'application/json') {
+      return (await response.text()) as ResponseType;
     }
 
     const json = await response.json();
@@ -63,16 +73,26 @@ export default class Api {
   }
 
   post<ResponseType>(path: string, init?: RequestInit): Promise<ResponseType> {
-    return this.get(path, {method: 'POST', ...init});
+    return this.get(path, { method: 'POST', ...init });
+  }
+
+  postCas(handle: string) {
+    return this.post('/api/v1/cas', {
+      body: JSON.stringify({ handle }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
   }
 
   getCas(): Promise<Array<string>> {
     interface CasResponse {
-      cas: Array<{ handle: string }>,
+      cas: Array<{ handle: string }>;
     }
 
-    return this.get<CasResponse>('/api/v1/cas')
-      .then(({cas}) => cas.map(({handle}) => handle).reverse());
+    return this.get<CasResponse>('/api/v1/cas').then(({ cas }) =>
+      cas.map(({ handle }) => handle).reverse()
+    );
   }
 
   getCaDetails(ca: string): Promise<CaDetails> {
@@ -80,14 +100,17 @@ export default class Api {
   }
 
   getCaRoas(ca: string): Promise<Roa[]> {
-    return this.get<Roa[]>(`/api/v1/cas/${ca}/routes/analysis/full`)
-      .then((roas: Roa[]) => roas.map((roa) => ({id: generateId(10), ...roa})));
+    return this.get<Roa[]>(`/api/v1/cas/${ca}/routes/analysis/full`).then(
+      (roas: Roa[]) => roas.map((roa) => ({ id: generateId(10), ...roa }))
+    );
   }
 
   getCaSuggestions(ca: string): Promise<Array<Suggestion>> {
     return this.get<Suggestions>(`/api/v1/cas/${ca}/routes/analysis/suggest`)
       .then((suggestions) => transformSuggestions(suggestions))
-      .then((suggestions) => suggestions.map((suggestion) => ({id: generateId(10), ...suggestion})));
+      .then((suggestions) =>
+        suggestions.map((suggestion) => ({ id: generateId(10), ...suggestion }))
+      );
   }
 
   refreshCaParents(): Promise<void> {
@@ -95,8 +118,11 @@ export default class Api {
   }
 
   getCaParents(ca: string): Promise<Parent[]> {
-    return this.get<Record<string, ParentData>>(`/api/v1/cas/${ca}/parents`)
-      .then((data) => Object.entries(data).map(([name, parent]) => ({ name, ...parent })));
+    return this.get<Record<string, ParentData>>(
+      `/api/v1/cas/${ca}/parents`
+    ).then((data) =>
+      Object.entries(data).map(([name, parent]) => ({ name, ...parent }))
+    );
   }
 
   refreshCaRepo(): Promise<void> {
@@ -112,8 +138,7 @@ export default class Api {
   }
 
   getVersion() {
-    return fetch(this.VERSION_URL)
-      .then((response) => response.json());
+    return fetch(this.VERSION_URL).then((response) => response.json());
   }
 
   getChildRequest(ca: string): Promise<string> {
@@ -126,22 +151,22 @@ export default class Api {
 
   postParent(ca: string, name: string, text: string) {
     return this.post(`/api/v1/cas/${ca}/parents/${name}`, {
-      body: text
+      body: text,
     });
   }
 
   postRepository(ca: string, name: string, text: string) {
     return this.post(`/api/v1/cas/${ca}/repo`, {
-      body: text
+      body: text,
     });
   }
 
-  updateRoutes(ca: string, data: { added: Route[], removed: Route[] }) {
+  updateRoutes(ca: string, data: { added: Route[]; removed: Route[] }) {
     return this.get(`/api/v1/cas/${ca}/routes`, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
     });
   }
@@ -150,11 +175,11 @@ export default class Api {
     return fetch(`${this.baseUrl}/auth/login`).then((response) => {
       if (response.status === 200) {
         // parse the response, as we don't want to configure frontend routes in the backend
-        return response.text().then(url => {
+        return response.text().then((url) => {
           if (isAbsolute(url)) {
-            return {redirect_url: url} as OpenIDConnect;
+            return { redirect_url: url } as OpenIDConnect;
           } else {
-            return {with_id: parseLoginUrl(url)} as KrillLogin;
+            return { with_id: parseLoginUrl(url) } as KrillLogin;
           }
         });
       }
@@ -167,11 +192,23 @@ export default class Api {
     let login_url = '/auth/login';
 
     if (username) {
-      login_url += '?' + new URLSearchParams({'id': username});
+      login_url += '?' + new URLSearchParams({ id: username });
     }
 
     this.setToken(token);
 
     return this.post(login_url);
+  }
+
+  getTestBedEnabled(): Promise<boolean> {
+    return fetch('/testbed/enabled').then((response) => {
+      if (response.status === 200) {
+        return true;
+      } else if (response.status === 400) {
+        return false;
+      }
+
+      return Promise.reject(response);
+    });
   }
 }

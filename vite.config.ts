@@ -12,7 +12,9 @@ export default defineConfig({
     proxy: {
       '/auth': api,
       '/api': api,
-      '/stats': api
+      '/stats': api,
+      '/ta': api,
+      '/testbed': api,
     },
   },
   plugins: [react()],

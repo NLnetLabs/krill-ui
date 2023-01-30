@@ -3,6 +3,10 @@ import Store from '../store';
 import { ParentParams, RouteParams, Suggestion } from '../types';
 
 export default async function handleCaData(toState: State, store: Store) {
+  if (toState.name.startsWith('testbed')) {
+    return;
+  }
+
   // store ca from route to state
   if (toState.params.ca) {
     store.setCa(toState.params.ca);
@@ -11,31 +15,63 @@ export default async function handleCaData(toState: State, store: Store) {
   // delete routes
   if (toState.name === 'cas.delete' && toState.params.asn) {
     if (await store.deleteRoute(toState.params as RouteParams)) {
-      return Promise.reject({redirect: {name: 'cas', params: {ca: store.ca}}});
-    }
-  }
-
-  // edit routes
-  if (toState.name === 'cas.edit' && toState.params.id && toState.params.comment !== undefined) {
-    if (await store.editRoute(toState.params.id, toState.params.comment)) {
-      return Promise.reject({redirect: {name: 'cas', params: {ca: store.ca}}});
-    } else {
-      return Promise.reject({redirect: {name: toState.name, params: {
-        ca: store.ca,
-        id: toState.params.id,
-      }}});
+      return Promise.reject({
+        redirect: { name: 'cas', params: { ca: store.ca } },
+      });
     }
   }
 
   // add routes
-  if ((toState.name === 'cas.add' || toState.name === 'cas.add_new') && toState.params.asn) {
+  if (toState.name === 'cas.add' && toState.params.asn) {
     if (await store.addRoute(toState.params as RouteParams)) {
-      return Promise.reject({redirect: {name: 'cas', params: {ca: store.ca}}});
+      return Promise.reject({
+        redirect: { name: 'cas', params: { ca: store.ca } },
+      });
+    }
+  }
+
+  // edit routes
+  if (
+    toState.name === 'cas.edit' &&
+    toState.params.id &&
+    toState.params.comment !== undefined
+  ) {
+    if (await store.editRoute(toState.params.id, toState.params.comment)) {
+      return Promise.reject({
+        redirect: { name: 'cas', params: { ca: store.ca } },
+      });
     } else {
-      return Promise.reject({redirect: {name: toState.name, params: {
-        ca: store.ca,
-        id: toState.params.id,
-      }}});
+      return Promise.reject({
+        redirect: {
+          name: toState.name,
+          params: {
+            ca: store.ca,
+            id: toState.params.id,
+          },
+        },
+      });
+    }
+  }
+
+  // add routes
+  if (
+    (toState.name === 'cas.add' || toState.name === 'cas.add_new') &&
+    toState.params.asn
+  ) {
+    if (await store.addRoute(toState.params as RouteParams)) {
+      return Promise.reject({
+        redirect: { name: 'cas', params: { ca: store.ca } },
+      });
+    } else {
+      return Promise.reject({
+        redirect: {
+          name: toState.name,
+          params: {
+            ca: store.ca,
+            id: toState.params.id,
+          },
+        },
+      });
     }
   }
 
@@ -45,33 +81,62 @@ export default async function handleCaData(toState: State, store: Store) {
 
   if (toState.name === 'cas.change' && toState.params.ids) {
     const ids: string[] = JSON.parse(toState.params.ids);
-    const suggestions = store.getSuggestions().filter(suggestion => ids.includes(suggestion.id || ''));
+    const suggestions = store
+      .getSuggestions()
+      .filter((suggestion) => ids.includes(suggestion.id || ''));
     const add: Suggestion[] = suggestions.filter((s) => s.action === 'add');
-    const remove: Suggestion[] = suggestions.filter((s) => s.action === 'remove');
+    const remove: Suggestion[] = suggestions.filter(
+      (s) => s.action === 'remove'
+    );
     await store.changeRoutes(add, remove);
-    return Promise.reject({redirect: {name: 'cas', params: {ca: store.ca}}});
+
+    return Promise.reject({
+      redirect: { name: 'cas', params: { ca: store.ca } },
+    });
   }
 
   // add parent
   if (toState.name === 'cas.parents.add' && toState.params.name) {
     if (await store.addParent(toState.params as ParentParams)) {
-      return Promise.reject({ redirect: {name: 'cas.parents', params: { ca: store.ca }} });
+      return Promise.reject({
+        redirect: { name: 'cas.parents', params: { ca: store.ca } },
+      });
     }
   }
 
   // add repo
   if (toState.name === 'cas.repository.add' && toState.params.response) {
     if (await store.addRepository(toState.params as ParentParams)) {
-      return Promise.reject({ redirect: {name: 'cas.repository', params: { ca: store.ca }} });
+      return Promise.reject({
+        redirect: { name: 'cas.repository', params: { ca: store.ca } },
+      });
     }
   }
 
   // load a list of available ca's
   await store.loadCas();
 
+  // show onboarding screen
+  if (store.cas?.length === 0 && toState.name !== 'onboarding') {
+    return Promise.reject({
+      redirect: { name: 'onboarding' },
+    });
+  }
+
+  /// create an initial ca
+  if (toState.name === 'onboarding' && toState.params.name) {
+    if (await store.addCa(toState.params.name)) {
+      return Promise.reject({
+        redirect: { name: 'cas.repository', params: { ca: store.ca } },
+      });
+    }
+  }
+
   // navigate to specific ca page
   if (toState.name === 'home' && store.ca) {
-    return Promise.reject({ redirect: {name: 'cas', params: { ca: store.ca }} });
+    return Promise.reject({
+      redirect: { name: 'cas', params: { ca: store.ca } },
+    });
   }
 
   // only fetch details on cas route

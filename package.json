@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "buffer": "^6.0.3",
-    "luxon": "^3.1.0",
+    "luxon": "^3.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router5": "^8.0.1",
@@ -19,16 +19,16 @@
     "router5-plugin-browser": "^8.0.1"
   },
   "devDependencies": {
-    "@playwright/test": "^1.27.0",
-    "@types/luxon": "^3.1.0",
-    "@types/react": "^18.0.21",
-    "@types/react-dom": "^18.0.6",
-    "@typescript-eslint/eslint-plugin": "^5.40.0",
-    "@typescript-eslint/parser": "^5.40.0",
-    "@vitejs/plugin-react": "^2.1.0",
-    "eslint": "^8.25.0",
-    "eslint-plugin-react": "^7.31.10",
-    "typescript": "^4.8.4",
-    "vite": "^3.1.8"
+    "@playwright/test": "^1.30.0",
+    "@types/luxon": "^3.2.0",
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
+    "@typescript-eslint/eslint-plugin": "^5.49.0",
+    "@typescript-eslint/parser": "^5.49.0",
+    "@vitejs/plugin-react": "^3.0.1",
+    "eslint": "^8.33.0",
+    "eslint-plugin-react": "^7.32.2",
+    "typescript": "^4.9.4",
+    "vite": "^4.0.4"
   }
 }

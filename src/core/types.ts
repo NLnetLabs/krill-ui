@@ -250,6 +250,33 @@ export interface OpenIDConnect {
 
 export type LoginMethod = KrillLogin | OpenIDConnect;
 
+export interface TestBedChildRequest {
+  handle: string,
+  id_cert: string,
+}
+
+export interface TestBedParentResponse {
+  id_cert: string,
+  parent_handle: string,
+  child_handle: string,
+  service_uri: string,
+}
+
+export interface TestBedPublisherRequest {
+  publisher_handle: string,
+  id_cert: string,
+}
+
+export interface TestBedPubResponse {
+  id_cert: string,
+  publisher_handle: string,
+  service_uri: string,
+  repo_info: {
+    sia_base: string,
+    rrdp_notification_uri: string,
+  }
+}
+
 export interface RouterState {
   name: string;
   params: Params;

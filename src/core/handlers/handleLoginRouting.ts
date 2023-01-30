@@ -16,7 +16,8 @@ export default async function handleLoginRouting(toState: State, store: Store) {
     return Promise.reject({ redirect: { name: 'login' }});
   }
 
-  if (store.token === null) {
+  // no login needed for testbed, if enabled
+  if (store.token === null && !(toState.name.startsWith('testbed') && store.loadTestBedEnabled())) {
     // if no token is set, find the login method
     const loginMethod = await store.loadLoginMethod();
     if (loginMethod && 'redirect_url' in loginMethod) {
