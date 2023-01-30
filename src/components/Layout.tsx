@@ -12,7 +12,7 @@ import Select from './Select';
 import NotificationContainer from './NotificationContainer';
 
 interface LayoutProps {
-  children: ReactNode,
+  children: ReactNode;
 }
 
 export default function Layout({ children }: LayoutProps) {
@@ -24,7 +24,7 @@ export default function Layout({ children }: LayoutProps) {
   const t = useTranslations();
 
   useEffect(() => {
-    document.title = `Krill - ${store.ca}`;
+    document.title = store.ca ? `Krill - ${store.ca}` : 'Krill';
   }, [store.ca]);
 
   return (
@@ -42,9 +42,7 @@ export default function Layout({ children }: LayoutProps) {
           />
           {store.userDetails && (
             <>
-              <button
-                className="pop"
-              >
+              <button className="pop">
                 <img src={user} />
                 <div>
                   <h5>{t.common.userInfo.title}</h5>
@@ -54,19 +52,19 @@ export default function Layout({ children }: LayoutProps) {
                         <th>{t.common.userInfo.user}:</th>
                         <td>{store.userDetails.id}</td>
                       </tr>
-                      {Object.entries(store.userDetails.attributes).map(([key, value]) =>
-                        <tr key={key}>
-                          <th className='user-attribute'>{key}:</th>
-                          <td>{value}</td>
-                        </tr>
+                      {Object.entries(store.userDetails.attributes).map(
+                        ([key, value]) => (
+                          <tr key={key}>
+                            <th className="user-attribute">{key}:</th>
+                            <td>{value}</td>
+                          </tr>
+                        )
                       )}
                     </tbody>
                   </table>
                 </div>
               </button>
-              <button
-                onClick={() => navigate({}, 'logout')}
-              >
+              <button onClick={() => navigate({}, 'logout')}>
                 <img src={logout} />
               </button>
             </>
@@ -74,21 +72,37 @@ export default function Layout({ children }: LayoutProps) {
         </menu>
       </header>
       <NotificationContainer />
-      <div className={`content route-${route.name}`}>
-        {children}
-      </div>
+      <div className={`content route-${route.name}`}>{children}</div>
       <footer>
         <span>
           &copy; {year} Stichting NLnet Labs
           {' - '}
-          Krill { info?.version}
+          Krill {info?.version}
         </span>
         <span>
-          <a href="https://nlnetlabs.nl/services/contracts/" target="_blank" rel="noreferrer">{t.common.supportcontracts}</a>
+          <a
+            href="https://nlnetlabs.nl/services/contracts/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            {t.common.supportcontracts}
+          </a>
           {' - '}
-          <a href="https://krill.docs.nlnetlabs.nl/" target="_blank" rel="noreferrer">{t.common.readthedocs}</a>
+          <a
+            href="https://krill.docs.nlnetlabs.nl/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            {t.common.readthedocs}
+          </a>
           {' - '}
-          <a href="https://github.com/NLnetLabs/krill/issues/new" target="_blank" rel="noreferrer">{t.common.report}</a>
+          <a
+            href="https://github.com/NLnetLabs/krill/issues/new"
+            target="_blank"
+            rel="noreferrer"
+          >
+            {t.common.report}
+          </a>
         </span>
       </footer>
     </>
