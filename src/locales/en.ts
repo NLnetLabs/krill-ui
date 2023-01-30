@@ -63,6 +63,7 @@ export const translations: Translations = {
   },
   caDetails: {
     loading: 'Loading {handle}',
+    refresh: 'Refreshing {handle}, this might take several minutes',
     current: 'Current Certificate Authority',
     download: 'Download PEM',
     noRoas: 'No ROAs found.',
@@ -93,6 +94,7 @@ export const translations: Translations = {
       retired: 'ROA removed',
       retiredSuccess: 'The ROA has been removed',
       addedSuccess: 'The ROA has been added',
+      commentUpdatedSuccess: 'The ROA comment has been updated',
     },
     addROAForm: {
       required: 'This field is required',
@@ -101,6 +103,8 @@ export const translations: Translations = {
     },
     onboardingWarning:
       'You will need to connect your CA to a public RPKI repository where it can publish your certificate and ROAs. As soon as the parent configuration is completed, relying party software will immediately start fetching your certificate and the ROAs you create from this repository.',
+    initializeRepository:
+      'You still need to configure a repository for your CA before it can request resource certificate(s) from its parent(s)',
     initialize:
       'Please initialize the RPKI repository and/or the parent first.',
     noResourcesYet: 'You have not received any resources yet',
