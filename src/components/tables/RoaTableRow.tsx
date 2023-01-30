@@ -3,6 +3,7 @@ import {Roa, RoaStateHelp} from '../../core/types';
 import useTranslations from '../../hooks/useTranslations';
 import RoaTableRowSubTable from './RoaTableRowSubTable';
 import trash from '../../img/trash.svg?url';
+import edit from '../../img/edit.svg?url';
 import plus from '../../img/plus.svg?url';
 import useNavigation from '../../hooks/useNavigation';
 
@@ -43,6 +44,11 @@ export default function RoaTableRow({ roa, allowAdd, allowDelete, hasAnnouncemen
         </td>
         <td>
           {roa.comment}
+          {allowDelete && (
+            <button className="button icon light right" onClick={() => navigate(params, 'cas.edit')}>
+              <img src={edit} />
+            </button>
+          )}
         </td>
         <td>
           <span className={`state ${roa.state}`} title={helpText}>
@@ -70,7 +76,7 @@ export default function RoaTableRow({ roa, allowAdd, allowDelete, hasAnnouncemen
       </tr>
       {hasAnnouncements && expanded && (
         <tr className="announcements">
-          <td colSpan={5}>
+          <td colSpan={6}>
             <RoaTableRowSubTable
               authorizes={roa.authorizes || []}
               disallows={roa.disallows || []}

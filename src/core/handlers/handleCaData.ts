@@ -30,12 +30,53 @@ export default async function handleCaData(toState: State, store: Store) {
     }
   }
 
-  if (toState.name === 'cas.add_new' && toState.params.asn) {
+  // edit routes
+  if (
+    toState.name === 'cas.edit' &&
+    toState.params.id &&
+    toState.params.comment !== undefined
+  ) {
+    if (await store.editRoute(toState.params.id, toState.params.comment)) {
+      return Promise.reject({
+        redirect: { name: 'cas', params: { ca: store.ca } },
+      });
+    } else {
+      return Promise.reject({
+        redirect: {
+          name: toState.name,
+          params: {
+            ca: store.ca,
+            id: toState.params.id,
+          },
+        },
+      });
+    }
+  }
+
+  // add routes
+  if (
+    (toState.name === 'cas.add' || toState.name === 'cas.add_new') &&
+    toState.params.asn
+  ) {
     if (await store.addRoute(toState.params as RouteParams)) {
       return Promise.reject({
         redirect: { name: 'cas', params: { ca: store.ca } },
       });
+    } else {
+      return Promise.reject({
+        redirect: {
+          name: toState.name,
+          params: {
+            ca: store.ca,
+            id: toState.params.id,
+          },
+        },
+      });
     }
+  }
+
+  if (toState.name === 'cas.analyse') {
+    await store.loadSuggestions(true);
   }
 
   if (toState.name === 'cas.change' && toState.params.ids) {
@@ -43,17 +84,10 @@ export default async function handleCaData(toState: State, store: Store) {
     const suggestions = store
       .getSuggestions()
       .filter((suggestion) => ids.includes(suggestion.id || ''));
-    const add: Suggestion[] = [];
-    const remove: Suggestion[] = [];
-
-    for (const suggestion of suggestions) {
-      if (suggestion.action === 'add') {
-        add.push(suggestion);
-      } else if (suggestion.action === 'remove') {
-        remove.push(suggestion);
-      }
-    }
-
+    const add: Suggestion[] = suggestions.filter((s) => s.action === 'add');
+    const remove: Suggestion[] = suggestions.filter(
+      (s) => s.action === 'remove'
+    );
     await store.changeRoutes(add, remove);
 
     return Promise.reject({
@@ -108,8 +142,10 @@ export default async function handleCaData(toState: State, store: Store) {
   // only fetch details on cas route
   if (toState.name.startsWith('cas')) {
     // load ca details and roa's
-    await store.loadCa();
-    await store.loadRepoStatus();
-    await store.loadParents();
+    await Promise.all([
+      store.loadCa(),
+      store.loadParents(),
+      store.loadRepoStatus(),
+    ]);
   }
 }

@@ -29,7 +29,7 @@ export default function RepoModal() {
         />
       )}
       <h3>{t.caDetails.repoTab.addRepo}</h3>
-      <form onSubmit={ onSubmit } method="POST">
+      <form onSubmit={onSubmit} method="POST">
         <div>
           <label>{t.caDetails.repoTab.request}</label>
           <textarea name="request" readOnly value={request} id="request" onChange={(e) => setRequest(e.target.value)} />

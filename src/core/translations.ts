@@ -73,6 +73,7 @@ export interface Translations {
   },
   caDetails: {
     loading: string,
+    refresh: string,
     current: string,
     download: string,
     noRoas: string,
@@ -101,6 +102,7 @@ export interface Translations {
       retired: string,
       retiredSuccess: string,
       addedSuccess: string,
+      commentUpdatedSuccess: string,
     },
     addROAForm: {
       required: string,
@@ -108,6 +110,7 @@ export interface Translations {
       prefix_format: string,
     },
     onboardingWarning: string,
+    initializeRepository: string,
     initialize: string,
     noResourcesYet: string,
     clickToRefresh: string,

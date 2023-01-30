@@ -61,6 +61,8 @@ export const translations: Translations = {
   },
   'caDetails': {
     'loading': '{handle} wordt geladen',
+    // TODO translate
+    'refresh': 'Refreshing {handle}, this might take several minutes',
     'current': 'Huidige certificaatautoriteit',
     'download': 'Download PEM',
     'noRoas': 'Geen ROAs gevonden.',
@@ -89,7 +91,9 @@ export const translations: Translations = {
       'added': 'ROA toegevoegd',
       'retired': 'ROA verwijderd',
       'retiredSuccess': 'De ROA is verwijderd',
-      'addedSuccess': 'The ROA is toegevoegd'
+      'addedSuccess': 'The ROA is toegevoegd',
+      // TODO translate
+      'commentUpdatedSuccess': 'The ROA comment has been updated',
     },
     'addROAForm': {
       'required': 'Dit veld is verplicht',
@@ -97,6 +101,8 @@ export const translations: Translations = {
       'prefix_format': 'Vul alstublieft een geldige IPv4 of IPv6 prefix in'
     },
     'onboardingWarning': 'Om uw certificaat en ROAs te publiceren moet uw CA verbonden worden met een publieke RPKI databank (repository). Zodra de configuratie met de bovenliggende CA is voltooid, zal software gebruikt door de vertrouwende partijen (RPKI validators) direct beginnen met het downloaden en verifiëren van uw certificaat en ROAs die gepubliceerd zijn in deze databank.',
+    // TODO translate
+    'initializeRepository': 'You still need to configure a repository for your CA before it can request resource certificate(s) from its parent(s)',
     'initialize': 'Initialiseer alstublieft eerst uw RPKI databank (repository) en/of de bovenliggende CA.',
     'noResourcesYet': 'U heeft nog geen resources ontvangen',
     'clickToRefresh': 'Klik hier om te verversen',

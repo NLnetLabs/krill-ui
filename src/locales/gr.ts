@@ -61,6 +61,8 @@ export const translations: Translations = {
   },
   'caDetails': {
     'loading': 'Φόρτωση {handle}',
+    // TODO translate
+    'refresh': 'Refreshing {handle}, this might take several minutes',
     'current': 'Τρέχουσα Αρχή Πιστοποίησης (CA)',
     'download': 'Λήψη PEM',
     'noRoas': 'Δεν βρέθηκαν ROA.',
@@ -89,7 +91,9 @@ export const translations: Translations = {
       'added': 'Το ROA προστέθηκε',
       'retired': 'Το ROA αφαιρέθηκε',
       'retiredSuccess': 'Το ROA έχει αφαιρεθεί',
-      'addedSuccess': 'Το ROA έχει προστεθεί'
+      'addedSuccess': 'Το ROA έχει προστεθεί',
+      // TODO translate
+      'commentUpdatedSuccess': 'The ROA comment has been updated',
     },
     'addROAForm': {
       'required': 'Το πεδίο είναι υποχρεωτικό',
@@ -97,6 +101,8 @@ export const translations: Translations = {
       'prefix_format': 'Παρακαλώ εισάγετε ένα έγκυρο IPv4 ή IPv6 πρόθεμα'
     },
     'onboardingWarning': 'Θα χρειαστεί να συνδέσετε την Αρχή Πιστοποίησής (CA) σας σε ένα δημόσιο αποθετήριο (repository) RPKI που θα μπορεί να δημοσιεύσει το πιστοποιητικό και τα ROA σας. Με το που ολοκληρωθεί η ρύθμιση του CA-πατέρα, λογισμικά επικύρωσης (relying party) θα αρχίσουν να ανακτούν το πιστοποιητικό και τα ROA σας από αυτό το αποθετήριο (repository).',
+    // TODO translate
+    'initializeRepository': 'You still need to configure a repository for your CA before it can request resource certificate(s) from its parent(s)',
     'initialize': 'Παρακαλώ αρχικοποιήστε ένα αποθετήριο (repository) RPKI και/ή τον CA-γονέα πρώτα.',
     'noResourcesYet': 'Δεν έχετε λάβει κανέναν πόρο ακόμα',
     'clickToRefresh': 'Κάντε κλίκ εδώ για ανανέωση',

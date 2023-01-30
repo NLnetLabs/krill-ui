@@ -22,7 +22,7 @@ import {
   SuggestionField,
   UserDetails,
 } from './types';
-import { compareRoa, compareSuggestion } from './utils';
+import { compareRoa, compareSuggestion, prefixMaxLength } from './utils';
 
 export default class Store implements Data {
   // general purpose notification message
@@ -265,18 +265,48 @@ export default class Store implements Data {
 
     await this.handleError(async () => {
       if (this.ca !== null) {
-        const [caDetails, roas, suggestions] = await Promise.all([
+        const [caDetails, roas] = await Promise.all([
           this.api.getCaDetails(this.ca),
           this.api.getCaRoas(this.ca),
-          this.api.getCaSuggestions(this.ca),
-          this.api.getCaParents(this.ca),
-          this.api.getCaRepoStatus(this.ca),
         ]);
 
         this.caDetails[this.ca] = caDetails;
         this.roas[this.ca] = roas;
-        this.suggestions[this.ca] = suggestions;
       }
+    });
+  }
+
+  async loadSuggestions(force?: boolean) {
+    if (!this.ca || (this.ca && this.suggestions[this.ca] && force !== true)) {
+      return;
+    }
+
+    await this.handleError(async () => {
+      if (this.ca !== null) {
+        this.suggestions[this.ca] = await this.api.getCaSuggestions(this.ca);
+      }
+    });
+  }
+
+  async refreshParents() {
+    if (!this.ca) {
+      return;
+    }
+
+    const ca: string = this.ca;
+    await this.api.refreshCaParents();
+
+    // poll every 5 seconds for an update
+    return new Promise((resolve) => {
+      const interval = setInterval(() => {
+        this.api.getCaParents(ca).then((parents) => {
+          if (JSON.stringify(parents) !== JSON.stringify(this.parents[ca])) {
+            this.parents[ca] = parents;
+            clearInterval(interval);
+            resolve(parents);
+          }
+        });
+      }, 5 * 1000);
     });
   }
 
@@ -304,6 +334,28 @@ export default class Store implements Data {
     });
   }
 
+  async refreshRepo() {
+    if (!this.ca) {
+      return;
+    }
+
+    const ca: string = this.ca;
+    await this.api.refreshCaRepo();
+
+    // poll every 5 seconds for an update
+    return new Promise((resolve) => {
+      const interval = setInterval(() => {
+        this.api.getCaRepoStatus(ca).then((status) => {
+          if (JSON.stringify(status) !== JSON.stringify(this.repoStatus[ca])) {
+            this.repoStatus[ca] = status;
+            clearInterval(interval);
+            resolve(status);
+          }
+        });
+      }, 5 * 1000);
+    });
+  }
+
   async changeRoutes(
     add: Suggestion[],
     remove: Suggestion[]
@@ -318,9 +370,41 @@ export default class Store implements Data {
         removed: remove,
       });
       await this.loadCa(true);
+      await this.loadSuggestions(true);
       this.setNotification({
         type: NotificationType.success,
         message: this.translations?.common.success,
+      });
+      return true;
+    });
+  }
+
+  async editRoute(id: string, comment: string): Promise<boolean> {
+    if (this.ca === null || !this.roas[this.ca]) {
+      return false;
+    }
+
+    const route = this.roas[this.ca].find((r) => r.id === id);
+
+    if (!route) {
+      return false;
+    }
+
+    const updatedRoute: Route = {
+      ...route,
+      comment,
+    };
+
+    return await this.handleError(async () => {
+      await this.api.updateRoutes(this.ca as string, {
+        added: [updatedRoute],
+        removed: [],
+      });
+      await this.loadCa(true);
+      this.setNotification({
+        type: NotificationType.success,
+        message:
+          this.translations?.caDetails.confirmation.commentUpdatedSuccess,
       });
       return true;
     });

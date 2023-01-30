@@ -61,6 +61,8 @@ export const translations: Translations = {
   },
   'caDetails': {
     'loading': 'Lade {handle}',
+    // TODO translate
+    'refresh': 'Refreshing {handle}, this might take several minutes',
     'current': 'Aktuelle Zertifizierungsstelle',
     'download': 'Download PEM',
     'noRoas': 'Keine ROAs gefunden.',
@@ -89,7 +91,9 @@ export const translations: Translations = {
       'added': 'ROA hinzugefügt',
       'retired': 'ROA entfernt',
       'retiredSuccess': 'Das ROA wurde entfernt',
-      'addedSuccess': 'Das ROA wurde hinzugefügt'
+      'addedSuccess': 'Das ROA wurde hinzugefügt',
+      // TODO translate
+      'commentUpdatedSuccess': 'The ROA comment has been updated',
     },
     'addROAForm': {
       'required': 'Dies ist ein Pflichtfeld',
@@ -97,6 +101,8 @@ export const translations: Translations = {
       'prefix_format': 'Bitte geben Sie ein gültiges IPv4 oder IPv6 Präfix ein'
     },
     'onboardingWarning': 'Um Ihr Zertifikat und Ihre ROAs zu veröffentlichen müssen Sie Ihre Zertifizierungsstelle mit einer öffentlichen RPKI Datenbank (Repository) verbinden. Sobald die Konfiguration der Eltern-Zertifizierungsstelle abgeschlossen ist, wird die Relying Party Software mit dem Herunterladen Ihres Zertifikates sowie Ihrer ROAs, welche in dieser Datenbank veröffentlicht wurden, beginnen.',
+    // TODO translate
+    'initializeRepository': 'You still need to configure a repository for your CA before it can request resource certificate(s) from its parent(s)',
     'initialize': 'Bitte initialisieren Sie die RPKI Datenbank (Repository) und/oder die Eltern-Zertifizierungsstelle zuerst.',
     'noResourcesYet': 'Sie haben noch keine Ressourcen erhalten',
     'clickToRefresh': 'Klicken Sie hier um neu zu laden',
