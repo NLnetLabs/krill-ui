@@ -95,8 +95,6 @@ export default function TestBedAddCaForm() {
   };
 
   const verifyChildXML = (doc: Document): boolean => {
-    console.log('verifyChildXML');
-    console.log(doc);
     const error = checkXmlParsingSucceeded(doc);
     if (error) {
       setNotification({

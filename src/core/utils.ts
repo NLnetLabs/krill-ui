@@ -96,7 +96,6 @@ export async function krillHash(
 
 export function checkXmlParsingSucceeded(doc: Document): string {
   if (doc.getElementsByTagName('parsererror').length > 0) {
-    console.log(doc.getElementsByTagName('parsererror')[0]);
     return doc.getElementsByTagName('parsererror')[0].textContent as string;
   }
   return '';

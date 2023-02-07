@@ -18,7 +18,6 @@ export default function Edit({ onClose, roa }: EditProps) {
       <h3>{t.common.edit}</h3>
       <form
         onSubmit={(e) => {
-          console.log('submit');
           e.preventDefault();
           if (comment !== roa?.comment) {
             navigate({ comment });
