@@ -1,6 +1,6 @@
 import React, { FormEvent, useState } from 'react';
 import { Roa } from '../../core/types';
-import { prefixMaxLength } from '../../core/utils';
+import { prefixLength } from '../../core/utils';
 import useNavigation from '../../hooks/useNavigation';
 import useTranslations from '../../hooks/useTranslations';
 
@@ -15,7 +15,7 @@ export default function Add({ onClose, roa }: AddProps) {
   const [asn, setAsn] = useState(roa?.asn.toString() || '');
   const [prefix, setPrefix] = useState(roa?.prefix || '');
   const [comment, setComment] = useState(roa?.comment || '');
-  const maxLengthFallback = prefixMaxLength(roa?.prefix);
+  const maxLengthFallback = prefixLength(roa?.prefix);
   const [maxLength, setMaxLength] = useState(roa?.max_length?.toString() || maxLengthFallback);
 
   const onSubmit = (e: FormEvent) => {
@@ -58,17 +58,16 @@ export default function Add({ onClose, roa }: AddProps) {
           />
         </div>
         <div>
-          <label htmlFor="maxLength required">
+          <label htmlFor="maxLength">
             {t.caDetails.maxLength}
           </label>
           <input
             type="number"
-            min="0"
-            max="128"
+            min={prefixLength(prefix) || 1}
+            max={(prefix.includes('.') || !prefix.includes(':')) ? 32 : 128}
             name="maxLength"
             value={maxLength}
             onChange={(e) => setMaxLength(e.target.value)}
-            required
           />
         </div>
         <div>
