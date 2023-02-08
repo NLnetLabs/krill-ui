@@ -49,14 +49,13 @@ export function compareSuggestion(
   return order === SortOrder.asc ? direction : -direction;
 }
 
-export function prefixMaxLength(prefix: string | undefined): string {
+export function prefixLength(prefix: string | undefined): string {
   if (!prefix) {
     return '';
   }
 
   const parts = prefix.split(/[/-]/g);
-
-  return parts[parts.length - 1];
+  return parts.length > 1 ? parts[parts.length - 1] : '1';
 }
 
 export function formatDate(seconds: number, locale: string) {

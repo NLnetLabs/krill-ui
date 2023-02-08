@@ -22,7 +22,7 @@ import {
   SuggestionField,
   UserDetails,
 } from './types';
-import { compareRoa, compareSuggestion, prefixMaxLength } from './utils';
+import { compareRoa, compareSuggestion } from './utils';
 
 export default class Store implements Data {
   // general purpose notification message
