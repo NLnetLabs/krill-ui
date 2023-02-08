@@ -243,9 +243,7 @@ export default class Store implements Data {
   async addCa(handle: string): Promise<boolean> {
     return await this.handleError(async () => {
       await this.api.postCas(handle);
-      console.log('pre load', this.cas);
       await this.loadCas(true);
-      console.log('load', this.cas);
       await this.loadCa(true);
       return true;
     });
