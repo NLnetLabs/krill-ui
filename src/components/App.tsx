@@ -4,11 +4,9 @@ import Cas from './Cas';
 import CasParents from './CasParents';
 import CasRepository from './CasRepository';
 import Loader from './Loader';
+import Error from './Error';
 import Login from './Login';
-import TestBed from './TestBed';
-import TestBedDelCa from './TestBedDelCa';
-import TestBedAddPub from './TestBedAddPub';
-import TestBedDelPub from './TestBedDelPub';
+import TestBed from './testbed/TestBed';
 import Onboarding from './Onboarding';
 
 export default function App() {
@@ -38,21 +36,9 @@ export default function App() {
     return <Cas />;
   }
 
-  if (route.name == 'testbed.del_ca') {
-    return <TestBedDelCa />;
-  }
-
-  if (route.name == 'testbed.add_pub') {
-    return <TestBedAddPub />;
-  }
-
-  if (route.name == 'testbed.del_pub') {
-    return <TestBedDelPub />;
-  }
-
   if (route.name.startsWith('testbed')) {
     return <TestBed />;
   }
 
-  return null;
+  return <Error />;
 }

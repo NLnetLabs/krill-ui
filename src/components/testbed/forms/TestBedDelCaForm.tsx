@@ -1,8 +1,8 @@
 import React, { FormEvent, useState } from 'react';
-import NotificationElem from '../NotificationElem';
-import useTranslations from '../../hooks/useTranslations';
-import { Notification, NotificationType } from '../../core/types';
+import useTranslations from '../../../hooks/useTranslations';
+import { Notification, NotificationType } from '../../../core/types';
 import TestBedConfirm from './TestBedConfirm';
+import NotificationElem from '../../NotificationElem';
 
 export default function TestBedDelCaForm() {
   const t = useTranslations();
@@ -11,7 +11,7 @@ export default function TestBedDelCaForm() {
 
   const [childHandle, setChildHandle] = useState('');
 
-  const deleteChild = async() => {
+  const deleteChild = async () => {
     const res = await fetch(`/testbed/children/${childHandle}`, {
       method: 'DELETE',
     });
@@ -19,7 +19,10 @@ export default function TestBedDelCaForm() {
     if (res.status === 200) {
       setNotification({
         type: NotificationType.success,
-        message: t.testbed.removeChild.success.replace('{child_handle}', childHandle)
+        message: t.testbed.removeChild.success.replace(
+          '{child_handle}',
+          childHandle
+        ),
       });
       setChildHandle('');
     } else {
@@ -43,12 +46,16 @@ export default function TestBedDelCaForm() {
 
   return (
     <>
-      {showConfirmModal &&
-        <TestBedConfirm onClose={() => setShowConfirmModal(false)} onConfirm={onConfirm}/>}
-      { notification && <NotificationElem notification={notification} /> }
-      <form onSubmit={ onSubmit } method="POST">
+      {showConfirmModal && (
+        <TestBedConfirm
+          onClose={() => setShowConfirmModal(false)}
+          onConfirm={onConfirm}
+        />
+      )}
+      <form onSubmit={onSubmit} method="POST">
+        {notification && <NotificationElem notification={notification} />}
         <div>
-          <label>{ t.testbed.childhandle }</label>
+          <label>{t.testbed.childhandle}</label>
           <input
             name="handle"
             value={childHandle}

@@ -1,30 +1,29 @@
 import React, { FormEvent, useState } from 'react';
-import NotificationElem from '../NotificationElem';
-import useTranslations from '../../hooks/useTranslations';
+import NotificationElem from '../../NotificationElem';
+import useTranslations from '../../../hooks/useTranslations';
 import {
   Notification,
   NotificationType,
   TestBedChildRequest,
-} from '../../core/types';
+} from '../../../core/types';
 import {
   checkXmlParsingSucceeded,
   parentResponseJsonToXml,
-} from '../../core/utils';
+} from '../../../core/utils';
 import TestBedConfirm from './TestBedConfirm';
-import CopyDownloadButton from '../CopyDownloadButton';
+import CopyDownloadButton from '../../CopyDownloadButton';
 
 export default function TestBedAddCaForm() {
   const t = useTranslations();
   const [notification, setNotification] = useState<Notification>();
   const [showConfirmModal, setShowConfirmModal] = useState(false);
-
-  const [childRequest, setChildRequest] = useState(
-    t.testbed.addChild.requestXML.placeholder
-  );
+  const [childRequest, setChildRequest] = useState('');
   const [asnResources, setAsnResources] = useState('');
   const [ipv4Resources, setIpv4Resources] = useState('');
   const [ipv6Resources, setIpv6Resources] = useState('');
-  const [childResponse, setChildResponse] = useState('');
+  const [childResponse, setChildResponse] = useState(
+    'ae asf jadfg oiusdh goiusadhgoisud fhgopiusdrhgoius hgoisauh goiasudfh goisudfh gopisdu hfgopisud hfgoisdh fgopisuh drgopisudfh gpisud fhgoisudh fgpisudh fgpiusdhr gpisduh fgpisud fhgpisdu fhgpisud fhgpisud hfgpisdu hg'
+  );
 
   const postChild = async (
     handle: string,
@@ -187,20 +186,22 @@ export default function TestBedAddCaForm() {
 
   if (childResponse !== '') {
     return (
-      <>
+      <div className="testbed-result">
         {notification && <NotificationElem notification={notification} />}
         <pre>{childResponse}</pre>
-        <div>
-          <button onClick={addAnother}>
-            {t.testbed.addChild.registeranother}
-          </button>
+        <p>
           <CopyDownloadButton
             xml={childResponse}
             name="parent_response"
             setNotification={setNotification}
           />
+        </p>
+        <div className="actions">
+          <button onClick={addAnother} className="button">
+            {t.testbed.addChild.registeranother}
+          </button>
         </div>
-      </>
+      </div>
     );
   }
 
@@ -212,8 +213,8 @@ export default function TestBedAddCaForm() {
           onConfirm={onConfirm}
         />
       )}
-      {notification && <NotificationElem notification={notification} />}
       <form onSubmit={onSubmit} method="POST">
+        {notification && <NotificationElem notification={notification} />}
         <div>
           <label>
             {t.testbed.addChild.requestXML.label}
@@ -224,6 +225,7 @@ export default function TestBedAddCaForm() {
           <textarea
             name="request"
             value={childRequest}
+            placeholder={t.testbed.addChild.requestXML.placeholder}
             onChange={(e) => setChildRequest(e.target.value)}
             required
           />
