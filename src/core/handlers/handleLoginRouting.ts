@@ -3,8 +3,8 @@ import Store from '../store';
 
 export default async function handleLoginRouting(toState: State, store: Store) {
   if (
-    toState.name.startsWith('testbed')
-    // (await store.loadTestBedEnabled())
+    toState.name.startsWith('testbed') &&
+    (await store.loadTestBedEnabled())
   ) {
     return Promise.resolve();
   }
