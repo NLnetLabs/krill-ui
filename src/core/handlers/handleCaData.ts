@@ -132,8 +132,15 @@ export default async function handleCaData(toState: State, store: Store) {
     }
   }
 
-  // navigate to specific ca page
+  // redirect if current ca is not in cas
+  if (store.ca && store.cas?.length && !store.cas?.includes(store.ca)) {
+    return Promise.reject({
+      redirect: { name: 'cas', params: { ca: store.cas[0] } },
+    });
+  }
+
   if (toState.name === 'home' && store.ca) {
+    // navigate to specific ca page
     return Promise.reject({
       redirect: { name: 'cas', params: { ca: store.ca } },
     });
