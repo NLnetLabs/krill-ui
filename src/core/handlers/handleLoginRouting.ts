@@ -29,7 +29,7 @@ export default async function handleLoginRouting(toState: State, store: Store) {
     // if no token is set, find the login method
     const loginMethod = await store.loadLoginMethod();
     if (loginMethod && 'redirect_url' in loginMethod) {
-      // TODO redirect to redirect_url for OpenIDConnect
+      window.location.assign(loginMethod.redirect_url);
     }
     // else, redirect to login
     if (toState.name !== 'login') {
