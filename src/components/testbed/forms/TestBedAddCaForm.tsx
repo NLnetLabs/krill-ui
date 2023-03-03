@@ -21,9 +21,7 @@ export default function TestBedAddCaForm() {
   const [asnResources, setAsnResources] = useState('');
   const [ipv4Resources, setIpv4Resources] = useState('');
   const [ipv6Resources, setIpv6Resources] = useState('');
-  const [childResponse, setChildResponse] = useState(
-    'ae asf jadfg oiusdh goiusadhgoisud fhgopiusdrhgoius hgoisauh goiasudfh goisudfh gopisdu hfgopisud hfgoisdh fgopisuh drgopisudfh gpisud fhgoisudh fgpisudh fgpiusdhr gpisduh fgpisud fhgpisdu fhgpisud fhgpisud hfgpisdu hg'
-  );
+  const [childResponse, setChildResponse] = useState('');
 
   const postChild = async (
     handle: string,
