@@ -225,6 +225,23 @@ export default class Store implements Data {
     }
   }
 
+  async checkToken() {
+    if (this.token) {
+      try {
+        this.setNotification(null);
+        await this.api.checkToken(this.token);
+      } catch (e) {
+        this.setToken(null);
+        this.setUserDetails(null);
+        this.storePersistedData();
+        this.setNotification({
+          type: NotificationType.error,
+          message: this.translations?.login.error,
+        });
+      }
+    }
+  }
+
   // load available certificate authorities and select the first one if none is selected
   async loadCas(force = false) {
     if ((this.cas !== null || !this.token) && !force) {

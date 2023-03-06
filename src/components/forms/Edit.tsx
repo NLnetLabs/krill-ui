@@ -17,6 +17,7 @@ export default function Edit({ onClose, roa }: EditProps) {
     <>
       <h3>{t.common.edit}</h3>
       <form
+        autoComplete="off"
         onSubmit={(e) => {
           e.preventDefault();
           if (comment !== roa?.comment) {
@@ -38,6 +39,7 @@ export default function Edit({ onClose, roa }: EditProps) {
         </div>
         <div className="actions">
           <button
+            type="button"
             className="button outline"
             onClick={onClose}
           >

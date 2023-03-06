@@ -200,6 +200,11 @@ export default class Api {
     return this.post(login_url);
   }
 
+  checkToken(token: string): Promise<LoginResponse> {
+    this.setToken(token);
+    return this.get('/api/v1/authorized');
+  }
+
   getTestBedEnabled(): Promise<boolean> {
     return fetch('/testbed/enabled').then((response) => {
       if (response.status === 200) {

@@ -57,7 +57,7 @@ export default function ParentModal() {
           />
         </div>
         <div className="actions">
-          <button className="button outline" onClick={onClose}>
+          <button type="button" className="button outline" onClick={onClose}>
             {t.common.cancel}
           </button>
           <button type="submit" className="button">

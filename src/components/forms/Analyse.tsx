@@ -49,6 +49,7 @@ export default function Analyse({onClose, filtering}: AnalyseProps) {
         {suggestions.length > 0 && (
           <>
             <button
+              type="button"
               className="button outline"
               onClick={onClose}
             >
