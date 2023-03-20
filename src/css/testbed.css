@@ -3,17 +3,27 @@
     margin: 2rem auto;
 }
 
-.testbed img {
+.testbed img.hero {
     display: block;
     margin: 3rem auto;
     width: 8rem;
 }
 
-.testbed form {
+.testbed form,
+.testbed .testbed-result {
     border: 2px solid var(--grey-light);
     border-top: 0;
     padding: 1rem 2rem 2rem 2rem;
     background-color: #fdfdfd;
+}
+
+.testbed .testbed-result pre {
+    border: 1px solid var(--grey-light);
+    border-radius: var(--radius);
+    font-size: 0.9rem;
+    white-space: pre-wrap;
+    background: white;
+    padding: 1rem;
 }
 
 .testbed form a {
@@ -62,4 +72,9 @@
 .testbed button[type="submit"] {
     margin-top: 2rem;
     float: right;
+}
+
+.testbed .actions {
+    text-align: right;
+    ;
 }

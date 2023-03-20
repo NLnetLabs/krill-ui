@@ -26,6 +26,7 @@ export default function Delete({ onClose, roa }: DeleteProps) {
       </p>
       <div className="actions">
         <button
+          type="button"
           className="button outline"
           onClick={onClose}
         >

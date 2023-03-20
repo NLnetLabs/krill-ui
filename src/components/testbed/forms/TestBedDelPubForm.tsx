@@ -1,8 +1,8 @@
 import React, { FormEvent, useState } from 'react';
-import NotificationElem from '../NotificationElem';
-import useTranslations from '../../hooks/useTranslations';
-import {Notification, NotificationType} from '../../core/types';
+import useTranslations from '../../../hooks/useTranslations';
+import { Notification, NotificationType } from '../../../core/types';
 import TestBedConfirm from './TestBedConfirm';
+import NotificationElem from '../../NotificationElem';
 
 export default function TestBedDelPubForm() {
   const t = useTranslations();
@@ -19,7 +19,10 @@ export default function TestBedDelPubForm() {
     if (res.status === 200) {
       setNotification({
         type: NotificationType.success,
-        message: t.testbed.removePublisher.success.replace('{publisher_handle}', pubHandle)
+        message: t.testbed.removePublisher.success.replace(
+          '{publisher_handle}',
+          pubHandle
+        ),
       });
       setPubHandle('');
     } else {
@@ -43,10 +46,14 @@ export default function TestBedDelPubForm() {
 
   return (
     <>
-      {showConfirmModal &&
-        <TestBedConfirm onClose={() => setShowConfirmModal(false)} onConfirm={onConfirm}/>}
-      {notification && <NotificationElem notification={notification}/>}
+      {showConfirmModal && (
+        <TestBedConfirm
+          onClose={() => setShowConfirmModal(false)}
+          onConfirm={onConfirm}
+        />
+      )}
       <form onSubmit={onSubmit} method="POST">
+        {notification && <NotificationElem notification={notification} />}
         <div>
           <label>{t.testbed.publisherhandle}</label>
           <input
