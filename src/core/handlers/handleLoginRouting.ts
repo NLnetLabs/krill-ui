@@ -28,7 +28,12 @@ export default async function handleLoginRouting(toState: State, store: Store) {
   if (store.token === null) {
     // redirect after succesfull openidconnect login
     if (toState.params.token) {
-      store.tryLogin(toState.params.token);
+      store.setToken(toState.params.token);
+      store.setUserDetails({
+        id: toState.params.id,
+        attributes: JSON.parse(atob(toState.params.attributes)),
+      });
+      store.checkToken();
       return Promise.reject({ redirect: { name: 'home' } });
     }
     // if no token is set, find the login method
