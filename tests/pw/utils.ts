@@ -1,5 +1,5 @@
 // @ts-ignore
-import {addRoutes} from './mockAPI.ts';
+import { addRoutes } from './mockAPI.ts';
 
 export async function preparePage(page: any) {
   await page.addInitScript(() => {

@@ -1,14 +1,16 @@
-import {test, expect} from '@playwright/test';
+import { test, expect } from '@playwright/test';
 // @ts-ignore
-import {preparePage} from './utils.ts';
+import { preparePage } from './utils.ts';
 
-test('show user details and log out', async ({page}) => {
+test('show user details and log out', async ({ page }) => {
   await preparePage(page);
-  await page.goto('/', {waitUntil: 'domcontentloaded'});
+  await page.goto('/ui', { waitUntil: 'domcontentloaded' });
 
   await expect(page).toHaveURL(/\/cas\//);
 
-  const userButton = page.locator('button', {has: page.locator('img[src="/src/img/user.svg"]')});
+  const userButton = page.locator('button', {
+    has: page.locator('img[src="/src/img/user.svg"]'),
+  });
   await expect(userButton.locator('div')).not.toBeVisible();
   await userButton.hover();
   await expect(userButton.locator('div')).toBeVisible();
