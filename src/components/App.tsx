@@ -12,7 +12,7 @@ import Onboarding from './Onboarding';
 export default function App() {
   const { route } = useRoute();
 
-  if (!route) {
+  if (!route || route.name === 'loading') {
     return <Loader initial={true} />;
   }
 

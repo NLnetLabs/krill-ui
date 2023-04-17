@@ -6,8 +6,8 @@ import Store from './store';
 const prefix = '/ui';
 
 const routes = [
-  { name: 'home', path: '/' },
-  { name: 'onboarding', path: '/onboarding' },
+  { name: 'home', path: prefix },
+  { name: 'onboarding', path: `${prefix}/onboarding` },
   {
     name: 'cas',
     path: `${prefix}/cas/:ca`,

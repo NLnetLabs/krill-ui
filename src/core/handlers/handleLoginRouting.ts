@@ -41,6 +41,7 @@ export default async function handleLoginRouting(toState: State, store: Store) {
     if (loginMethod && 'redirect_url' in loginMethod) {
       // append id and token query params from current location
       window.location.assign(loginMethod.redirect_url);
+      return Promise.reject({ redirect: { name: 'loading' } });
     }
     // else, redirect to login
     if (toState.name !== 'login') {

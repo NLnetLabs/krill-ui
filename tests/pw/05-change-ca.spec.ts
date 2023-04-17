@@ -1,19 +1,20 @@
-import {test, expect} from '@playwright/test';
+import { test, expect } from '@playwright/test';
 // @ts-ignore
-import {preparePage} from './utils.ts';
+import { preparePage } from './utils.ts';
 
-
-test('change CA', async ({page}) => {
+test('change CA', async ({ page }) => {
   await preparePage(page);
 
-  await page.goto('/');
+  await page.goto('/ui');
 
   const urlRegEx = new RegExp('cas/[a-zA-Z0-9@:%._+~#=]{1,256}$');
   await expect(page).toHaveURL(urlRegEx);
 
   const ca = page.url().substring(page.url().lastIndexOf('/') + 1);
 
-  await expect(await page.locator('h2').innerText()).toBe(`Certificate Authority ${ca}`);
+  await expect(await page.locator('h2').innerText()).toBe(
+    `Certificate Authority ${ca}`
+  );
 
   const dropdown = page.locator('label[for="ca"]~div.select');
 
@@ -28,19 +29,22 @@ test('change CA', async ({page}) => {
 
   // make sure to select any other CA that the one before
   let newCa = '';
-  for (let i = 0; i < await cas.count(); i++) {
+  for (let i = 0; i < (await cas.count()); i++) {
     newCa = await cas.nth(i).innerText();
     if (newCa !== ca) {
       await cas.nth(i).click();
       break;
     }
   }
-  await expect(newCa, 'This test needs at least two CAs to perform').not.toBe('');
+  await expect(newCa, 'This test needs at least two CAs to perform').not.toBe(
+    ''
+  );
 
   const regEx = new RegExp(`/ui/cas/${newCa}$`);
   await page.waitForURL(regEx);
   await expect(page).toHaveURL(regEx);
 
-  await expect(await page.locator('h2').innerText()).toBe(`Certificate Authority ${newCa}`);
-
+  await expect(await page.locator('h2').innerText()).toBe(
+    `Certificate Authority ${newCa}`
+  );
 });

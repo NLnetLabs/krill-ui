@@ -1,15 +1,14 @@
-import {test, expect} from '@playwright/test';
+import { test, expect } from '@playwright/test';
 // @ts-ignore
-import {preparePage} from './utils.ts';
+import { preparePage } from './utils.ts';
 
-
-test('test pagination', async ({page}) => {
+test('test pagination', async ({ page }) => {
   await preparePage(page);
 
-  await page.goto('/');
+  await page.goto('/ui');
 
   const pagination = page.locator('div.pagination');
-  await pagination.locator('select').selectOption({label: '10 / page'});
+  await pagination.locator('select').selectOption({ label: '10 / page' });
   await expect(page).toHaveURL(/\?limit=10/);
 
   const table = page.locator('table.roa-table');
@@ -20,7 +19,6 @@ test('test pagination', async ({page}) => {
   await expect(page).toHaveURL(/\?limit=10&page=2/);
   await expect(await tableBodyRow.count()).toBeLessThanOrEqual(10);
 
-  await pagination.locator('button', {hasText: '1'}).click();
+  await pagination.locator('button', { hasText: '1' }).click();
   await expect(page).toHaveURL(/\?limit=10&page=1/);
-
 });
