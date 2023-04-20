@@ -63,7 +63,7 @@ export const translations: Translations = {
   },
   caDetails: {
     loading: 'Loading {handle}',
-    refresh: 'Refreshing {handle}, this might take several minutes',
+    refresh: 'Refreshing {handle}, this can take a while',
     current: 'Current Certificate Authority',
     download: 'Download PEM',
     noRoas: 'No ROAs found.',
