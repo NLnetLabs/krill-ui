@@ -20,7 +20,7 @@ export const translations: Translations = {
     'nodata': 'Δεν υπάρχουν δεδομένα',
     'copySuccess': 'To XML αρχείο αντιγράφηκε στο πρόχειρο',
     'edit': 'Επεξεργασία',
-    'page': 'page',
+    'page': 'σελίδα',
     'userInfo': {
       'title': 'Στοιχεία Σύνδεσης',
       'user': 'Χρήστης'
@@ -61,8 +61,7 @@ export const translations: Translations = {
   },
   'caDetails': {
     'loading': 'Φόρτωση {handle}',
-    // TODO translate
-    'refresh': 'Refreshing {handle}, this might take several minutes',
+    'refresh': 'Ανανέωση {handle}, μπορεί να διαρκέσει αρκετά λεπτά',
     'current': 'Τρέχουσα Αρχή Πιστοποίησης (CA)',
     'download': 'Λήψη PEM',
     'noRoas': 'Δεν βρέθηκαν ROA.',
@@ -81,8 +80,7 @@ export const translations: Translations = {
     'resource': 'Πόρος',
     'children': 'CA-παιδιά',
     'handle': 'Ονομασία',
-    // TODO: translate
-    'comment': 'Comment',
+    'comment': 'Σχόλιο',
     'maxLength': 'Μέγιστο μήκος',
     'maxLengthTooltip': 'Εάν το μέγιστο μήκος δεν οριστεί (-), το μήκος του προθέματος προεπιλέγεται ως το μέγιστο μήκος.',
     'confirmation': {
@@ -92,8 +90,7 @@ export const translations: Translations = {
       'retired': 'Το ROA αφαιρέθηκε',
       'retiredSuccess': 'Το ROA έχει αφαιρεθεί',
       'addedSuccess': 'Το ROA έχει προστεθεί',
-      // TODO translate
-      'commentUpdatedSuccess': 'The ROA comment has been updated',
+      'commentUpdatedSuccess': 'Το σχόλιο του ROA ενημερώθηκε',
     },
     'addROAForm': {
       'required': 'Το πεδίο είναι υποχρεωτικό',
@@ -101,8 +98,7 @@ export const translations: Translations = {
       'prefix_format': 'Παρακαλώ εισάγετε ένα έγκυρο IPv4 ή IPv6 πρόθεμα'
     },
     'onboardingWarning': 'Θα χρειαστεί να συνδέσετε την Αρχή Πιστοποίησής (CA) σας σε ένα δημόσιο αποθετήριο (repository) RPKI που θα μπορεί να δημοσιεύσει το πιστοποιητικό και τα ROA σας. Με το που ολοκληρωθεί η ρύθμιση του CA-πατέρα, λογισμικά επικύρωσης (relying party) θα αρχίσουν να ανακτούν το πιστοποιητικό και τα ROA σας από αυτό το αποθετήριο (repository).',
-    // TODO translate
-    'initializeRepository': 'You still need to configure a repository for your CA before it can request resource certificate(s) from its parent(s)',
+    'initializeRepository': 'Ακόμη χρειάζεται να ρυθμίσετε ένα αποθετήριο (repository) για την Αρχή Πιστοποίησής (CA) σας πριν μπορέσει να ζητήσει πιστοποιητικά πόρων από τους γονείς της',
     'initialize': 'Παρακαλώ αρχικοποιήστε ένα αποθετήριο (repository) RPKI και/ή τον CA-γονέα πρώτα.',
     'noResourcesYet': 'Δεν έχετε λάβει κανέναν πόρο ακόμα',
     'clickToRefresh': 'Κάντε κλίκ εδώ για ανανέωση',
@@ -118,8 +114,7 @@ export const translations: Translations = {
     'repoTab': {
       'request': 'Αίτημα Εκδότη',
       'response': 'Απάντηση Αποθετηρίου (Repository)',
-      // TODO translate
-      'addRepo': 'Add a repository',
+      'addRepo': 'Πρόσθεση Αποθετηρίου (Repository)',
       'addRepoSuccess': 'Το Αποθετήριο (Repository) προστέθηκε'
     },
     'analyseThis': 'Ανέλυσε τα ROA',
@@ -229,7 +224,7 @@ export const translations: Translations = {
     'ca_parent_response_invalid_xml': 'Άκυρη απάντηση XML από CA-γονέα',
     'ca_parent_response_wrong_xml': 'Λήφθηκε απάντηση αποθετηρίου (repository) ενώ προστιθόταν CA-γονέας',
     'ca_child_duplicate': 'Έχετε ήδη ένα CA-παιδί με το όνομα \'{child}\'',
-    'ca_child_unknown': 'Δέν έχετε CA-παιδί με το όνομα \'{child}\'',
+    'ca_child_unknown': 'Δεν έχετε CA-παιδί με το όνομα \'{child}\'',
     'ca_child_resources_required': 'Πρέπει να προσδιορίσετε πόρους για το CA-παιδί \'{child}\'',
     'ca_roa_unknown': 'Δεν είναι δυνατή η αφαίρεση άγνωστου ROA \'{prefix}-{max_length} => {asn}\'',
     'ca_roa_duplicate': 'Διπλότυπο ROA \'{prefix}-{max_length} => {asn}\'',
