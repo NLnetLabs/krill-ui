@@ -61,8 +61,7 @@ export const translations: Translations = {
   },
   'caDetails': {
     'loading': 'Lade {handle}',
-    // TODO translate
-    'refresh': 'Refreshing {handle}, this might take several minutes',
+    'refresh': 'Aktualisiere {handle}. Dies kann einige Minuten dauern',
     'current': 'Aktuelle Zertifizierungsstelle',
     'download': 'Download PEM',
     'noRoas': 'Keine ROAs gefunden.',
@@ -81,8 +80,7 @@ export const translations: Translations = {
     'resource': 'Ressource',
     'children': 'Kinder',
     'handle': 'Name',
-    // TODO: translate
-    'comment': 'Comment',
+    'comment': 'Anmerkung',
     'maxLength': 'MaxLength',
     'maxLengthTooltip': 'Wenn maxLength nicht angegeben wird (-), wird die Präfixlänge genutzt.',
     'confirmation': {
@@ -92,8 +90,7 @@ export const translations: Translations = {
       'retired': 'ROA entfernt',
       'retiredSuccess': 'Das ROA wurde entfernt',
       'addedSuccess': 'Das ROA wurde hinzugefügt',
-      // TODO translate
-      'commentUpdatedSuccess': 'The ROA comment has been updated',
+      'commentUpdatedSuccess': 'Die Anmerkung des ROAs wurde aktualisiert',
     },
     'addROAForm': {
       'required': 'Dies ist ein Pflichtfeld',
@@ -101,8 +98,7 @@ export const translations: Translations = {
       'prefix_format': 'Bitte geben Sie ein gültiges IPv4 oder IPv6 Präfix ein'
     },
     'onboardingWarning': 'Um Ihr Zertifikat und Ihre ROAs zu veröffentlichen müssen Sie Ihre Zertifizierungsstelle mit einer öffentlichen RPKI Datenbank (Repository) verbinden. Sobald die Konfiguration der Eltern-Zertifizierungsstelle abgeschlossen ist, wird die Relying Party Software mit dem Herunterladen Ihres Zertifikates sowie Ihrer ROAs, welche in dieser Datenbank veröffentlicht wurden, beginnen.',
-    // TODO translate
-    'initializeRepository': 'You still need to configure a repository for your CA before it can request resource certificate(s) from its parent(s)',
+    'initializeRepository': 'Sie müssen die RPKI Datenbank (Repository) konfigurieren bevor Ihre Zertifizierungsstelle die Resourcen-Zertifikate von der Eltern-Zertifizierungsstelle anfordern kann.',
     'initialize': 'Bitte initialisieren Sie die RPKI Datenbank (Repository) und/oder die Eltern-Zertifizierungsstelle zuerst.',
     'noResourcesYet': 'Sie haben noch keine Ressourcen erhalten',
     'clickToRefresh': 'Klicken Sie hier um neu zu laden',
@@ -118,8 +114,7 @@ export const translations: Translations = {
     'repoTab': {
       'request': 'Anfrage des Publishers',
       'response': 'Antwort der Datenbank (Repository)',
-      // TODO translate
-      'addRepo': 'Add a repository',
+      'addRepo': 'Eine Datenbank (Repository) hinzufügen',
       'addRepoSuccess': 'Datenbank (Repository) hinzugefügt'
     },
     'analyseThis': 'Meine ROAs analysieren',
@@ -335,8 +330,7 @@ export const translations: Translations = {
       'missing_xml_attr': 'Fehlendes Attribut {attr} vom Element {el}',
       'empty_xml_el': 'Element {el} darf nicht leer sein',
       'empty_xml_attr': 'Attribut {attr} vom Element {el} darf nicht leer sein',
-      // TODO translate
-      'non_ascii_xml_el': 'Element {el} cannot contain non-ASCII characters',
+      'non_ascii_xml_el': 'Element {el} darf nur ASCII-Zeichen enthalten',
       'child_handle_required': 'Kind Handle wird benötigt',
       'publisher_handle_required': 'Publisher Handle wird benötigt',
       'non_base64_certificate_xml_el': 'Element {el} muss ein korrektes Base64 encodiertes selbst-signiertes X.509 BPKI Zertifikat enthalten',
