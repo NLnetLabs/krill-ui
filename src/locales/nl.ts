@@ -61,8 +61,7 @@ export const translations: Translations = {
   },
   'caDetails': {
     'loading': '{handle} wordt geladen',
-    // TODO translate
-    'refresh': 'Refreshing {handle}, this might take several minutes',
+    'refresh': 'Ververs {handle}, dit kan even duren',
     'current': 'Huidige certificaatautoriteit',
     'download': 'Download PEM',
     'noRoas': 'Geen ROAs gevonden.',
@@ -81,7 +80,6 @@ export const translations: Translations = {
     'resource': 'Resource',
     'children': 'Children',
     'handle': 'Naam',
-    // TODO: translate
     'comment': 'Opmerking',
     'maxLength': 'Maximale Lengte',
     'maxLengthTooltip': 'Als er geen maximale lengte is gedefinieerd (-), wordt de lengte van de prefix gebruikt.',
@@ -91,9 +89,8 @@ export const translations: Translations = {
       'added': 'ROA toegevoegd',
       'retired': 'ROA verwijderd',
       'retiredSuccess': 'De ROA is verwijderd',
-      'addedSuccess': 'The ROA is toegevoegd',
-      // TODO translate
-      'commentUpdatedSuccess': 'The ROA comment has been updated',
+      'addedSuccess': 'De ROA is toegevoegd',
+      'commentUpdatedSuccess': 'ROA commentaar is gewijzigd',
     },
     'addROAForm': {
       'required': 'Dit veld is verplicht',
@@ -101,8 +98,7 @@ export const translations: Translations = {
       'prefix_format': 'Vul alstublieft een geldige IPv4 of IPv6 prefix in'
     },
     'onboardingWarning': 'Om uw certificaat en ROAs te publiceren moet uw CA verbonden worden met een publieke RPKI databank (repository). Zodra de configuratie met de bovenliggende CA is voltooid, zal software gebruikt door de vertrouwende partijen (RPKI validators) direct beginnen met het downloaden en verifiëren van uw certificaat en ROAs die gepubliceerd zijn in deze databank.',
-    // TODO translate
-    'initializeRepository': 'You still need to configure a repository for your CA before it can request resource certificate(s) from its parent(s)',
+    'initializeRepository': 'Initialiseer alstublieft eerst uw RPKI databank (repository)',
     'initialize': 'Initialiseer alstublieft eerst uw RPKI databank (repository) en/of de bovenliggende CA.',
     'noResourcesYet': 'U heeft nog geen resources ontvangen',
     'clickToRefresh': 'Klik hier om te verversen',
@@ -118,8 +114,7 @@ export const translations: Translations = {
     'repoTab': {
       'request': 'Publisher Request',
       'response': 'Repository Response',
-      // TODO translate
-      'addRepo': 'Add a repository',
+      'addRepo': 'Initialiseer databank (repository)',
       'addRepoSuccess': 'Databank (repository) toegevoegd'
     },
     'analyseThis': 'Analiseer mijn ROAs',
@@ -335,8 +330,7 @@ export const translations: Translations = {
       'missing_xml_attr': 'Missing attribute {attr} on element {el}',
       'empty_xml_el': 'Element {el} cannot be empty',
       'empty_xml_attr': 'Attribute {attr} on element {el} cannot be empty',
-      // TODO translate
-      'non_ascii_xml_el': 'Element {el} cannot contain non-ASCII characters',
+      'non_ascii_xml_el': 'Element {el} mag geen non-ASCII karakters bevatten',
       'child_handle_required': 'CA naam is vereist',
       'publisher_handle_required': 'Publisher naam is vereist',
       'non_base64_certificate_xml_el': 'Element {el} must contain a correctly Base64 encoded self-signed X.509 BPKI certificate',
