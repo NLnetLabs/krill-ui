@@ -2,7 +2,7 @@ import { Translations } from '../core/translations';
 
 export const translations: Translations = {
   'common': {
-    'readthedocs': 'Read the Docs',
+    'readthedocs': 'Ler documentos (inglês)',
     'report': 'Reportar um problema',
     'confirm': 'Confirmar',
     'cancel': 'Cancelar',
@@ -61,8 +61,7 @@ export const translations: Translations = {
   },
   'caDetails': {
     'loading': 'Carregando {handle}',
-    // TODO translate
-    'refresh': 'Refreshing {handle}, this might take several minutes',
+    'refresh': 'Atualizando {handle}, isso pode demorar uns minutos',
     'current': 'Autoridade Certificadora atual',
     'download': 'Download do arquivo PEM',
     'noRoas': 'Nenhuma ROAs encontrada.',
@@ -81,8 +80,7 @@ export const translations: Translations = {
     'resource': 'Recurso',
     'children': 'Filhos',
     'handle': 'Identificador',
-    // TODO: translate
-    'comment': 'Comment',
+    'comment': 'Commentário',
     'maxLength': 'Comprimento máximo',
     'maxLengthTooltip': 'Se o comprimento máximo não está especificado, o comprimento do prefixo será utilizado',
     'confirmation': {
@@ -92,8 +90,7 @@ export const translations: Translations = {
       'retired': 'ROA removida',
       'retiredSuccess': 'A ROA foi removida',
       'addedSuccess': 'A ROA foi adicionada',
-      // TODO translate
-      'commentUpdatedSuccess': 'The ROA comment has been updated',
+      'commentUpdatedSuccess': 'Commentário foi atualizado',
     },
     'addROAForm': {
       'required': 'Este campo é obrigatório',
@@ -101,8 +98,7 @@ export const translations: Translations = {
       'prefix_format': 'Por favor, entre um prefixo IPv4 ou IPv6 válido'
     },
     'onboardingWarning': 'Você deve conectar sua Autoridade Certificadora (CA) a um repositório RPKI público, onde será possível publicar seu certificado e ROAs. Assim que a configuração com a CA-pai for finalizada, imediatamente os softwares de validação (\'relying parties\') terão acesso aos certificado(s) e ROA(s) criados neste repositório.',
-    // TODO translate
-    'initializeRepository': 'You still need to configure a repository for your CA before it can request resource certificate(s) from its parent(s)',
+    'initializeRepository': 'Você ainda deve conectar sua Autoridade Certificadora (CA) a um repositório RPKI público.',
     'initialize': 'Por favor, initialize o repositório RPKI e/ou Pai primeiro.',
     'noResourcesYet': 'Você ainda não recebeu nenhum recurso',
     'clickToRefresh': 'Clique aqui para atualizar',
@@ -118,8 +114,7 @@ export const translations: Translations = {
     'repoTab': {
       'request': 'Requisição do Publicador',
       'response': 'Resposta do Repositório',
-      // TODO translate
-      'addRepo': 'Add a repository',
+      'addRepo': 'Incluir um repositório',
       'addRepoSuccess': 'Repositório adicionado'
     },
     'analyseThis': 'Analisar minhas ROAs',
@@ -335,8 +330,7 @@ export const translations: Translations = {
       'missing_xml_attr': 'Atributo {attr} ausente no elemento {el}',
       'empty_xml_el': 'Elemento {el} não pode ser vazio',
       'empty_xml_attr': 'Atributo {attr} do elemento {el} não pode ser vazio',
-      // TODO translate
-      'non_ascii_xml_el': 'Element {el} cannot contain non-ASCII characters',
+      'non_ascii_xml_el': 'Elemento {el} não pode incluir caracteres não-ASCII',
       'child_handle_required': 'Identificador da CA-filha é obrigatório',
       'publisher_handle_required': 'Identificador do Publicador é obrigatório',
       'non_base64_certificate_xml_el': 'Elemento {el} deve conter um certificado X.509 BPKI auto-assinado, no formato Base64',
