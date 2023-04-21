@@ -61,8 +61,7 @@ export const translations: Translations = {
   },
   'caDetails': {
     'loading': 'Cargando {handle}',
-    // TODO translate
-    'refresh': 'Refreshing {handle}, this might take several minutes',
+    'refresh': 'Actualizando {handle}, esto puede tomar varios minutos',
     'current': 'Autoridad de Certificación actual',
     'download': 'Descargar PEM',
     'noRoas': 'No se encontró ningún ROA.',
@@ -81,8 +80,7 @@ export const translations: Translations = {
     'resource': 'Recurso',
     'children': 'Hijos',
     'handle': 'Identificador',
-    // TODO: translate
-    'comment': 'Comment',
+    'comment': 'Comentario',
     'maxLength': 'Largo máx',
     'maxLengthTooltip': 'Si el largo máximo no es especificado (-), se toma por defecto el largo del prefijo.',
     'confirmation': {
@@ -92,8 +90,7 @@ export const translations: Translations = {
       'retired': 'ROA eliminado',
       'retiredSuccess': 'El ROA se ha eliminado',
       'addedSuccess': 'El ROA se ha agregado',
-      // TODO translate
-      'commentUpdatedSuccess': 'The ROA comment has been updated',
+      'commentUpdatedSuccess': 'El comentario del ROA se ha actualizado',
     },
     'addROAForm': {
       'required': 'Este campo es obligatorio',
@@ -101,8 +98,7 @@ export const translations: Translations = {
       'prefix_format': 'Ingrese un prefijo IPv4 o IPv6 válido'
     },
     'onboardingWarning': 'Deberá conectar su CA a un repositorio RPKI público donde pueda publicar su certificado y sus ROA. Tan pronto como se complete la configuración del padre, el software de validación comenzará a recuperar su certificado y los ROA que cree a partir de este repositorio.',
-    // TODO translate
-    'initializeRepository': 'You still need to configure a repository for your CA before it can request resource certificate(s) from its parent(s)',
+    'initializeRepository': 'Es necesario configurar un repositorio para su CA antes que pueda solicitar certificado(s) de recursos a su padre(s)',
     'initialize': 'Primero inicialice el repositorio RPKI y/o el padre.',
     'noResourcesYet': 'Todavía no ha recibido ningún recurso',
     'clickToRefresh': 'Haga clic aquí para actualizar',
@@ -118,8 +114,7 @@ export const translations: Translations = {
     'repoTab': {
       'request': 'Solicitud repositorio',
       'response': 'Respuesta repositorio',
-      // TODO translate
-      'addRepo': 'Add a repository',
+      'addRepo': 'Agregar repositorio',
       'addRepoSuccess': 'Se agregó el repositorio'
     },
     'analyseThis': 'Análisis de mis ROAs',
@@ -329,18 +324,17 @@ export const translations: Translations = {
       'success': 'El publicador  \'{publisher_handle}\' ha sido eliminado del testbed.'
     },
     'errors': {
-      'invalid_xml': 'Invalid XML: {err}',
-      'missing_xml_el': 'Missing element {el}',
-      'missing_xml_child_el': 'Missing child element {el} of element {parent}',
-      'missing_xml_attr': 'Missing attribute {attr} on element {el}',
-      'empty_xml_el': 'Element {el} cannot be empty',
-      'empty_xml_attr': 'Attribute {attr} on element {el} cannot be empty',
-      // TODO translate
-      'non_ascii_xml_el': 'Element {el} cannot contain non-ASCII characters',
-      'child_handle_required': 'Child Handle is required',
-      'publisher_handle_required': 'Publisher Handle is required',
-      'non_base64_certificate_xml_el': 'Element {el} must contain a correctly Base64 encoded self-signed X.509 BPKI certificate',
-      'invalid_registration_data': 'Your registration details could not be parsed correctly'
+      'invalid_xml': 'XML inválido: {err}',
+      'missing_xml_el': 'Elemento ausente {el}',
+      'missing_xml_child_el': 'Elemento hijo ausente {el} del elemento {parent}',
+      'missing_xml_attr': 'Atributo ausente {attr} en el elemento {el}',
+      'empty_xml_el': 'Elemento {el} no puede estar vacío',
+      'empty_xml_attr': 'Atributo {attr} en el elemento {el} no puede estar vacío',
+      'non_ascii_xml_el': 'Elemento {el} no puede contener caracteres no ASCII',
+      'child_handle_required': 'El identificador del hijo es requerido',
+      'publisher_handle_required': 'El identificador del publicador es requerido',
+      'non_base64_certificate_xml_el': 'Elemento {el} debe contener un certificado X.509 BPKI auto firmado codificado correctamente en Base64',
+      'invalid_registration_data': 'Los detalles de tu registro no pudieron ser analizados correctamente'
     }
   }
 };
