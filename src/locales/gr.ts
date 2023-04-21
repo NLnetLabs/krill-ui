@@ -333,7 +333,7 @@ export const translations: Translations = {
       'non_ascii_xml_el': 'Το στοιχείο {el} δεν μπορεί να περιέχει χαρακτήρες που δεν είναι ASCII',
       'child_handle_required': 'Η ονομασία CA-παιδιού είναι υποχρεωτική',
       'publisher_handle_required': 'Η ονομασία Εκδότη είναι υποχρεωτική',
-      'non_base64_certificate_xml_el': 'Το στοιχείο {el} πρέπει να περιέχει ένα σωστά κωδικοποιημένο σε Base64 αυτο-υπογεγραμμένο X.509 BPKI πιστοποιητικό',
+      'non_base64_certificate_xml_el': 'Το στοιχείο {el} πρέπει να περιέχει ένα αυτο-υπογεγραμμένο X.509 BPKI πιστοποιητικό με σωστή κωδικοποίηση Base64',
       'invalid_registration_data': 'Τα στοιχεία εγγραφής σας δεν μπόρεσαν να αναλυθούν σωστά'
     }
   }
