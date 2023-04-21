@@ -33,12 +33,11 @@ export const translations: Translations = {
     'required': 'SVP entrez votre mot de passe',
     'error': 'Le mot de passe spécifié est incorrect',
     'copied': 'Vous ne devriez pas obtenir votre mot de passe depuis <a href=\'https://xkcd.com/936/\' target=\'_blank\'>https://xkcd.com/936/</a>',
-    // TODO: translate
-    'id': 'Username',
-    'idPlaceholder': 'Your username',
-    'idRequired': 'Please enter your username',
-    'retry': 'Click {0} to return to the login page.',
-    'here': 'here'
+    'id': 'Nom d\'utilisateur',
+    'idPlaceholder': 'Votre nom d\'utilisateur',
+    'idRequired': 'Veuillez entrer votre nom d\'utilisateur',
+    'retry': 'Cliquer {0} pour revenir à la page de connexion.',
+    'here': 'ici'
   },
   'onboarding': {
     'welcome': 'Bienvenue sur Krill',
@@ -62,8 +61,7 @@ export const translations: Translations = {
   },
   'caDetails': {
     'loading': 'En cours de chargement {handle}',
-    // TODO translate
-    'refresh': 'Refreshing {handle}, this might take several minutes',
+    'refresh': 'Rafraichissement de {handle}, ceci peut prendre plusieurs minutes',
     'current': 'Autorité de Certification actuelle',
     'download': 'Télécharger le PEM',
     'noRoas': 'Pas de ROAs trouvé.',
@@ -82,8 +80,7 @@ export const translations: Translations = {
     'resource': 'Ressource',
     'children': 'Enfant',
     'handle': 'Identifiant',
-    // TODO: translate
-    'comment': 'Comment',
+    'comment': 'Commentaire',
     'maxLength': 'Longueur maximum',
     'maxLengthTooltip': 'Si la longueur maximum n\'est pas spécifiée (-), elle sera initialisée à la longueur du préfixe.',
     'confirmation': {
@@ -93,8 +90,7 @@ export const translations: Translations = {
       'retired': 'ROA enlevé',
       'retiredSuccess': 'Le ROA a été enlevé',
       'addedSuccess': 'Le ROA a été ajouté',
-      // TODO translate
-      'commentUpdatedSuccess': 'The ROA comment has been updated',
+      'commentUpdatedSuccess': 'Le commentaire ROA a été mis à jour',
     },
     'addROAForm': {
       'required': 'Ce champ est requis',
@@ -102,8 +98,7 @@ export const translations: Translations = {
       'prefix_format': 'SVP entrez un préfixe IPv4 ou IPv6 valide'
     },
     'onboardingWarning': 'Veuillez connecter votre AC à un dépôt RPKI publique pour publier votre certificat et vos ROAs. Dès que la configuration côté parent est complète, le \'relying party\' (logiciel validateur) commencera immédiatement à récupérer votre certificat et les ROAs que vous avez créés depuis ce dépôt.',
-    // TODO translate
-    'initializeRepository': 'You still need to configure a repository for your CA before it can request resource certificate(s) from its parent(s)',
+    'initializeRepository': 'Vous devez toujours configurer un entrepôt pour votre AC avant de pouvoir demander un ou plusieurs certificats de ressources à votre parent.',
     'initialize': 'SVP initialisez le dépôt RPKI et/ou le parent en premier lieu.',
     'noResourcesYet': 'Vous n\'avez pas encore reçu de ressources',
     'clickToRefresh': 'Cliquer ici pour rafraîchir',
@@ -119,8 +114,7 @@ export const translations: Translations = {
     'repoTab': {
       'request': 'Requête du Publisher',
       'response': 'Réponse du dépôt',
-      // TODO translate
-      'addRepo': 'Add a repository',
+      'addRepo': 'Ajouter un dépôt',
       'addRepoSuccess': 'Dépôt ajouté'
     },
     'analyseThis': 'Analyser mes ROAs',
@@ -239,14 +233,13 @@ export const translations: Translations = {
     'ta_not_allowed': 'Cette fonctionnalité n\'est pas supportée par l\'ancre de confiance de test',
     'ta_name_reserved': 'Nom reservé',
     'ca_roa_delta_error': 'ROA rejeté pour la/les raison(s) suivante(s)',
-    // TODO translate
-    'api_insufficient_rights': 'Your user does not have sufficient rights to perform this action. Please contact your administrator.',
-    'api_invalid_credentials': 'The supplied login credentials were incorrect.',
-    'api_login_error': 'An error occurred while logging you in: {cause}',
-    'api_auth_transient_error': 'A (temporary) error occured while trying to authenticate your request. Please try again later.',
-    'api_auth_permanent_error': 'An error occurred while trying to authenticate your request. Please contact your administrator.',
-    'api_auth_session_expired': 'Your login session has expired. Please login again..',
-    'general_error': 'Something went wrong. Please contact your administrator.'
+    'api_insufficient_rights': 'Votre utilisateur n\'a pas les droits suffisants pour effectuer cette action.',
+    'api_invalid_credentials': 'Les identifiants fournis sont invalides.',
+    'api_login_error': 'Une erreur est survenue pendant votre connexion: {cause}',
+    'api_auth_transient_error': 'Une erreur temporaire est survenue pendant votre connexion. Veuillez essayer à nouveau dans quelques instants',
+    'api_auth_permanent_error': 'Une erreur est survenue pendant l\'authentification de votre connexion. Veuillez contacter votre administrateur.',
+    'api_auth_session_expired': 'Votre session a expirée,',
+    'general_error': 'Une erreur est survenue. Veuillez contacter votre administrateur.'
   },
   'testbed': {
     'welcome': 'Bienvenue sur ce banc d\'essai pour RPKI',
@@ -337,14 +330,11 @@ export const translations: Translations = {
       'missing_xml_attr': 'Attribut {attr} sur l\'élement {el} manquant',
       'empty_xml_el': 'Elément {el} ne peut pas être vide',
       'empty_xml_attr': 'Attribut {attr} de l\'élément {el} ne peut pas être vide',
-      // TODO translate
-      'non_ascii_xml_el': 'Element {el} cannot contain non-ASCII characters',
+      'non_ascii_xml_el': 'L\'élement {el} ne peut pas contenir de caractères non-ASCII',
       'child_handle_required': 'L\'identifiant Enfant est requis',
       'publisher_handle_required': 'L\'identifiant Publisher est requis',
-      // TODO translate
-      'non_base64_certificate_xml_el': 'Element {el} must contain a correctly Base64 encoded self-signed X.509 BPKI certificate',
-      // TODO translate
-      'invalid_registration_data': 'Your registration details could not be parsed correctly'
+      'non_base64_certificate_xml_el': 'L\'élement {el} doit contenir un certificat BKPI X.509 auto signé et correctement encodé en base64',
+      'invalid_registration_data': 'Vos données d\'inscription n\'ont pas pu être analysées correctement'
     }
   }
 };
