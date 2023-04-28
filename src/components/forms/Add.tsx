@@ -22,12 +22,12 @@ export default function Add({ onClose, roa }: AddProps) {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
     if (form.checkValidity()) {
-      navigate({ asn, prefix, comment, max_length: maxLength});
+      navigate({ asn, prefix, comment, max_length: maxLength });
     } else {
       form.reportValidity();
     }
   };
-  
+
   return (
     <>
       <h3>{t.caDetails.addRoa}</h3>
@@ -51,7 +51,7 @@ export default function Add({ onClose, roa }: AddProps) {
           </label>
           <input
             name="prefix"
-            pattern="^((([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(\.(?!\/)|\/)){4}([0-9]|1[0-9]|2[0-4]))|(([a-fA-F0-9:]+)\/([1-9]|[1-9][0-9]|1[01][0-9]|12[0-8]))$"
+            pattern="^((([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(\.(?!\/)|\/)){4}([0-9]|[1-2][0-9]|3[0-2]))|(([a-fA-F0-9:]+)\/([1-9]|[1-9][0-9]|1[01][0-9]|12[0-8]))$"
             value={prefix}
             onChange={(e) => setPrefix(e.target.value)}
             required
