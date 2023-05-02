@@ -1,5 +1,3 @@
-// @ts-ignore
-import scrypt from './hash.js';
 import {
   Roa,
   RoaField,
@@ -72,25 +70,6 @@ export function isAbsolute(url: string): boolean {
 
 export function parseLoginUrl(url: string): boolean {
   return url.includes('withId=true');
-}
-
-export async function krillHash(
-  username: string,
-  password: string
-): Promise<string> {
-  const cost_level = 13;
-  const iterations = Math.pow(2, cost_level);
-  const var_r = 8;
-  const var_p = 1;
-  const length = 32;
-
-  const salt = 'krill-lagosta-' + username;
-  const pwBuf = password.normalize('NFKC');
-  const saltBuf = salt.normalize('NFKC');
-
-  const hash = await scrypt(pwBuf, saltBuf, iterations, var_r, var_p, length);
-
-  return await hash.toString('hex');
 }
 
 export function checkXmlParsingSucceeded(doc: Document): string {

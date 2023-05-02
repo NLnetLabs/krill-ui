@@ -1,6 +1,5 @@
 import React, { FormEvent, useState } from 'react';
 import Layout from './Layout';
-import { krillHash } from '../core/utils';
 import { KrillLogin } from '../core/types';
 import useNavigation from '../hooks/useNavigation';
 import useStore from '../hooks/useStore';
@@ -16,11 +15,9 @@ export default function Login() {
 
   const login = async (e: FormEvent) => {
     e.preventDefault();
+
     if (method.with_id) {
-      navigate({
-        password: await krillHash(username, password),
-        username,
-      });
+      navigate({ password, username });
     } else {
       navigate({ password });
     }
