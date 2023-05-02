@@ -85,7 +85,7 @@ export const translations: Translations = {
     comment: 'Comment',
     maxLength: 'Max Length',
     maxLengthTooltip:
-      'If max length is not specified (-), it defaults to the prefix length.',
+      'If max length is not specified, it defaults to the prefix length.',
     confirmation: {
       title: 'Warning',
       message:

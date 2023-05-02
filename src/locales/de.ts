@@ -82,7 +82,7 @@ export const translations: Translations = {
     'handle': 'Name',
     'comment': 'Anmerkung',
     'maxLength': 'MaxLength',
-    'maxLengthTooltip': 'Wenn maxLength nicht angegeben wird (-), wird die Präfixlänge genutzt.',
+    'maxLengthTooltip': 'Wenn maxLength nicht angegeben wird, wird die Präfixlänge genutzt.',
     'confirmation': {
       'title': 'Warnung',
       'message': 'Diese Aktion entfernt das ROA \'{prefix}-{max_length} => {asn}\'. Fortfahren?',

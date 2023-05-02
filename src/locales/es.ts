@@ -82,7 +82,7 @@ export const translations: Translations = {
     'handle': 'Identificador',
     'comment': 'Comentario',
     'maxLength': 'Largo máx',
-    'maxLengthTooltip': 'Si el largo máximo no es especificado (-), se toma por defecto el largo del prefijo.',
+    'maxLengthTooltip': 'Si el largo máximo no es especificado, se toma por defecto el largo del prefijo.',
     'confirmation': {
       'title': 'Advertencia',
       'message': 'Esto eliminará el ROA \'{prefix}-{max_length} => {asn}\'. żDesea continuar?',
