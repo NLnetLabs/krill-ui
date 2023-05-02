@@ -5,6 +5,7 @@ import { KrillLogin } from '../core/types';
 import useNavigation from '../hooks/useNavigation';
 import useStore from '../hooks/useStore';
 import useTranslations from '../hooks/useTranslations';
+import Loader from './Loader';
 
 export default function Login() {
   const [username, setUsername] = useState('');
@@ -13,6 +14,10 @@ export default function Login() {
   const store = useStore();
   const t = useTranslations();
   const method = store.loginMethod as KrillLogin;
+
+  if (!method) {
+    return <Loader initial={true} />;
+  }
 
   const login = async (e: FormEvent) => {
     e.preventDefault();
@@ -28,12 +33,14 @@ export default function Login() {
 
   return (
     <Layout>
-      <form onSubmit={login} method="POST" className={`login card ${method.with_id ? 'vertical-form' : ''}`}>
+      <form
+        onSubmit={login}
+        method="POST"
+        className={`login card ${method.with_id ? 'vertical-form' : ''}`}
+      >
         {method.with_id && (
           <div>
-            <label htmlFor="admin required">
-              {t.login.id}
-            </label>
+            <label htmlFor="admin required">{t.login.id}</label>
             <input
               name="token"
               type="username"
@@ -45,9 +52,7 @@ export default function Login() {
           </div>
         )}
         <div>
-          <label htmlFor="token required">
-            {t.login.password}
-          </label>
+          <label htmlFor="token required">{t.login.password}</label>
           <input
             name="token"
             type="password"

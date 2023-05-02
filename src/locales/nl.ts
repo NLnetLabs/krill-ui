@@ -82,7 +82,7 @@ export const translations: Translations = {
     'handle': 'Naam',
     'comment': 'Opmerking',
     'maxLength': 'Maximale Lengte',
-    'maxLengthTooltip': 'Als er geen maximale lengte is gedefinieerd (-), wordt de lengte van de prefix gebruikt.',
+    'maxLengthTooltip': 'Als er geen maximale lengte is gedefinieerd, wordt de lengte van de prefix gebruikt.',
     'confirmation': {
       'title': 'Waarschuwing',
       'message': 'Hiermee wordt de ROA \'{prefix}-{max_length} => {asn}\' verwijderd. Doorgaan?',
