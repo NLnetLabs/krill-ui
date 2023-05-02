@@ -210,7 +210,7 @@ export default class Store implements Data {
 
   async tryLogin(password: string, username?: string) {
     try {
-      const details = await this.api.postLogin(password, username); // username is optional
+      const details = await this.api.postLogin(password, username);
       this.setNotification(null);
       this.setToken(details.token);
       this.setUserDetails({
@@ -218,6 +218,7 @@ export default class Store implements Data {
         attributes: details.attributes,
       });
     } catch (e) {
+      this.setUserDetails(null);
       this.setNotification({
         type: NotificationType.error,
         message: this.translations?.login.error,
