@@ -52,18 +52,29 @@ export default class Api {
       },
     });
 
-    if (response.headers.get('Content-Type') !== 'application/json') {
-      return (await response.text()) as ResponseType;
+    if (response.status === 401 || response.status === 403) {
+      this.setToken(null);
+    }
+
+    const isJson = response.headers.get('Content-Type') === 'application/json';
+
+    if (!isJson) {
+      const text = await response.text();
+
+      if (response.status === 200) {
+        return text as ResponseType;
+      }
+
+      throw {
+        status: response.status,
+        msg: text,
+      } as ErrorResponseType;
     }
 
     const json = await response.json();
 
     if (response.status === 200) {
       return json as ResponseType;
-    }
-
-    if (response.status === 401 || response.status === 403) {
-      this.setToken(null);
     }
 
     throw {
@@ -188,15 +199,20 @@ export default class Api {
     });
   }
 
-  postLogin(token: string, username?: string): Promise<LoginResponse> {
-    let login_url = '/auth/login';
+  postLogin(tokenOrPassword: string, username?: string): Promise<LoginResponse> {
+    const login_url = '/auth/login';
 
     if (username) {
-      login_url += '?' + new URLSearchParams({ id: username });
+      this.setToken(null);
+      const encoded = btoa(`${username}:${tokenOrPassword}`);
+      return this.post(login_url, {
+        headers: {
+          Authorization: `Basic ${encoded}`,
+        },
+      });
     }
 
-    this.setToken(token);
-
+    this.setToken(tokenOrPassword);
     return this.post(login_url);
   }
 
