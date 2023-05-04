@@ -9,7 +9,7 @@ export default function usePublisherRequest(): string {
   const store = useStore() as Store;
 
   useEffect(() => {
-    if (!publisherRequest && store.ca ) {
+    if (store.ca) {
       store.api.getPublisherRequest(store.ca).then((text: string) => {
         setPublisherRequest(text);
         cache = text;
@@ -19,4 +19,4 @@ export default function usePublisherRequest(): string {
 
   return publisherRequest;
 }
-  
+
