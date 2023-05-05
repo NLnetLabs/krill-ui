@@ -20,21 +20,25 @@ export default function CasHeader() {
           {' '}
           <strong>{store.ca}</strong>
         </h2>
-        <div>
-          <label htmlFor="ca">{t.caDetails.current}</label>
-          <Select
-            options={store.cas?.reduce((acc, ca) => ({...acc, [ca]: [ca]}), {}) || {}}
-            value={store.ca || ''}
-            onChange={(ca) => navigate({ca}, 'cas')}
-          />
-        </div>
+        {
+          store.cas && store.cas?.length > 1 && (
+            <div>
+              <label htmlFor="ca">{t.caDetails.current}</label>
+              <Select
+                options={store.cas?.reduce((acc, ca) => ({ ...acc, [ca]: [ca] }), {}) || {}}
+                value={store.ca || ''}
+                onChange={(ca) => navigate({ ca }, 'cas')}
+              />
+            </div>
+          )
+        }
       </div>
       {!parentSet && (
         <div className="notification error">
           {t.caDetails.onboardingWarning}
         </div>
       )}
-      {parentSet && !repoSet &&  (
+      {parentSet && !repoSet && (
         <div className="notification error">
           {t.caDetails.initializeRepository}
         </div>
