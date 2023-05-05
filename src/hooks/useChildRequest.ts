@@ -9,7 +9,7 @@ export default function useChildRequest(): string {
   const store = useStore() as Store;
 
   useEffect(() => {
-    if (!childRequest && store.ca ) {
+    if (store.ca) {
       store.api.getChildRequest(store.ca).then((text: string) => {
         setChildRequest(text);
         cache = text;
@@ -19,4 +19,4 @@ export default function useChildRequest(): string {
 
   return childRequest;
 }
-  
+
