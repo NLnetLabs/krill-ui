@@ -14,6 +14,7 @@ export default function Select({ options, value, onChange }: SelectProps) {
       <button
         className={open ? 'open' : ''}
         onClick={() => setOpen(!open)}
+        onFocus={() => 'this.size=10'}
         onBlur={() => {
           setTimeout(() => setOpen(false), 300);
         }}
