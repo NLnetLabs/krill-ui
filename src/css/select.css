@@ -2,7 +2,7 @@
 .select {
   position: relative;
   display: inline-block;
-  width: 8rem;
+  width: 10rem;
 }
 
 .select.wide {
