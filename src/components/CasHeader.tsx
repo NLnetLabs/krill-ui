@@ -25,7 +25,8 @@ export default function CasHeader() {
             <div>
               <label htmlFor="ca">{t.caDetails.current}</label>
               <Select
-                options={store.cas?.reduce((acc, ca) => ({ ...acc, [ca]: [ca] }), {}) || {}}
+                className="wide"
+                options={store.cas?.sort().reduce((acc, ca) => ({ ...acc, [ca]: [ca] }), {}) || {}}
                 value={store.ca || ''}
                 onChange={(ca) => navigate({ ca }, 'cas')}
               />

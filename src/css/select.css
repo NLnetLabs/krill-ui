@@ -2,7 +2,11 @@
 .select {
   position: relative;
   display: inline-block;
-  width: 10rem;
+  width: 8rem;
+}
+
+.select.wide {
+  width: 20rem;
 }
 
 .select button {
@@ -16,7 +20,11 @@
   border: 1px solid var(--grey-light);
   cursor: pointer;
   border-radius: var(--radius);
-  outline: none;;
+  outline: none;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding-right: 2rem;
 }
 
 .select button::after,
@@ -55,7 +63,8 @@ button.expand::after {
   box-shadow: var(--shadaw);
   border-radius: var(--radius);
   max-height: 0;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   z-index: 10;
 }
 

@@ -4,13 +4,14 @@ interface SelectProps {
   options: Record<string, string>,
   value: string,
   onChange: (value: string) => void,
+  className?: string,
 }
 
-export default function Select({ options, value, onChange }: SelectProps) {
+export default function Select({ options, value, onChange, className }: SelectProps) {
   const [open, setOpen] = useState<boolean>(false);
 
   return (
-    <div className="select">
+    <div className={`select ${className || ''}`}>
       <button
         className={open ? 'open' : ''}
         onClick={() => setOpen(!open)}
@@ -39,4 +40,3 @@ export default function Select({ options, value, onChange }: SelectProps) {
     </div>
   );
 }
-
