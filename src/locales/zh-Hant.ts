@@ -174,8 +174,8 @@ export const translations: Translations = {
   announcements: {
     noRoasOrAnnouncements: '未發現ROA或路由宣告。',
     search: '搜索ASN，地址前綴，狀態中⋯⋯',
-    authorizes: '授權了{number}路由宣告',
-    disallows: '禁止{number}路由宣告',
+    authorizes: '授權了{number}個路由宣告',
+    disallows: '禁止了{number}個路由宣告',
     asn: 'ASN',
     prefix: '前綴',
     stateLabel: '狀態',
