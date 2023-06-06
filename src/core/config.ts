@@ -9,6 +9,8 @@ export const locales: Record<string, string> = {
   fr: 'Français',
   nl: 'Nederlands',
   pt: 'Português',
+  'zh-Hans': '简体中文',
+  'zh-Hant': '繁體中文',
 };
   
 export const defaultLocale = 'en';
