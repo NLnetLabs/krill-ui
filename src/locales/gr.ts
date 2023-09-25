@@ -190,7 +190,10 @@ export const translations: Translations = {
       'announcement_invalid_length': 'ΑΚΥΡΟ ΜΗΚΟΣ',
       'announcement_invalid_length_help': 'Αυτή η ανακοίνωση δεν είναι επιτρεπτή καθώς είναι πιο συγκεκριμένη από το πρόθεμα και το μέγιστο μήκος που έχετε εξουσιοδοτήσει για αυτό το ASN',
       'announcement_invalid_asn': 'ΑΚΥΡΟ ASN',
-      'announcement_invalid_asn_help': 'Αυτή η ανακοίνωση δεν είναι επιτρεπτή καθώς έχετε εξουσιοδοτήσει το πρόθεμα μόνο από άλλο ASN'
+      'announcement_invalid_asn_help': 'Αυτή η ανακοίνωση δεν είναι επιτρεπτή καθώς έχετε εξουσιοδοτήσει το πρόθεμα μόνο από άλλο ASN',
+      'announcement_disallowed': 'DISALLOWED BY AS0',
+      'announcement_disallowed_help':
+        'This announcement is not allowed because you have an AS0 ROA that disallows it',
     },
     'download': 'Λήψη CSV'
   },

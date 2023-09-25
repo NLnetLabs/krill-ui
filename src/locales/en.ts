@@ -212,6 +212,9 @@ export const translations: Translations = {
       announcement_invalid_asn: 'INVALID ASN',
       announcement_invalid_asn_help:
         'This announcement is not allowed because you only authorized the prefix from another ASN',
+      announcement_disallowed: 'DISALLOWED BY AS0',
+      announcement_disallowed_help:
+        'This announcement is not allowed because you have an AS0 ROA that disallows it',
     },
     download: 'Download CSV',
   },

@@ -190,7 +190,10 @@ export const translations: Translations = {
       'announcement_invalid_asn': 'ASN INVÁLIDO',
       'announcement_not_found_help': 'Este anúncio não está coberto por nenhuma de suas ROAs',
       'announcement_invalid_length_help': 'Este anúncio não é permitido porque é mais específico do que o prefixo e comprimento máximo autorizado para este ASN',
-      'announcement_invalid_asn_help': 'Este anúncio não é permitido, porque você já autorizou o prefixo a partir de outro ASN'
+      'announcement_invalid_asn_help': 'Este anúncio não é permitido, porque você já autorizou o prefixo a partir de outro ASN',
+      'announcement_disallowed': 'DISALLOWED BY AS0',
+      'announcement_disallowed_help':
+        'This announcement is not allowed because you have an AS0 ROA that disallows it',
     },
     'download': 'Download CSV'
   },

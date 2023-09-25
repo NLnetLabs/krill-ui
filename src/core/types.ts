@@ -1,5 +1,5 @@
-import {Params, StateMeta} from 'router5/dist/types/base';
-import {Translations} from './translations';
+import { Params, StateMeta } from 'router5/dist/types/base';
+import { Translations } from './translations';
 
 export enum NotificationType {
   success = 'success',
@@ -43,6 +43,7 @@ export enum RoaState {
   AnnouncementNotFound = 'announcement_not_found',
   AnnouncementInvalidLength = 'announcement_invalid_length',
   AnnouncementInvalidAsn = 'announcement_invalid_asn',
+  AnnouncementDisallowedAs0 = 'announcement_disallowed',
 }
 
 export enum RoaStateHelp {
@@ -57,6 +58,7 @@ export enum RoaStateHelp {
   AnnouncementNotFoundHelp = 'announcement_not_found_help',
   AnnouncementInvalidLengthHelp = 'announcement_invalid_length_help',
   AnnouncementInvalidAsnHelp = 'announcement_invalid_asn_help',
+  AnnouncementDisallowedAs0 = 'announcement_disallowed_help',
 }
 
 export enum RoaField {

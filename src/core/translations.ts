@@ -203,6 +203,8 @@ export interface Translations {
       announcement_invalid_length_help: string,
       announcement_invalid_asn: string,
       announcement_invalid_asn_help: string,
+      announcement_disallowed: string,
+      announcement_disallowed_help: string,
     },
     download: string,
   },

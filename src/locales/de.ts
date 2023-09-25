@@ -190,7 +190,10 @@ export const translations: Translations = {
       'announcement_invalid_length': 'UNGÜLTIGE LÄNGE',
       'announcement_invalid_length_help': 'Diese BGP Ankündigung ist nicht erlaubt, da es spezifischer ist als das Präfix und die MaxLength welche Sie für dieses ASN autorisiert haben',
       'announcement_invalid_asn': 'UNGÜLTIGES ASN',
-      'announcement_invalid_asn_help': 'Diese BGP Ankündigung ist nicht erlaubt, da Sie nur das Präfix für ein anderes ASN autorisiert haben'
+      'announcement_invalid_asn_help': 'Diese BGP Ankündigung ist nicht erlaubt, da Sie nur das Präfix für ein anderes ASN autorisiert haben',
+      'announcement_disallowed': 'DISALLOWED BY AS0',
+      'announcement_disallowed_help':
+        'This announcement is not allowed because you have an AS0 ROA that disallows it',
     },
     'download': 'CSV herunterladen'
   },
