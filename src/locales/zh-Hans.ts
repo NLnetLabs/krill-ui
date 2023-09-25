@@ -212,6 +212,9 @@ export const translations: Translations = {
       announcement_invalid_asn: '无效ASN',
       announcement_invalid_asn_help:
         '该路由宣告因您仅将该前缀授权给另一ASN而不被允许',
+      announcement_disallowed: 'DISALLOWED BY AS0',
+      announcement_disallowed_help:
+        'This announcement is not allowed because you have an AS0 ROA that disallows it',
     },
     download: '下载CSV',
   },

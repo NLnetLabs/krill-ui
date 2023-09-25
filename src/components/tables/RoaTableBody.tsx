@@ -9,7 +9,7 @@ export interface RoaTableBodyProps {
 export default function RoaTableBody({ tableData }: RoaTableBodyProps) {
   return (
     <tbody>
-      {tableData.map((roa) => (
+      {tableData.filter((roa) => roa.state != RoaState.AnnouncementDisallowedAs0).map((roa) => (
         <RoaTableRow
           key={roa.id}
           roa={roa}

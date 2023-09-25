@@ -190,7 +190,10 @@ export const translations: Translations = {
       'announcement_invalid_length': 'ONGELDIGE LENGTE',
       'announcement_invalid_length_help': 'Deze BGP aankondigin is niet toegestaan, omdat de prefix specifieker is dan toegestaan voor dit ASN',
       'announcement_invalid_asn': 'ONGELDIG ASN',
-      'announcement_invalid_asn_help': 'Deze BGP aankondigin is niet toegestaan, omdat de prefix enkel is toegestaan vanaf andere ASNs'
+      'announcement_invalid_asn_help': 'Deze BGP aankondigin is niet toegestaan, omdat de prefix enkel is toegestaan vanaf andere ASNs',
+      'announcement_disallowed': 'DISALLOWED BY AS0',
+      'announcement_disallowed_help':
+        'This announcement is not allowed because you have an AS0 ROA that disallows it',
     },
     'download': 'Download CSV'
   },
