@@ -14,8 +14,22 @@ export default function RoaTableBody({ tableData }: RoaTableBodyProps) {
           key={roa.id}
           roa={roa}
           hasAnnouncements={!!roa.authorizes || !!roa.disallows}
-          allowDelete={roa.state === RoaState.RoaSeen || roa.state == RoaState.RoaAs0 || roa.state === RoaState.RoaDisallowing || roa.state === RoaState.RoaUnseen || roa.state === RoaState.RoaRedundant || roa.state === RoaState.RoaAs0Redundant || roa.state === RoaState.RoaTooPermissive || roa.state === RoaState.RoaNotHeld}
-          allowAdd={roa.state === RoaState.AnnouncementNotFound || roa.state === RoaState.AnnouncementInvalidAsn || roa.state === RoaState.AnnouncementInvalidLength}
+          allowDelete={
+            roa.state === RoaState.RoaSeen ||
+            roa.state === RoaState.RoaUnseen ||
+            roa.state === RoaState.RoaNotHeld ||
+            roa.state == RoaState.RoaNoAnnouncementInfo ||
+            roa.state === RoaState.RoaTooPermissive ||
+            roa.state === RoaState.RoaDisallowing ||
+            roa.state === RoaState.RoaRedundant ||
+            roa.state == RoaState.RoaAs0 ||
+            roa.state === RoaState.RoaAs0Redundant
+          }
+          allowAdd={
+            roa.state === RoaState.AnnouncementNotFound ||
+            roa.state === RoaState.AnnouncementInvalidLength ||
+            roa.state === RoaState.AnnouncementInvalidAsn
+          }
         />
       ))}
     </tbody>
