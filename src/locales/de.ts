@@ -224,7 +224,7 @@ export const translations: Translations = {
     'ca_parent_xml_duplicate': 'Diese Antwort XML ist bereits in Gebrauch von einer übergeordneten Zertifizierungsstelle mit dem Namen \'{parent}\'',
     'ca_parent_unknown': 'Es existiert keine übergeordnete Zertifizierungsstelle mit dem Namen \'{parent}\'',
     'ca_parent_issue': 'Error von übergeordneter Zertifizierungsstelle \'{parent}\' empfangen: {cause}',
-    'ca_parent_response_invalid_xml': 'Ungültiges xml von übergeordneter Zertifizierungsstelle empfangen',
+    'ca_parent_response_invalid_xml': 'Ungültiges XML von übergeordneter Zertifizierungsstelle empfangen',
     'ca_parent_response_wrong_xml': 'Datenbank (Repository) Antwort während des Hinzufügens der übergeordneten Zertifizierungsstelle erhalten',
     'ca_child_duplicate': 'Es existiert bereits eine untergeordnete Zertifizierungsstelle mit dem Namen \'{child}\'',
     'ca_child_unknown': 'Es existiert keine untergeordnete Zertifizierungsstelle mit dem Namen \'{child}\'',
