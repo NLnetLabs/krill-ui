@@ -66,7 +66,7 @@ export const translations: Translations = {
     'download': 'Download PEM',
     'noRoas': 'Keine ROAs gefunden.',
     'noResources': 'Sie haben noch keine Ressourcen erhalten',
-    'noChildren': 'Keine untergeordneten CAs gefunden.',
+    'noChildren': 'Keine untergeordneten Zertifizierungsstellen gefunden.',
     'addRoa': 'ROA hinzufügen',
     'roas': 'ROAs',
     'resources': 'Ressourcen',
