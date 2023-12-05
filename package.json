@@ -10,7 +10,7 @@
     "test": "playwright test"
   },
   "dependencies": {
-    "luxon": "^3.3.0",
+    "luxon": "^3.4.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router5": "^8.0.1",
@@ -18,16 +18,16 @@
     "router5-plugin-browser": "^8.0.1"
   },
   "devDependencies": {
-    "@playwright/test": "^1.33.0",
-    "@types/luxon": "^3.3.0",
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.1",
-    "@typescript-eslint/eslint-plugin": "^5.59.2",
-    "@typescript-eslint/parser": "^5.59.2",
-    "@vitejs/plugin-react": "^4.0.0",
-    "eslint": "^8.39.0",
-    "eslint-plugin-react": "^7.32.2",
-    "typescript": "^5.0.4",
-    "vite": "^4.3.4"
+    "@playwright/test": "^1.40.0",
+    "@types/luxon": "^3.3.7",
+    "@types/react": "^18.2.42",
+    "@types/react-dom": "^18.2.17",
+    "@typescript-eslint/eslint-plugin": "^6.13.2",
+    "@typescript-eslint/parser": "^6.13.2",
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^8.55.0",
+    "eslint-plugin-react": "^7.33.2",
+    "typescript": "^5.3.2",
+    "vite": "^5.0.5"
   }
 }
