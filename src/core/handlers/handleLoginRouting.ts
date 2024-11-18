@@ -35,6 +35,8 @@ export default async function handleLoginRouting(toState: State, store: Store) {
       });
       store.checkToken();
       return Promise.reject({ redirect: { name: 'home' } });
+    } else if (toState.params.error) {
+      alert(JSON.parse(atob(toState.params.error)).msg);
     }
     // if no token is set, find the login method
     const loginMethod = await store.loadLoginMethod();
