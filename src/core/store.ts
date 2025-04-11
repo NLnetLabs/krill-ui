@@ -518,7 +518,6 @@ export default class Store implements Data {
     const aspa: Aspa = {
       customer: Number(params.customer),
       providers: params.providers.split(",").map(x => Number(x)),
-      comment: params.comment
     };
 
     return await this.handleError(async () => {
@@ -530,37 +529,6 @@ export default class Store implements Data {
       this.setNotification({
         type: NotificationType.success,
         message: this.translations?.aspas.confirmation.addedSuccess,
-      });
-      return true;
-    });
-  }
-
-  async editAspa(id: string, comment: string): Promise<boolean> {
-    if (this.ca === null || !this.aspas[this.ca]) {
-      return false;
-    }
-
-    const aspa = this.aspas[this.ca].find((r) => r.id === id);
-
-    if (!aspa) {
-      return false;
-    }
-
-    const updatedAspa: Aspa = {
-      ...aspa,
-      comment,
-    };
-
-    return await this.handleError(async () => {
-      await this.api.updateAspas(this.ca as string, {
-        add_or_replace: [updatedAspa],
-        remove: [],
-      });
-      await this.loadCa(true);
-      this.setNotification({
-        type: NotificationType.success,
-        message:
-          this.translations?.aspas.confirmation.commentUpdatedSuccess,
       });
       return true;
     });
