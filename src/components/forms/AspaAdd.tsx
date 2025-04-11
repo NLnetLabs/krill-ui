@@ -39,7 +39,7 @@ export default function Add({ onClose, aspa }: AddProps) {
             }
             onInvalid={(e) =>
               (e.target as HTMLFormElement).setCustomValidity(
-                t.caDetails.addROAForm.asn_format
+                t.aspas.customer_validation_format
               )
             }
             value={customer}
@@ -58,7 +58,7 @@ export default function Add({ onClose, aspa }: AddProps) {
             }
             onInvalid={(e) =>
               (e.target as HTMLFormElement).setCustomValidity(
-                t.caDetails.addROAForm.asn_format
+                t.aspas.providers_validation_format
               )
             }
             value={providers}

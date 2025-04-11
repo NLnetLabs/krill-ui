@@ -174,6 +174,8 @@ export const translations: Translations = {
       'addedSuccess': 'De ASPA is toegevoegd',
       'commentUpdatedSuccess': 'ASPA commentaar is gewijzigd',
     },
+    'customer_validation_format': "Het klant-ASN-formaat is ongeldig",
+    'providers_validation_format': "Het aanbieders-ASN-formaat is ongeldig",
   },
   'announcements': {
     'noRoasOrAnnouncements': 'Geen ROAs of BGP-aankondigingen gevonden.',

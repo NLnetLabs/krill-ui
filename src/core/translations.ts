@@ -186,6 +186,8 @@ export interface Translations {
       addedSuccess: string,
       commentUpdatedSuccess: string,
     },
+    customer_validation_format: string,
+    providers_validation_format: string,
   },
   announcements: {
     noRoasOrAnnouncements: string,

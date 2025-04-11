@@ -187,6 +187,8 @@ export const translations: Translations = {
       addedSuccess: 'The ASPA has been added',
       commentUpdatedSuccess: 'The ASPA comment has been updated',
     },
+    customer_validation_format: "The customer format is invalid",
+    providers_validation_format: "The providers format is invalid",
   },
   announcements: {
     noRoasOrAnnouncements: '未发现ROA或路由宣告。',
