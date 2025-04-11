@@ -68,7 +68,9 @@ export const translations: Translations = {
     'noResources': 'Δεν έχετε λάβει κανέναν πόρο ακόμα',
     'noChildren': 'Δεν βρέθηκαν CA-παιδιά.',
     'addRoa': 'Προσθήκη ROA',
-    'roas': 'ROA',
+    'addAspa': 'Add ASPA',
+    'roas': 'ROAs',
+    'aspas': 'ASPAs',
     'resources': 'Πόροι',
     'parents': 'CA-γονείς',
     'repo': 'Αποθετήριο (repository)',
@@ -158,6 +160,21 @@ export const translations: Translations = {
     'showEntitlements': 'Εμφάνιση Λεπτομερών Δικαιοδοσιών',
     'parentCertificate': 'Πιστοποιητικό CA-γονέα',
     'published': 'Δημοσιευμένο'
+  },
+  'aspas': {
+    'customer': "Customer",
+    'providers': "Providers",
+    'search': "Search for customer, provider...",
+    'confirmation': {
+      'title': 'Warning',
+      'message':
+        "This will remove the ASPA '{customer} => {providers}'. Continue?",
+      'added': 'ASPA added',
+      'retired': 'ASPA removed',
+      'retiredSuccess': 'The ASPA has been removed',
+      'addedSuccess': 'The ASPA has been added',
+      'commentUpdatedSuccess': 'The ASPA comment has been updated',
+    },
   },
   'announcements': {
     'noRoasOrAnnouncements': 'Δεν βρέθηκαν ROA ή Ανακοινώσεις.',

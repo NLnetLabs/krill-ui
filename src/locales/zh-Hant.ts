@@ -70,7 +70,9 @@ export const translations: Translations = {
     noResources: '您暫為獲得任何資源',
     noChildren: '未發現子CA',
     addRoa: '添加ROA',
+    addAspa: 'Add ASPA',
     roas: 'ROA',
+    aspas: 'ASPA',
     resources: '資源',
     parents: '父級CA',
     repo: '數據庫',
@@ -170,6 +172,21 @@ export const translations: Translations = {
     showEntitlements: '顯示授權機制詳情',
     parentCertificate: '父級證書',
     published: '已發布',
+  },
+  aspas: {
+    customer: "Customer",
+    providers: "Providers",
+    search: "Search for customer, provider...",
+    confirmation: {
+      title: 'Warning',
+      message:
+        "This will remove the ASPA '{customer} => {providers}'. Continue?",
+      added: 'ASPA added',
+      retired: 'ASPA removed',
+      retiredSuccess: 'The ASPA has been removed',
+      addedSuccess: 'The ASPA has been added',
+      commentUpdatedSuccess: 'The ASPA comment has been updated',
+    },
   },
   announcements: {
     noRoasOrAnnouncements: '未發現ROA或路由宣告。',

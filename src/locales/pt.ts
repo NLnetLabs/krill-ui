@@ -68,7 +68,9 @@ export const translations: Translations = {
     'noResources': 'Você não recebeu nenhum recurso ainda',
     'noChildren': 'Nenhum filho encontrado.',
     'addRoa': 'Adicionar ROA',
+    'addAspa': 'Add ASPA',
     'roas': 'ROAs',
+    'aspas': 'ASPAs',
     'resources': 'Recursos',
     'parents': 'CAs-pai',
     'repo': 'Repositório',
@@ -158,6 +160,21 @@ export const translations: Translations = {
     'showEntitlements': 'Mostrar Permissões Detalhadas',
     'parentCertificate': 'Certificado Pai',
     'published': 'Publicado'
+  },
+  'aspas': {
+    'customer': "Customer",
+    'providers': "Providers",
+    'search': "Search for customer, provider...",
+    'confirmation': {
+      'title': 'Warning',
+      'message':
+        "This will remove the ASPA '{customer} => {providers}'. Continue?",
+      'added': 'ASPA added',
+      'retired': 'ASPA removed',
+      'retiredSuccess': 'The ASPA has been removed',
+      'addedSuccess': 'The ASPA has been added',
+      'commentUpdatedSuccess': 'The ASPA comment has been updated',
+    },
   },
   'announcements': {
     'noRoasOrAnnouncements': 'ROAs ou Anúncios não encontrados.',

@@ -68,7 +68,9 @@ export const translations: Translations = {
     'noResources': 'U heeft nog geen resources ontvangen',
     'noChildren': 'Geen ondergeschikte CAs gevonden.',
     'addRoa': 'Voeg ROA toe',
-    'roas': 'ROAs',
+    'addAspa': 'Voeg ASPA toe',
+    'roas': 'ROA\'s',
+    'aspas': 'ASPA\'s',
     'resources': 'Resources',
     'parents': 'Bovenliggende CAs',
     'repo': 'Databank (repository)',
@@ -158,6 +160,20 @@ export const translations: Translations = {
     'showEntitlements': 'Laat details zien',
     'parentCertificate': 'Parent Certificate',
     'published': 'Gepubliceerd'
+  },
+  'aspas': {
+    'customer': "Klant-ASN",
+    'providers': "Aanbieder-ASNs",
+    'search': "Zoek voor klant-ASN, aanbieder-ASN...",
+    'confirmation': {
+      'title': 'Waarschuwing',
+      'message': 'Hiermee wordt de ASPA \'{customer} => {providers}\' verwijderd. Doorgaan?',
+      'added': 'ASPA toegevoegd',
+      'retired': 'ASPA verwijderd',
+      'retiredSuccess': 'De ASPA is verwijderd',
+      'addedSuccess': 'De ASPA is toegevoegd',
+      'commentUpdatedSuccess': 'ASPA commentaar is gewijzigd',
+    },
   },
   'announcements': {
     'noRoasOrAnnouncements': 'Geen ROAs of BGP-aankondigingen gevonden.',
