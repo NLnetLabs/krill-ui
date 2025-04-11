@@ -41,7 +41,7 @@ export const translations: Translations = {
   },
   'onboarding': {
     'welcome': 'Welkom bij Krill',
-    'welcomeHtml': 'Laten we beginnen met aanmaken van uw RPKI Certificaatautoriteit (CA). Het zal worden gebruikt om gedelegeerde RPKI te configureren met een of meerdere bovenliggende CAs, over het algemeen uw Regionaal of Nationaal Internet Register.<br><br>De naam die u kiest identificeert uw CA tijdens interacties met bovenliggende of ondergeschikte CAs. De gekozen naam wordt niet gepubliceerd in de RPKI. Kies een naam die anderen helpen om uw organisatie te identificeren. Eenmaal ingesteld kan de naam niet worden gewijzigd.',
+    'welcomeHtml': 'Laten we beginnen met aanmaken van uw RPKI Certificaatautoriteit (CA). Het zal worden gebruikt om gedelegeerde RPKI te configureren met een of meerdere bovenliggende CA\'s, over het algemeen uw Regionaal of Nationaal Internet Register.<br><br>De naam die u kiest identificeert uw CA tijdens interacties met bovenliggende of ondergeschikte CA\'s. De gekozen naam wordt niet gepubliceerd in de RPKI. Kies een naam die anderen helpen om uw organisatie te identificeren. Eenmaal ingesteld kan de naam niet worden gewijzigd.',
     'addCAForm': {
       'required': 'Dit veld is verplicht',
       'format': 'Dit is geen geldige naam voor uw CA',
@@ -56,7 +56,7 @@ export const translations: Translations = {
     'loading': 'Certificaatautoriteiten worden geladen',
     'ca': 'Certificaatautoriteit',
     'cas': 'Certificaatautoriteiten',
-    'search': 'Zoek naar CAs...',
+    'search': 'Zoek naar CA\'s...',
     'noCas': 'Er zijn op dit moment geen certificaatautoriteiten gedefinieerd.'
   },
   'caDetails': {
@@ -66,13 +66,13 @@ export const translations: Translations = {
     'download': 'Download PEM',
     'noRoas': 'Geen ROAs gevonden.',
     'noResources': 'U heeft nog geen resources ontvangen',
-    'noChildren': 'Geen ondergeschikte CAs gevonden.',
+    'noChildren': 'Geen ondergeschikte CA\'s gevonden.',
     'addRoa': 'Voeg ROA toe',
     'addAspa': 'Voeg ASPA toe',
     'roas': 'ROA\'s',
     'aspas': 'ASPA\'s',
     'resources': 'Resources',
-    'parents': 'Bovenliggende CAs',
+    'parents': 'Bovenliggende CA\'s',
     'repo': 'Databank (repository)',
     'type': 'Type',
     'properties': 'Eigenschappen',
@@ -150,7 +150,7 @@ export const translations: Translations = {
         'new': 'Nieuw'
       }
     },
-    'syncParents': 'Synchroniseer met bovenliggende CAs',
+    'syncParents': 'Synchroniseer met bovenliggende CA\'s',
     'syncRepo': 'Synchroniseer met databank (repository)',
     'lastExchange': 'Laatste uitwisseling',
     'exchangeUri': 'URI',
