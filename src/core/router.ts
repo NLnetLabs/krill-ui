@@ -24,7 +24,6 @@ const routes = [
           { name: 'add_new', path: '/add' },
           { name: 'add', path: '/add/:id' },
           { name: 'delete', path: '/delete/:id' },
-          { name: 'edit', path: '/edit/:id' },
         ],
       },
       {
