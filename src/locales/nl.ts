@@ -14,15 +14,15 @@ export const translations: Translations = {
     'dropOrClick': 'Sleep een bestand hierheen of <em>klik om te uploaden</em>',
     'started': 'Krill is actief sinds',
     'newversion': 'Nieuwe versie beschikbaar!',
-    'supportcontracts': 'Supportcontracten',
+    'supportcontracts': 'Ondersteuningscontracten',
     'warning': 'Waarschuwing',
     'idle': 'U bent uitgelogd wegens inactiviteit.',
     'nodata': 'Geen data',
     'copySuccess': 'De XML is naar uw klembord gekopiëerd',
     'edit': 'Edit',
-    'page': 'page',
+    'page': 'pagina',
     'userInfo': {
-      'title': 'Login Details',
+      'title': 'Logingegevens',
       'user': 'Gebruiker'
     }
   },
@@ -119,8 +119,8 @@ export const translations: Translations = {
       'addRepo': 'Initialiseer databank (repository)',
       'addRepoSuccess': 'Databank (repository) toegevoegd'
     },
-    'analyseThis': 'Analiseer mijn ROAs',
-    'analysis': 'ROA Analyse',
+    'analyseThis': 'Analyseer mijn ROAs',
+    'analysis': 'ROA-analyse',
     'suggestions': {
       'following': 'Controleer a.u.b. de volgende voorgestelde wijzigingen in uw ROAs.',
       'readMore': 'Lees meer..',
@@ -155,7 +155,7 @@ export const translations: Translations = {
     'lastExchange': 'Laatste uitwisseling',
     'exchangeUri': 'URI',
     'nextExchange': 'Volgende uitwisseling voor',
-    'allResources': 'Uw gecertificeerde IP en ASN addressen',
+    'allResources': 'Uw gecertificeerde ASN en IP addressen',
     'entitlements': 'Gerechtigde addressen',
     'showEntitlements': 'Laat details zien',
     'parentCertificate': 'Parent Certificate',
