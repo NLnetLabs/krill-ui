@@ -70,7 +70,6 @@ export enum RoaField {
 
 export enum AspaField {
   customer = 'customer',
-  comment = 'comment',
   providers = 'providers',
 }
 
@@ -122,13 +121,11 @@ export interface Roa extends Route {
 
 export interface Aspa {
   id?: string,
-  comment?: string,
   customer: number,
   providers: Array<number>,
 }
 
 export interface AspaParams {
-  comment?: string,
   customer: string,
   providers: string,
 }
