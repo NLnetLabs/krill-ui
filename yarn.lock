@@ -429,15 +429,12 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@playwright/test@^1.33.0":
-  version "1.33.0"
-  resolved "https://registry.npmjs.org/@playwright/test/-/test-1.33.0.tgz"
-  integrity sha512-YunBa2mE7Hq4CfPkGzQRK916a4tuZoVx/EpLjeWlTVOnD4S2+fdaQZE0LJkbfhN5FTSKNLdcl7MoT5XB37bTkg==
+"@playwright/test@^1.51.0":
+  version "1.51.1"
+  resolved "https://registry.npmjs.org/@playwright/test/-/test-1.51.1.tgz"
+  integrity sha512-nM+kEaTSAoVlXmMPH10017vn3FSiFqr/bh4fKg9vmAdMfd9SDqRZNvPSiAHADc/itWak+qPvMPZQOPwCBW7k7Q==
   dependencies:
-    "@types/node" "*"
-    playwright-core "1.33.0"
-  optionalDependencies:
-    fsevents "2.3.2"
+    playwright "1.51.1"
 
 "@types/json-schema@^7.0.9":
   version "7.0.11"
@@ -448,11 +445,6 @@
   version "3.3.0"
   resolved "https://registry.npmjs.org/@types/luxon/-/luxon-3.3.0.tgz"
   integrity sha512-uKRI5QORDnrGFYgcdAVnHvEIvEZ8noTpP/Bg+HeUzZghwinDlIS87DEenV5r1YoOF9G4x600YsUXLWZ19rmTmg==
-
-"@types/node@*":
-  version "18.16.3"
-  resolved "https://registry.npmjs.org/@types/node/-/node-18.16.3.tgz"
-  integrity sha512-OPs5WnnT1xkCBiuQrZA4+YAV4HEJejmHneyraIaxsbev5yCEr6KMwINNFP9wQeFIw8FWcoTqF3vQsa5CDaI+8Q==
 
 "@types/prop-types@*":
   version "15.7.5"
@@ -1756,10 +1748,19 @@ picomatch@^2.3.1:
   resolved "https://registry.npmjs.org/picomatch/-/picomatch-2.3.1.tgz"
   integrity sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==
 
-playwright-core@1.33.0:
-  version "1.33.0"
-  resolved "https://registry.npmjs.org/playwright-core/-/playwright-core-1.33.0.tgz"
-  integrity sha512-aizyPE1Cj62vAECdph1iaMILpT0WUDCq3E6rW6I+dleSbBoGbktvJtzS6VHkZ4DKNEOG9qJpiom/ZxO+S15LAw==
+playwright-core@1.51.1:
+  version "1.51.1"
+  resolved "https://registry.npmjs.org/playwright-core/-/playwright-core-1.51.1.tgz"
+  integrity sha512-/crRMj8+j/Nq5s8QcvegseuyeZPxpQCZb6HNk3Sos3BlZyAknRjoyJPFWkpNn8v0+P3WiwqFF8P+zQo4eqiNuw==
+
+playwright@1.51.1:
+  version "1.51.1"
+  resolved "https://registry.npmjs.org/playwright/-/playwright-1.51.1.tgz"
+  integrity sha512-kkx+MB2KQRkyxjYPc3a0wLZZoDczmppyGJIvQ43l+aZihkaVvmu/21kiyaHeHjiFxjxNNFnUncKmcGIyOojsaw==
+  dependencies:
+    playwright-core "1.51.1"
+  optionalDependencies:
+    fsevents "2.3.2"
 
 postcss@^8.4.23:
   version "8.4.23"
