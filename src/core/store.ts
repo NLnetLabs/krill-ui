@@ -2,6 +2,9 @@ import Api from './api';
 import { defaultLocale } from './config';
 import loadLocale, { Translations } from './translations';
 import {
+  Aspa,
+  AspaField,
+  AspaParams,
   CaDetails,
   Data,
   ErrorResponseType,
@@ -22,7 +25,7 @@ import {
   SuggestionField,
   UserDetails,
 } from './types';
-import { compareRoa, compareSuggestion } from './utils';
+import { compareAspa, compareRoa, compareSuggestion } from './utils';
 
 export default class Store implements Data {
   // general purpose notification message
@@ -49,6 +52,9 @@ export default class Store implements Data {
   // list of ROA's / announcements for a certain certificate authority
   roas: Record<string, Roa[]> = {};
 
+  // list of ASPAs for a certain certificate authority
+  aspas: Record<string, Aspa[]> = {};
+
   // list of suggestions for a certain certificate authority
   suggestions: Record<string, Suggestion[]> = {};
 
@@ -74,6 +80,31 @@ export default class Store implements Data {
   constructor() {
     this.api = new Api();
     this.loadPersistedState();
+  }
+
+  getAspas(filtering?: Filtering<AspaField>): Aspa[] {
+    let aspas = (this.aspas && this.ca && this.aspas[this.ca]) || [];
+
+    if (filtering) {
+      // apply filtering
+      if (filtering.search) {
+        const parts = filtering.search.toLowerCase().split(/\s/);
+        aspas = aspas.filter(
+          (a: Aspa) =>
+            parts.some((p) => a.customer.toString().includes(p)) ||
+            parts.some((p) => a.providers.toString().includes(p))
+        );
+      }
+      // apply sorting
+      aspas = aspas
+        .slice()
+        .sort((a, b) => compareAspa(a, b, filtering.sort, filtering.order));
+      // apply pagination
+      const offset = (filtering.page - 1) * filtering.limit;
+      aspas = aspas.slice(offset, offset + filtering.limit);
+    }
+
+    return aspas;
   }
 
   getRoas(filtering?: Filtering<RoaField>): Roa[] {
@@ -281,13 +312,15 @@ export default class Store implements Data {
 
     await this.handleError(async () => {
       if (this.ca !== null) {
-        const [caDetails, roas] = await Promise.all([
+        const [caDetails, roas, aspas] = await Promise.all([
           this.api.getCaDetails(this.ca),
           this.api.getCaRoas(this.ca),
+          this.api.getCaAspas(this.ca),
         ]);
 
         this.caDetails[this.ca] = caDetails;
         this.roas[this.ca] = roas;
+        this.aspas[this.ca] = aspas;
       }
     });
   }
@@ -472,6 +505,81 @@ export default class Store implements Data {
       this.setNotification({
         type: NotificationType.success,
         message: this.translations?.caDetails.confirmation.retiredSuccess,
+      });
+      return true;
+    });
+  }
+
+  async addAspa(params: AspaParams): Promise<boolean> {
+    if (this.ca === null) {
+      return false;
+    }
+
+    const aspa: Aspa = {
+      customer: Number(params.customer),
+      providers: params.providers.split(",").map(x => Number(x)),
+      comment: params.comment
+    };
+
+    return await this.handleError(async () => {
+      await this.api.updateAspas(this.ca as string, {
+        add_or_replace: [aspa],
+        remove: [],
+      });
+      await this.loadCa(true);
+      this.setNotification({
+        type: NotificationType.success,
+        message: this.translations?.aspas.confirmation.addedSuccess,
+      });
+      return true;
+    });
+  }
+
+  async editAspa(id: string, comment: string): Promise<boolean> {
+    if (this.ca === null || !this.aspas[this.ca]) {
+      return false;
+    }
+
+    const aspa = this.aspas[this.ca].find((r) => r.id === id);
+
+    if (!aspa) {
+      return false;
+    }
+
+    const updatedAspa: Aspa = {
+      ...aspa,
+      comment,
+    };
+
+    return await this.handleError(async () => {
+      await this.api.updateAspas(this.ca as string, {
+        add_or_replace: [updatedAspa],
+        remove: [],
+      });
+      await this.loadCa(true);
+      this.setNotification({
+        type: NotificationType.success,
+        message:
+          this.translations?.aspas.confirmation.commentUpdatedSuccess,
+      });
+      return true;
+    });
+  }
+
+  async deleteAspa(aspa: Aspa): Promise<boolean> {
+    if (this.ca === null) {
+      return false;
+    }
+
+    return await this.handleError(async () => {
+      await this.api.updateAspas(this.ca as string, {
+        add_or_replace: [],
+        remove: [Number(aspa.customer)],
+      });
+      await this.loadCa(true);
+      this.setNotification({
+        type: NotificationType.success,
+        message: this.translations?.aspas.confirmation.retiredSuccess,
       });
       return true;
     });

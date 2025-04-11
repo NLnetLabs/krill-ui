@@ -52,6 +52,11 @@ export default function CasHeader() {
             </Link>
           </li>
           <li>
+            <Link routeName="cas.aspas" routeParams={{ ca: store.ca }}>
+              {t.caDetails.aspas}
+            </Link>
+          </li>
+          <li>
             <Link routeName="cas.parents" routeParams={{ ca: store.ca }}>
               {t.caDetails.parents}
             </Link>

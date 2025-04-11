@@ -1,6 +1,7 @@
 import React from 'react';
 import { useRoute } from 'react-router5';
 import Cas from './Cas';
+import CasAspas from './CasAspas';
 import CasParents from './CasParents';
 import CasRepository from './CasRepository';
 import Loader from './Loader';
@@ -30,6 +31,10 @@ export default function App() {
 
   if (route.name.startsWith('cas.repository')) {
     return <CasRepository />;
+  }
+
+  if (route.name.startsWith('cas.aspas')) {
+    return <CasAspas />;
   }
 
   if (route.name.startsWith('cas')) {

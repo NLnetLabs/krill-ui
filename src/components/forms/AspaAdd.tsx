@@ -1,0 +1,80 @@
+import React, { FormEvent, useState } from 'react';
+import { Aspa } from '../../core/types';
+import useNavigation from '../../hooks/useNavigation';
+import useTranslations from '../../hooks/useTranslations';
+
+interface AddProps {
+  onClose: () => void;
+  aspa?: Aspa;
+}
+
+export default function Add({ onClose, aspa }: AddProps) {
+  const t = useTranslations();
+  const navigate = useNavigation();
+  const [customer, setCustomer] = useState(aspa?.customer.toString() || '');
+  const [providers, setProviders] = useState(aspa?.providers.join(", ") || '');
+
+  const onSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    const form = e.target as HTMLFormElement;
+    if (form.checkValidity()) {
+      navigate({ customer, providers });
+    } else {
+      form.reportValidity();
+    }
+  };
+
+  return (
+    <>
+      <h3>{t.caDetails.addAspa}</h3>
+      <form onSubmit={onSubmit}>
+        <div>
+          <label htmlFor="customer required">{t.aspas.customer}</label>
+          <input
+            type="number"
+            min="0"
+            name="customer"
+            onInput={(e) =>
+              (e.target as HTMLFormElement).setCustomValidity('')
+            }
+            onInvalid={(e) =>
+              (e.target as HTMLFormElement).setCustomValidity(
+                t.caDetails.addROAForm.asn_format
+              )
+            }
+            value={customer}
+            onChange={(e) => setCustomer(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="providers required">{t.aspas.providers}</label>
+          <input
+            type="text"
+            pattern="^((\d+),\s*)*(\d+)$"
+            name="customer"
+            onInput={(e) =>
+              (e.target as HTMLFormElement).setCustomValidity('')
+            }
+            onInvalid={(e) =>
+              (e.target as HTMLFormElement).setCustomValidity(
+                t.caDetails.addROAForm.asn_format
+              )
+            }
+            value={providers}
+            onChange={(e) => setProviders(e.target.value)}
+            required
+          />
+        </div>
+        <div className="actions">
+          <button type="button" className="button outline" onClick={onClose}>
+            {t.common.cancel}
+          </button>
+          <button type="submit" className="button">
+            {t.common.confirm}
+          </button>
+        </div>
+      </form>
+    </>
+  );
+}

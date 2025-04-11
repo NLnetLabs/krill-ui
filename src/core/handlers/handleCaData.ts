@@ -1,6 +1,6 @@
 import { State } from 'router5';
 import Store from '../store';
-import { ParentParams, RouteParams, Suggestion } from '../types';
+import { Aspa, AspaParams, ParentParams, RouteParams, Suggestion } from '../types';
 
 export default async function handleCaData(toState: State, store: Store) {
   if (toState.name.startsWith('testbed')) {
@@ -93,6 +93,35 @@ export default async function handleCaData(toState: State, store: Store) {
     return Promise.reject({
       redirect: { name: 'cas', params: { ca: store.ca } },
     });
+  }
+
+  if (
+    (toState.name === 'cas.aspas.add' || toState.name === 'cas.aspas.add_new') &&
+    toState.params.customer
+  ) {
+    if (await store.addAspa(toState.params as AspaParams)) {
+      return Promise.reject({
+        redirect: { name: 'cas.aspas', params: { ca: store.ca } },
+      });
+    } else {
+      return Promise.reject({
+        redirect: {
+          name: toState.name,
+          params: {
+            ca: store.ca,
+            id: toState.params.id,
+          },
+        },
+      });
+    }
+  }
+
+  if (toState.name === 'cas.aspas.delete' && toState.params.customer) {
+    if (await store.deleteAspa(toState.params as Aspa)) {
+      return Promise.reject({
+        redirect: { name: 'cas.aspas', params: { ca: store.ca } },
+      });
+    }
   }
 
   // add parent

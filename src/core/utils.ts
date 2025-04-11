@@ -1,4 +1,6 @@
 import {
+  Aspa,
+  AspaField,
   Roa,
   RoaField,
   SortOrder,
@@ -23,6 +25,16 @@ export function generateId(len: number): string {
 }
 
 export function compareRoa(a: Roa, b: Roa, field: RoaField, order: SortOrder) {
+  if (a[field] === b[field]) {
+    return 0;
+  }
+
+  const direction = (a[field] || '') < (b[field] || '') ? -1 : 1;
+
+  return order === SortOrder.asc ? direction : -direction;
+}
+
+export function compareAspa(a: Aspa, b: Aspa, field: AspaField, order: SortOrder) {
   if (a[field] === b[field]) {
     return 0;
   }

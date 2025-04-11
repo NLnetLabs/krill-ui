@@ -68,7 +68,14 @@ export enum RoaField {
   state = 'state',
 }
 
+export enum AspaField {
+  customer = 'customer',
+  comment = 'comment',
+  providers = 'providers',
+}
+
 export type RoaTableHeading = Array<{ label: string, accessor: RoaField }>
+export type AspaTableHeading = Array<{ label: string, accessor: AspaField }>
 export type BgpTableHeading = Array<{ label: string, accessor: SuggestionField }>
 
 export enum SortOrder {
@@ -111,6 +118,19 @@ export interface Roa extends Route {
   disallows?: Array<BgpAnnouncement>,
   disallowed_by?: Array<Roa>,
   allowed_by?: Roa,
+}
+
+export interface Aspa {
+  id?: string,
+  comment?: string,
+  customer: number,
+  providers: Array<number>,
+}
+
+export interface AspaParams {
+  comment?: string,
+  customer: string,
+  providers: string,
 }
 
 export interface Suggestions {

@@ -18,6 +18,16 @@ const routes = [
       { name: 'edit', path: '/edit/:id' },
       { name: 'change', path: '/change' },
       {
+        name: 'aspas',
+        path: '/aspas',
+        children: [
+          { name: 'add_new', path: '/add' },
+          { name: 'add', path: '/add/:id' },
+          { name: 'delete', path: '/delete/:id' },
+          { name: 'edit', path: '/edit/:id' },
+        ],
+      },
+      {
         name: 'parents',
         path: '/parents',
         children: [{ name: 'add', path: '/add' }],

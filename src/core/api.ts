@@ -13,6 +13,7 @@ import {
   Suggestions,
   Suggestion,
   ErrorResponseType,
+  Aspa,
 } from './types';
 import {
   generateId,
@@ -116,6 +117,12 @@ export default class Api {
     );
   }
 
+  getCaAspas(ca: string): Promise<Aspa[]> {
+    return this.get<Aspa[]>(`/api/v1/cas/${ca}/aspas`).then(
+      (aspas: Aspa[]) => aspas.map((aspa) => ({ id: generateId(10), ...aspa }))
+    );
+  }
+
   getCaSuggestions(ca: string): Promise<Array<Suggestion>> {
     return this.get<Suggestions>(`/api/v1/cas/${ca}/routes/analysis/suggest`)
       .then((suggestions) => transformSuggestions(suggestions))
@@ -174,6 +181,16 @@ export default class Api {
 
   updateRoutes(ca: string, data: { added: Route[]; removed: Route[] }) {
     return this.get(`/api/v1/cas/${ca}/routes`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+  }
+
+  updateAspas(ca: string, data: { add_or_replace: Aspa[]; remove: number[] }) {
+    return this.get(`/api/v1/cas/${ca}/aspas`, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {

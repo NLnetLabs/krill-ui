@@ -70,7 +70,9 @@ export const translations: Translations = {
     noResources: 'You have not received any resources yet',
     noChildren: 'No children found.',
     addRoa: 'Add ROA',
+    addAspa: 'Add ASPA',
     roas: 'ROAs',
+    aspas: 'ASPAs',
     resources: 'Resources',
     parents: 'Parents',
     repo: 'Repository',
@@ -170,6 +172,21 @@ export const translations: Translations = {
     showEntitlements: 'Show Detailed Entitlements',
     parentCertificate: 'Parent Certificate',
     published: 'Published',
+  },
+  aspas: {
+    customer: "Customer",
+    providers: "Providers",
+    search: "Search for customer, provider...",
+    confirmation: {
+      title: 'Warning',
+      message:
+        "This will remove the ASPA '{customer} => {providers}'. Continue?",
+      added: 'ASPA added',
+      retired: 'ASPA removed',
+      retiredSuccess: 'The ASPA has been removed',
+      addedSuccess: 'The ASPA has been added',
+      commentUpdatedSuccess: 'The ASPA comment has been updated',
+    },
   },
   announcements: {
     noRoasOrAnnouncements: 'No ROAs or Announcements found.',
