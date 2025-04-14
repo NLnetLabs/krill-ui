@@ -13,7 +13,7 @@ test('sorting of ROA Table', async ({ page }) => {
   for (let columnIdx = 2; columnIdx <= 2; columnIdx++) {
     {
       // desc order
-      await table.locator(`thead tr th:nth-of-type(${columnIdx})`).click();
+      await table.locator(`thead tr th`).nth(columnIdx + 1).click();
 
       let lastValue = await tableBodyRow
         .locator(`td:nth-of-type(${columnIdx})`)
