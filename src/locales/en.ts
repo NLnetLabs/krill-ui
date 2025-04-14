@@ -188,8 +188,8 @@ export const translations: Translations = {
       addedSuccess: 'The ASPA has been added',
       commentUpdatedSuccess: 'The ASPA comment has been updated',
     },
-    customer_validation_format: "The customer format is invalid or already exists",
-    providers_validation_format: "The providers format is invalid",
+    customer_validation_format: "The customer ASN is invalid or already exists",
+    providers_validation_format: "The provider ASN list is invalid",
   },
   announcements: {
     noRoasOrAnnouncements: 'No ROAs or Announcements found.',
