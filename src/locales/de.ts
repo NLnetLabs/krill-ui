@@ -69,6 +69,7 @@ export const translations: Translations = {
     'noChildren': 'Keine untergeordneten Zertifizierungsstellen gefunden.',
     'addRoa': 'ROA hinzufügen',
     'addAspa': 'ASPA hinzufügen',
+    'editAspa': 'ASPA ändern',
     'roas': 'ROAs',
     'aspas': 'ASPAs',
     'resources': 'Ressourcen',

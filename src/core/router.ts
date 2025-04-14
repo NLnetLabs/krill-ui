@@ -23,6 +23,7 @@ const routes = [
         children: [
           { name: 'add_new', path: '/add' },
           { name: 'add', path: '/add/:id' },
+          { name: 'edit', path: '/edit/:id' },
           { name: 'delete', path: '/delete/:id' },
         ],
       },

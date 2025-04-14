@@ -71,6 +71,7 @@ export const translations: Translations = {
     noChildren: '未发现子CA',
     addRoa: '添加ROA',
     addAspa: 'Add ASPA',
+    editAspa: 'Edit ASPA',
     roas: 'ROA',
     aspas: 'ASPA',
     resources: '资源',

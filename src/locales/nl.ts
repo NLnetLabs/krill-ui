@@ -69,6 +69,7 @@ export const translations: Translations = {
     'noChildren': 'Geen ondergeschikte CA\'s gevonden.',
     'addRoa': 'Voeg ROA toe',
     'addAspa': 'Voeg ASPA toe',
+    'editAspa': 'Pas ASPA aan',
     'roas': 'ROA\'s',
     'aspas': 'ASPA\'s',
     'resources': 'Resources',

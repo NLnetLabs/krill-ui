@@ -6,9 +6,11 @@ import useTranslations from '../../hooks/useTranslations';
 interface AddProps {
   onClose: () => void;
   aspa?: Aspa;
+  aspas: Aspa[];
+  edit: boolean;
 }
 
-export default function Add({ onClose, aspa }: AddProps) {
+export default function AspaAdd({ onClose, aspa, aspas, edit }: AddProps) {
   const t = useTranslations();
   const navigate = useNavigation();
   const [customer, setCustomer] = useState(aspa?.customer.toString() || '');
@@ -26,7 +28,7 @@ export default function Add({ onClose, aspa }: AddProps) {
 
   return (
     <>
-      <h3>{t.caDetails.addAspa}</h3>
+      <h3>{edit ? t.caDetails.editAspa : t.caDetails.addAspa}</h3>
       <form onSubmit={onSubmit}>
         <div>
           <label htmlFor="customer required">{t.aspas.customer}</label>
@@ -43,8 +45,18 @@ export default function Add({ onClose, aspa }: AddProps) {
               )
             }
             value={customer}
-            onChange={(e) => setCustomer(e.target.value)}
+            onChange={(e) => {
+              let c = e.target.value;
+              setCustomer(c);
+
+              if (!edit && aspas.find(x => x.customer === Number(c))) {
+                e.target.setCustomValidity(
+                  t.aspas.customer_validation_format
+                )              
+              }
+            }}
             required
+            disabled={edit}
           />
         </div>
         <div>

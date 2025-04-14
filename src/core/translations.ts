@@ -81,6 +81,7 @@ export interface Translations {
     noChildren: string,
     addRoa: string,
     addAspa: string,
+    editAspa: string,
     roas: string,
     aspas: string,
     resources: string,

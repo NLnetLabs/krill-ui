@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {Aspa} from '../../core/types';
 import useTranslations from '../../hooks/useTranslations';
 import trash from '../../img/trash.svg?url';
-import edit from '../../img/edit.svg?url';
+import edit from '../../img/edit-white.svg?url';
 import useNavigation from '../../hooks/useNavigation';
 
 export interface AspaTableRowProps {
@@ -29,6 +29,9 @@ export default function AspaTableRow({ aspa }: AspaTableRowProps) {
           {aspa.providers.join(", ")}
         </td>
         <td className="actions">
+            <button className="button icon" onClick={() => navigate(params, 'cas.aspas.edit')}>
+              <img src={edit} />
+            </button>
             <button className="button icon" onClick={() => navigate(params, 'cas.aspas.delete')}>
               <img src={trash} />
             </button>

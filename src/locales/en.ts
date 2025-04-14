@@ -71,6 +71,7 @@ export const translations: Translations = {
     noChildren: 'No children found.',
     addRoa: 'Add ROA',
     addAspa: 'Add ASPA',
+    editAspa: 'Edit ASPA',
     roas: 'ROAs',
     aspas: 'ASPAs',
     resources: 'Resources',
@@ -187,7 +188,7 @@ export const translations: Translations = {
       addedSuccess: 'The ASPA has been added',
       commentUpdatedSuccess: 'The ASPA comment has been updated',
     },
-    customer_validation_format: "The customer format is invalid",
+    customer_validation_format: "The customer format is invalid or already exists",
     providers_validation_format: "The providers format is invalid",
   },
   announcements: {

@@ -96,7 +96,11 @@ export default async function handleCaData(toState: State, store: Store) {
   }
 
   if (
-    (toState.name === 'cas.aspas.add' || toState.name === 'cas.aspas.add_new') &&
+    (
+      toState.name === 'cas.aspas.add' || 
+      toState.name === 'cas.aspas.add_new' ||
+      toState.name === 'cas.aspas.edit'
+    ) &&
     toState.params.customer
   ) {
     if (await store.addAspa(toState.params as AspaParams)) {

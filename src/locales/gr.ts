@@ -69,6 +69,7 @@ export const translations: Translations = {
     'noChildren': 'Δεν βρέθηκαν CA-παιδιά.',
     'addRoa': 'Προσθήκη ROA',
     'addAspa': 'Add ASPA',
+    'editAspa': 'Edit ASPA',
     'roas': 'ROAs',
     'aspas': 'ASPAs',
     'resources': 'Πόροι',

@@ -29,6 +29,16 @@ export default function AspaModal() {
         <AspaAdd
           onClose={onClose}
           aspa={aspa}
+          aspas={aspas}
+          edit={false}
+        />
+      )}
+      {route.name.startsWith('cas.aspas.edit') && (
+        <AspaAdd
+          onClose={onClose}
+          aspa={aspa}
+          aspas={aspas}
+          edit={true}
         />
       )}
       {route.name === 'cas.aspas.delete' && (
