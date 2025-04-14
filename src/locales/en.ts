@@ -175,8 +175,8 @@ export const translations: Translations = {
     published: 'Published',
   },
   aspas: {
-    customer: "Customer",
-    providers: "Providers",
+    customer: "Customer ASN",
+    providers: "Providers ASNs",
     search: "Search for customer, provider...",
     confirmation: {
       title: 'Warning',
