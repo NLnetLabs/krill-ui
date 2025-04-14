@@ -175,7 +175,7 @@ export const translations: Translations = {
       'addedSuccess': 'De ASPA is toegevoegd',
       'commentUpdatedSuccess': 'ASPA commentaar is gewijzigd',
     },
-    'customer_validation_format': "Het klant-ASN-formaat is ongeldig",
+    'customer_validation_format': "Het klant-ASN-formaat is ongeldig of de klant-ASN heeft al een ASPA",
     'providers_validation_format': "Het aanbieders-ASN-formaat is ongeldig",
   },
   'announcements': {
