@@ -189,6 +189,10 @@ export interface Translations {
     },
     customer_validation_format: string,
     providers_validation_format: string,
+    add: string,
+    edit: string,
+    analyse: string,
+    detected_providers: string,
   },
   announcements: {
     noRoasOrAnnouncements: string,

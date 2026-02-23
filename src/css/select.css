@@ -60,7 +60,7 @@ button.expand::after {
   background: white;
   width: 100%;
   border: 0 solid var(--light);
-  box-shadow: var(--shadaw);
+  box-shadow: var(--shadow);
   border-radius: var(--radius);
   max-height: 0;
   overflow-x: hidden;

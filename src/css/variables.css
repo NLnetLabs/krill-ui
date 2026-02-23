@@ -8,7 +8,8 @@
   --grey: #c0c4cc;
   --grey-dark: #999;
   --dark: #606266;
-  --shadaw: 0 2px 12px 0 rgb(0 0 0 / 10%);
+  --shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
+  --shadow-red: 0 2px 12px 0 rgb(246 49 7 / 10%);
   --radius: 0.25rem;
 
   --success: #67c23a;

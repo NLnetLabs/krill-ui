@@ -177,6 +177,10 @@ export const translations: Translations = {
     },
     'customer_validation_format': "Het klant-ASN-formaat is ongeldig of de klant-ASN heeft al een ASPA",
     'providers_validation_format': "Het aanbieders-ASN-formaat is ongeldig",
+    add: "Add ASPA",
+    edit: "Edit ASPA",
+    analyse: "Analyse providers",
+    detected_providers: "Detected providers",
   },
   'announcements': {
     'noRoasOrAnnouncements': 'Geen ROAs of BGP-aankondigingen gevonden.',

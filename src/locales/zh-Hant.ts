@@ -190,6 +190,10 @@ export const translations: Translations = {
     },
     customer_validation_format: "The customer format is invalid or already exists",
     providers_validation_format: "The providers format is invalid",
+    add: "Add ASPA",
+    edit: "Edit ASPA",
+    analyse: "Analyse providers",
+    detected_providers: "Detected providers",
   },
   announcements: {
     noRoasOrAnnouncements: '未發現ROA或路由宣告。',

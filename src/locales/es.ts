@@ -178,6 +178,10 @@ export const translations: Translations = {
     },
     'customer_validation_format': "The customer format is invalid or already exists",
     'providers_validation_format': "The providers format is invalid",
+    add: "Add ASPA",
+    edit: "Edit ASPA",
+    analyse: "Analyse providers",
+    detected_providers: "Detected providers",
   },
   'announcements': {
     'noRoasOrAnnouncements': 'ROAs no encontrados.',

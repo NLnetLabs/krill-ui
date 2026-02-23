@@ -21,7 +21,7 @@
   max-height: 100%;
   background: white;
   border-radius: var(--radius);
-  box-shadow: var(--shadaw);
+  box-shadow: var(--shadow);
   padding: 1.5rem;
   overflow-x: hidden;
   overflow-y: auto;

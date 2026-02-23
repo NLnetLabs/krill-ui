@@ -68,6 +68,27 @@ export function prefixLength(prefix: string | undefined): string {
   return parts.length > 1 ? parts[parts.length - 1] : '1';
 }
 
+export function parseAsns(asns: string | undefined): string[] {
+  if (!asns) return [];
+
+  let newAsns: string[] = [];
+  asns.split(", ").forEach(x => {
+    if (!x.includes("-")) {
+      newAsns.push(x);
+      return;
+    }
+    let strings = x.split("-");
+    let start = parseInt(strings[0].substring(2));
+    let end = parseInt(strings[1].substring(2));
+
+    for (let i = start; i <= end; i++) {
+      newAsns.push("AS" + i);
+    }
+  });
+
+  return newAsns;
+}
+
 export function formatDate(seconds: number, locale: string) {
   const dt = DateTime.fromSeconds(seconds, { zone: 'UTC' }).setLocale(locale);
 

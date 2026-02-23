@@ -11,6 +11,7 @@
   white-space: nowrap;
   cursor: pointer;
   vertical-align: text-bottom;
+  border: 1px solid transparent;
 }
 
 a.button {
@@ -51,6 +52,14 @@ a.button {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.button img {
+  width: 0.75rem;
+  height: 0.75rem;
+  top: 50%;
+  left: 50%;
+  display: inline;
 }
 
 .button.icon.large {

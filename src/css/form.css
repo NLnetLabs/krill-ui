@@ -103,3 +103,65 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+.aspa-card {
+  width: 35rem;
+  max-width: 100vw;
+  margin: 1rem;
+  display: inline-flex;
+}
+
+.aspa-new {
+  background-color: var(--light);
+}
+
+.aspa-form {
+  margin: 2rem;
+  width: 100%;
+}
+
+.aspa-form img {
+  display: block;
+  width: 8rem;
+}
+
+.aspa-form h2 {
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+
+.aspa-form label {
+  display: block;
+}
+
+.aspa-form input {
+  width: 100%;
+}
+
+.aspa-form .actions {
+  margin-top: 1rem;
+}
+
+.aspa-list {
+  width: 100%;
+}
+
+.aspa-table td {
+  padding: 0.3rem 0;
+}
+
+.aspa-table td:first-child {
+  padding-right: 0.3rem;
+  text-align: right;
+}
+
+.aspa-label {
+  color: var(--dark);
+  background: white;
+  border: 1px solid var(--grey-dark);
+  border-radius: var(--radius);
+
+  padding: 0.2rem;
+  margin: 0.1rem;
+}

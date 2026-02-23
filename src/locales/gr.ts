@@ -178,6 +178,10 @@ export const translations: Translations = {
     },
     'customer_validation_format': "Το ASN του πελάτη είναι άκυρο ή ήδη υπάρχον",
     'providers_validation_format': "Η λίστα με τα ASN των παρόχων είναι άκυρη",
+    add: "Add ASPA",
+    edit: "Edit ASPA",
+    analyse: "Analyse providers",
+    detected_providers: "Detected providers",
   },
   'announcements': {
     'noRoasOrAnnouncements': 'Δεν βρέθηκαν ROA ή Ανακοινώσεις.',

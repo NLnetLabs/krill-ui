@@ -1,6 +1,6 @@
 .card {
   border: 1px solid var(--grey-lighter);
-  box-shadow: var(--shadaw);
+  box-shadow: var(--shadow);
   border-radius: var(--radius);
 }
 

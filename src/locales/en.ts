@@ -190,6 +190,10 @@ export const translations: Translations = {
     },
     customer_validation_format: "The customer ASN is invalid or already exists",
     providers_validation_format: "The provider ASN list is invalid",
+    add: "Add ASPA",
+    edit: "Edit ASPA",
+    analyse: "Analyse providers",
+    detected_providers: "Detected providers",
   },
   announcements: {
     noRoasOrAnnouncements: 'No ROAs or Announcements found.',
