@@ -194,6 +194,7 @@ export const translations: Translations = {
     edit: "Edit ASPA",
     analyse: "Analyse providers",
     detected_providers: "Detected providers",
+    providers_missing: "Providers detected in RIS but not in provider list",
   },
   announcements: {
     noRoasOrAnnouncements: 'No ROAs or Announcements found.',

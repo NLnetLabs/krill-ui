@@ -20,6 +20,7 @@ export default function AspaAdd({ onClose, asn, aspa, aspas, edit }: AddProps) {
   const [providers, setProviders] = useState(aspa?.providers.join(", ") || '');
 
   const [providerNames, setProviderNames] = useState<string[][]>([]);
+  const [providersMissing, setProvidersMissing] = useState<string[][]>([]);
 
   const id = aspa?.id?.toString() || 'new';
   const params: Record<string, string> = {
@@ -38,9 +39,10 @@ export default function AspaAdd({ onClose, asn, aspa, aspas, edit }: AddProps) {
   };
 
   const analyse = (asns: string[]) => {
+    let asMap = new Map<string, string>();
+
     fetch("https://ftp.ripe.net/ripe/asnames/asn.txt")
     .then(res => res.text()).then(asNames => {
-      let asMap = new Map<string, string>();
       
       asNames.split("\n").forEach(line => {
         let entry = line.split(/\s(.*)/s);
@@ -50,6 +52,16 @@ export default function AspaAdd({ onClose, asn, aspa, aspas, edit }: AddProps) {
       });
 
       setProviderNames(asns.map(asn => [asn, asMap.get(asn) || "Unknown"]));
+      fetch("https://stat.ripe.net/data/asn-neighbours/data.json?sourceapp=krill&resource=" + asn)
+      .then(res => res.json()).then(data => {
+        setProvidersMissing(
+          data.data.neighbours
+            .filter((x: { [x: string]: string; }) => x["type"] == "left" && !asns.includes("" + x["asn"]))
+            .map((x: { [x: string]: string; }) => ["" + x["asn"], asMap.get("" + x["asn"]) || "Unknown"])
+          );
+      }).catch(reason => {
+        alert("Could not analyse: " + reason);
+      })
     })
     .catch(reason => {
       alert("Could not analyse: " + reason);
@@ -113,13 +125,28 @@ export default function AspaAdd({ onClose, asn, aspa, aspas, edit }: AddProps) {
         {providerNames.length > 0 && <div>
             <label>{t.aspas.detected_providers}</label>
             <table className="aspa-table">
+              <tbody>
               {providerNames.map(provider => 
-                <tr>
+                <tr key={provider[0]}>
                   <td><span className="aspa-label">{provider[0]}</span></td>
                   <td>{provider[1]}</td>
                 </tr>
               )}
+              </tbody>
             </table>
+          </div>}
+        {providersMissing.length > 0 && <div>
+            <label>{t.aspas.providers_missing}</label>
+              <table className="aspa-table">
+                <tbody>
+                {providersMissing.map(provider => 
+                  <tr key={provider[0]}>
+                    <td><span className="aspa-label">{provider[0]}</span></td>
+                    <td>{provider[1]}</td>
+                  </tr>
+                )}
+                </tbody>
+              </table>
           </div>}
         <div className="actions">
           {edit && <button type="button" className="button" onClick={() => navigate(params, 'cas.aspas.delete')}>
