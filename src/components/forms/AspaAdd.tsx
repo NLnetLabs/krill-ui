@@ -4,6 +4,7 @@ import useNavigation from '../../hooks/useNavigation';
 import useTranslations from '../../hooks/useTranslations';
 
 import trash from '../../img/trash.svg?url';
+import useVersion from '../../hooks/useVersion';
 
 interface AddProps {
   onClose: () => void;
@@ -21,6 +22,8 @@ export default function AspaAdd({ onClose, asn, aspa, aspas, edit }: AddProps) {
 
   const [providerNames, setProviderNames] = useState<string[][]>([]);
   const [providersMissing, setProvidersMissing] = useState<string[][]>([]);
+
+  const info = useVersion();
 
   const id = aspa?.id?.toString() || 'new';
   const params: Record<string, string> = {
@@ -52,7 +55,7 @@ export default function AspaAdd({ onClose, asn, aspa, aspas, edit }: AddProps) {
       });
 
       setProviderNames(asns.map(asn => [asn, asMap.get(asn) || "Unknown"]));
-      fetch("https://stat.ripe.net/data/asn-neighbours/data.json?sourceapp=krill&resource=" + asn)
+      fetch(`https://stat.ripe.net/data/asn-neighbours/data.json?sourceapp=krill-${info?.version || "unknown"}&resource=${asn}`)
       .then(res => res.json()).then(data => {
         setProvidersMissing(
           data.data.neighbours
