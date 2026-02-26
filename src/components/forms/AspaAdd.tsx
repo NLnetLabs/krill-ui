@@ -14,6 +14,8 @@ interface AddProps {
   edit: boolean;
 }
 
+let asMap = new Map<string, string>();
+
 export default function AspaAdd({ onClose, asn, aspa, aspas, edit }: AddProps) {
   const t = useTranslations();
   const navigate = useNavigation();
@@ -33,7 +35,6 @@ export default function AspaAdd({ onClose, asn, aspa, aspas, edit }: AddProps) {
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
-    console.log("HELP!");
     if (form.checkValidity()) {
       navigate({ id, customer, providers }, edit ? "cas.aspas.edit" : "cas.aspas.add_new");
     } else {
@@ -42,18 +43,7 @@ export default function AspaAdd({ onClose, asn, aspa, aspas, edit }: AddProps) {
   };
 
   const analyse = (asns: string[]) => {
-    let asMap = new Map<string, string>();
-
-    fetch("https://ftp.ripe.net/ripe/asnames/asn.txt")
-    .then(res => res.text()).then(asNames => {
-      
-      asNames.split("\n").forEach(line => {
-        let entry = line.split(/\s(.*)/s);
-        if (entry.length >= 2) {
-          asMap.set(entry[0], entry[1]);
-        }
-      });
-
+    const process = () => {
       setProviderNames(asns.map(asn => [asn, asMap.get(asn) || "Unknown"]));
       fetch(`https://stat.ripe.net/data/asn-neighbours/data.json?sourceapp=krill-${info?.version || "unknown"}&resource=${asn}`)
       .then(res => res.json()).then(data => {
@@ -65,10 +55,28 @@ export default function AspaAdd({ onClose, asn, aspa, aspas, edit }: AddProps) {
       }).catch(reason => {
         alert("Could not analyse: " + reason);
       })
-    })
-    .catch(reason => {
-      alert("Could not analyse: " + reason);
-    })
+    };
+
+    console.log(asMap.size);
+
+    if (asMap.size === 0) {
+      fetch("https://ftp.ripe.net/ripe/asnames/asn.txt")
+      .then(res => res.text()).then(asNames => {
+        
+        asNames.split("\n").forEach(line => {
+          let entry = line.split(/\s(.*)/s);
+          if (entry.length >= 2) {
+            asMap.set(entry[0], entry[1]);
+          }
+        });
+
+        process();
+      }).catch(reason => {
+        alert("Could not analyse: " + reason);
+      });
+    } else {
+      process();
+    }
   };
 
   return (
