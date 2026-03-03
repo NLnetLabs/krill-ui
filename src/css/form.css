@@ -161,7 +161,7 @@ input[type=number] {
   background: white;
   border: 1px solid var(--grey-dark);
   border-radius: var(--radius);
-
+  vertical-align: middle;
   padding: 0.2rem;
   margin: 0.1rem;
 }
