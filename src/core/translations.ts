@@ -194,6 +194,7 @@ export interface Translations {
     analyse: string,
     detected_providers: string,
     providers_missing: string,
+    no_aspas: string,
   },
   announcements: {
     noRoasOrAnnouncements: string,

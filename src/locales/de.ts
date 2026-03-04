@@ -183,6 +183,7 @@ export const translations: Translations = {
     analyse: "Analyse providers",
     detected_providers: "Declared providers",
     providers_missing: "Providers detected in RIS but not in provider list",
+    no_aspas: "Krill did not find any ASNs. You need an ASN to be able to create an ASPA for it.",
   },
   'announcements': {
     'noRoasOrAnnouncements': 'Keine ROAs oder BGP-Ankündigung gefunden.',

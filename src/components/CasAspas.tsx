@@ -22,13 +22,7 @@ export default function CasAspas() {
 
   const aspas = store.getAspas();
 
-  const filtering: Filtering<AspaField> = {
-    search: params.search || null,
-    sort: params.sort || AspaField.customer,
-    order: params.order || SortOrder.asc,
-    limit: parseInt(params.limit, 10) || 25,
-    page: parseInt(params.page, 10) || 1,
-  };
+  const asns = store.ca && parseAsns(store.caDetails[store.ca].resources.asn);
 
   const onClose = () => {
     router.navigate('cas.aspas', { ca: params.ca });
@@ -40,20 +34,27 @@ export default function CasAspas() {
       <CasHeader />
       <div className="row">
         <div className="aspa-list">
-            {store.ca && parseAsns(store.caDetails[store.ca].resources.asn).map((asn) => {
-            const aspa = aspas.find((x) => "AS" + x.customer === asn);
+            {asns && asns.map((asn) => {
+              const aspa = aspas.find((x) => "AS" + x.customer === asn);
 
-            return (
-                <AspaAdd
-                  key={asn}
-                  onClose={onClose}
-                  asn={asn}
-                  aspas={aspas}
-                  aspa={aspa}
-                  edit={Boolean(aspa)}
-                />
-            );
-          })}
+              return (
+                  <AspaAdd
+                    key={asn}
+                    onClose={onClose}
+                    asn={asn}
+                    aspas={aspas}
+                    aspa={aspa}
+                    edit={Boolean(aspa)}
+                  />
+              );
+            })}
+            {(!asns || asns.length == 0) && (
+              <div className='aspa-card card aspa-new'>
+                <div className='aspa-form'>
+                  <em>{t.aspas.no_aspas}</em>
+                </div>
+              </div>
+            )}
         </div>
         {store.ca && (
           <CaDetailsTable
