@@ -312,11 +312,16 @@ export default class Store implements Data {
 
     await this.handleError(async () => {
       if (this.ca !== null) {
-        const [caDetails, roas, aspas] = await Promise.all([
+        let [caDetails, roas, aspas] = await Promise.all([
           this.api.getCaDetails(this.ca),
-          this.api.getCaRoas(this.ca),
+          this.api.getCaRoasMinimal(this.ca),
           this.api.getCaAspas(this.ca),
         ]);
+
+        if (roas.length < 1000) {
+          // BGP analysis takes too long for many ROAs
+          roas = await this.api.getCaRoas(this.ca);
+        }
 
         this.caDetails[this.ca] = caDetails;
         this.roas[this.ca] = roas;
