@@ -24,9 +24,7 @@ export default function CasAspas() {
 
   const asns = store.ca && parseAsns(store.caDetails[store.ca].resources.asn);
 
-  const onClose = () => {
-    router.navigate('cas.aspas', { ca: params.ca });
-  };
+  let asMap = new Map<string, string>();
 
   return (
     <Layout>
@@ -40,7 +38,7 @@ export default function CasAspas() {
               return (
                   <AspaAdd
                     key={asn}
-                    onClose={onClose}
+                    asMap={asMap}
                     asn={asn}
                     aspas={aspas}
                     aspa={aspa}

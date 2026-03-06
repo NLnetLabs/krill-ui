@@ -7,16 +7,14 @@ import trash from '../../img/trash.svg?url';
 import useVersion from '../../hooks/useVersion';
 
 interface AddProps {
-  onClose: () => void;
+  asMap: Map<string, string>;
   asn: string;
   aspa?: Aspa;
   aspas: Aspa[];
   edit: boolean;
 }
 
-let asMap = new Map<string, string>();
-
-export default function AspaAdd({ onClose, asn, aspa, aspas, edit }: AddProps) {
+export default function AspaAdd({ asMap, asn, aspa, aspas, edit }: AddProps) {
   const t = useTranslations();
   const navigate = useNavigation();
   const [customer, setCustomer] = useState(aspa?.customer.toString() || asn.substring(2));
