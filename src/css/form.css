@@ -30,10 +30,12 @@
 }
 
 label {
-  line-height: 2.5rem;
+  line-height: 1.1rem;
   color: var(--dark);
   font-size: 0.9rem;
   margin-right: 1rem;
+  margin-top: 0.7rem;
+  margin-bottom: 0.7rem;
 }
 
 label.required::before {
