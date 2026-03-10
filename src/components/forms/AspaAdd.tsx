@@ -55,8 +55,6 @@ export default function AspaAdd({ asMap, asn, aspa, aspas, edit }: AddProps) {
       })
     };
 
-    console.log(asMap.size);
-
     if (asMap.size === 0) {
       fetch("https://ftp.ripe.net/ripe/asnames/asn.txt")
       .then(res => res.text()).then(asNames => {
