@@ -57,7 +57,7 @@ export default function Add({ onClose, roa }: AddProps) {
           <label htmlFor="prefix required">{t.announcements.prefix}</label>
           <input
             name="prefix"
-            pattern="^((([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(\.(?!\/)|\/)){4}([0-9]|[1-2][0-9]|3[0-2]))|(([a-fA-F0-9:]+)\/([1-9]|[1-9][0-9]|1[01][0-9]|12[0-8]))$"
+            pattern="^((([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(\.(?!\/)|\/)){4}([0-9]|[1-2][0-9]|3[0-2]))|(([a-fA-F0-9:]+)\/([0-9]|[1-9][0-9]|1[01][0-9]|12[0-8]))$"
             onInput={(e) =>
               (e.target as HTMLFormElement).setCustomValidity('')
             }
