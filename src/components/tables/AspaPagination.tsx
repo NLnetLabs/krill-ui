@@ -14,7 +14,7 @@ interface PaginationProps {
 export default function AspaPagination({filtering}: PaginationProps) {
   const t = useTranslations();
   const store = useStore() as Store;
-  const count = store.getRoas().length;
+  const count = store.getAspas().length;
   const navigate = useNavigation();
   const pages = Math.ceil(count / filtering.limit);
 
