@@ -95,6 +95,14 @@ export default async function handleCaData(toState: State, store: Store) {
     });
   }
 
+  if (toState.name === 'cas.aspas.delete' && toState.params.customer) {
+    if (await store.deleteAspa(toState.params as Aspa)) {
+      return Promise.reject({
+        redirect: { name: 'cas.aspas', params: { ca: store.ca } },
+      });
+    }
+  }
+
   if (
     (
       toState.name === 'cas.aspas.add' || 
@@ -116,14 +124,6 @@ export default async function handleCaData(toState: State, store: Store) {
             id: toState.params.id,
           },
         },
-      });
-    }
-  }
-
-  if (toState.name === 'cas.aspas.delete' && toState.params.customer) {
-    if (await store.deleteAspa(toState.params as Aspa)) {
-      return Promise.reject({
-        redirect: { name: 'cas.aspas', params: { ca: store.ca } },
       });
     }
   }

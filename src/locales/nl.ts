@@ -177,6 +177,12 @@ export const translations: Translations = {
     },
     'customer_validation_format': "Het klant-ASN-formaat is ongeldig of de klant-ASN heeft al een ASPA",
     'providers_validation_format': "Het aanbieders-ASN-formaat is ongeldig",
+    add: "Add ASPA",
+    edit: "Edit ASPA",
+    analyse: "Analyse providers",
+    detected_providers: "Declared providers",
+    providers_missing: "ASNs observed in RIS but not in the provider list. Please verify that none of these ASNs act as your provider.",
+    no_aspas: "Krill did not find any ASNs. You need an ASN to be able to create an ASPA for it.",
   },
   'announcements': {
     'noRoasOrAnnouncements': 'Geen ROAs of BGP-aankondigingen gevonden.',

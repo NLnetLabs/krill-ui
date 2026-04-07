@@ -5,47 +5,54 @@ import CaDetailsTable from './tables/CaDetailsTable';
 import AspaModal from './forms/AspaModal';
 import CasHeader from './CasHeader';
 import Store from '../core/store';
-import { useRoute } from 'react-router5';
+import { useRoute, useRouter } from 'react-router5';
 import { AspaField, Filtering, RoaField, SortOrder } from '../core/types';
 import useNavigation from '../hooks/useNavigation';
 import useTranslations from '../hooks/useTranslations';
-import AspaSearch from './AspaSearch';
-import AspaTable from './tables/AspaTable';
-import AspaPagination from './tables/AspaPagination';
+import AspaAdd from './forms/AspaAdd';
+import { parseAsns } from '../core/utils';
 
 export default function CasAspas() {
   const t = useTranslations();
+  const router = useRouter();
   const store = useStore() as Store;
   const { route } = useRoute();
   const navigate = useNavigation();
   const params = route.params;
 
-  const filtering: Filtering<AspaField> = {
-    search: params.search || null,
-    sort: params.sort || AspaField.customer,
-    order: params.order || SortOrder.asc,
-    limit: parseInt(params.limit, 10) || 25,
-    page: parseInt(params.page, 10) || 1,
-  };
+  const aspas = store.getAspas();
+
+  const asns = store.ca && parseAsns(store.caDetails[store.ca].resources.asn);
+
+  let asMap = new Map<string, string>();
 
   return (
     <Layout>
       <AspaModal />
       <CasHeader />
       <div className="row">
-        <div className="flex-1">
-          <AspaSearch filtering={filtering} />
-          <AspaTable filtering={filtering} />
-          <AspaPagination filtering={filtering} />
-          <div className="roa-actions">
-            <div>
-              <button className="button" onClick={() => navigate({}, 'cas.aspas.add_new')}>
-                {t.caDetails.addAspa}
-              </button>
-            </div>
-            <div>
-            </div>
-          </div>
+        <div className="aspa-list">
+            {asns && asns.map((asn) => {
+              const aspa = aspas.find((x) => "AS" + x.customer === asn);
+
+              return (
+                  <AspaAdd
+                    key={asn}
+                    asMap={asMap}
+                    asn={asn}
+                    aspas={aspas}
+                    aspa={aspa}
+                    edit={Boolean(aspa)}
+                  />
+              );
+            })}
+            {(!asns || asns.length == 0) && (
+              <div className='aspa-card card aspa-new'>
+                <div className='aspa-form'>
+                  <em>{t.aspas.no_aspas}</em>
+                </div>
+              </div>
+            )}
         </div>
         {store.ca && (
           <CaDetailsTable

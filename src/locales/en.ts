@@ -190,6 +190,12 @@ export const translations: Translations = {
     },
     customer_validation_format: "The customer ASN is invalid or already exists",
     providers_validation_format: "The provider ASN list is invalid",
+    add: "Add ASPA",
+    edit: "Edit ASPA",
+    analyse: "Analyse providers",
+    detected_providers: "Declared providers",
+    providers_missing: "ASNs observed in RIS but not in the provider list. Please verify that none of these ASNs act as your provider",
+    no_aspas: "Krill did not find any ASNs. You need an ASN to be able to create an ASPA for it.",
   },
   announcements: {
     noRoasOrAnnouncements: 'No ROAs or Announcements found.',
