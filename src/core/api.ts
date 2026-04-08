@@ -14,6 +14,7 @@ import {
   Suggestion,
   ErrorResponseType,
   Aspa,
+  RoaState,
 } from './types';
 import {
   generateId,
@@ -114,6 +115,18 @@ export default class Api {
   getCaRoas(ca: string): Promise<Roa[]> {
     return this.get<Roa[]>(`/api/v1/cas/${ca}/routes/analysis/full`).then(
       (roas: Roa[]) => roas.map((roa) => ({ id: generateId(10), ...roa }))
+    );
+  }
+
+  getCaRoasMinimal(ca: string): Promise<Roa[]> {
+    return this.get<Route[]>(`/api/v1/cas/${ca}/routes`).then(
+      (routes: Route[]) => routes.map(route => (
+        { 
+          id: generateId(10),
+          ...route,
+          state: RoaState.RoaNoAnnouncementInfo
+        }
+      ))
     );
   }
 
